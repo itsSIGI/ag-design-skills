@@ -386,14 +386,11 @@ Recipe 是契约：代码不得偏离 Recipe，新增必须回 Step 1 补行。
 
 每份 Vision Spec 最多 **15 个 TOKEN_ESCAPE**（TIER_1 = 0，TIER_2 ≤ 5，TIER_3 ≤ 10）。
 
-### 6 条铁律
+### 3 条核心原则
 
-1. **ALWAYS Reference BEFORE Implement** — 写组件前必须先查到组件类/用法
-2. **Recipe 是契约** — 代码不得偏离 Recipe
-3. **业务层零硬编码** — 颜色/间距/圆角/阴影/字重全走 `var(--)` 或组件类
-4. **品牌蓝/绿只在三处** — 链接 hover、agent 状态点、代码高亮
-5. **字重上限 600** — 需要更强对比改字号或加负字距
-6. **焦点环用中性色** — focus ring 使用 `var(--color-focus-ring)`
+1. **ALWAYS Reference BEFORE Implement** — 写组件前必须先从组件库查到用法，不凭记忆
+2. **Recipe 是契约** — 代码不得偏离 Recipe，新增组件必须回 Step 1 补行
+3. **业务层零硬编码** — 颜色/间距/圆角/阴影/字重全走 `var(--)` 或组件类，唯一可手写的是布局
 
 ---
 
