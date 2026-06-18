@@ -1,0 +1,182 @@
+{
+  "version": "2.0.0",
+  "description": "ag-design-craft pattern library index. Hit a pattern → copy code + recipe, skip standard recipe build flow. / ag-design-craft pattern 库索引。命中 pattern 后直接抄代码 + recipe，跳过标准 recipe 构建流程。",
+  "patterns": [
+    {
+      "name": "kpi-stat-card",
+      "label_en": "KPI Stat Card",
+      "label_zh": "指标统计卡",
+      "intent_keywords": ["KPI", "指标卡", "统计卡", "数据卡", "metrics", "stat", "metric card"],
+      "code_file": "blocks/kpi-stat-card.tsx",
+      "archetype_hint": ["dashboard", "computation-dashboard", "report-analysis"]
+    },
+    {
+      "name": "status-tag",
+      "label_en": "Status Tag",
+      "label_zh": "状态标签",
+      "intent_keywords": ["状态标签", "状态", "tag", "badge", "任务状态", "status"],
+      "code_file": "blocks/status-tag.tsx",
+      "archetype_hint": ["list-table", "computation-dashboard", "experiment-workflow"]
+    },
+    {
+      "name": "search-bar",
+      "label_en": "Search Bar",
+      "label_zh": "搜索栏",
+      "intent_keywords": ["搜索", "搜索栏", "search", "搜索框", "过滤", "filter"],
+      "code_file": "blocks/search-bar.tsx",
+      "archetype_hint": ["list-table", "data-explorer"]
+    },
+    {
+      "name": "empty-state",
+      "label_en": "Empty State",
+      "label_zh": "空状态",
+      "intent_keywords": ["空态", "空状态", "无数据", "无结果", "empty", "no data", "no results"],
+      "code_file": "blocks/empty-state.tsx",
+      "archetype_hint": ["list-table", "data-explorer", "ai-chat-interface"]
+    },
+    {
+      "name": "chat-bubble",
+      "label_en": "Chat Bubble",
+      "label_zh": "对话气泡",
+      "intent_keywords": ["对话气泡", "聊天", "消息", "chat", "bubble", "AI对话"],
+      "code_file": "blocks/chat-bubble.tsx",
+      "archetype_hint": ["ai-chat-interface"]
+    },
+    {
+      "name": "agent-status",
+      "label_en": "Agent Status Indicator",
+      "label_zh": "Agent 状态指示器",
+      "intent_keywords": ["Agent状态", "agent", "运行状态", "AI状态", "agent indicator", "status dot"],
+      "code_file": "blocks/agent-status.tsx",
+      "archetype_hint": ["ai-chat-interface", "ai-agent-config", "computation-dashboard"]
+    },
+    {
+      "name": "code-block",
+      "label_en": "Code Block",
+      "label_zh": "代码块",
+      "intent_keywords": ["代码块", "代码展示", "code", "代码片段", "语法高亮", "syntax highlight"],
+      "code_file": "blocks/code-block.tsx",
+      "archetype_hint": ["ai-chat-interface", "entity-detail", "report-analysis"]
+    },
+    {
+      "name": "molecule-card",
+      "label_en": "Molecule Card",
+      "label_zh": "分子卡片",
+      "intent_keywords": ["分子卡", "化合物", "分子", "molecule", "compound", "结构图", "SMILES"],
+      "code_file": "blocks/molecule-card.tsx",
+      "archetype_hint": ["data-explorer", "molecule-viewer", "list-table"]
+    },
+    {
+      "name": "experiment-step-card",
+      "label_en": "Experiment Step Card",
+      "label_zh": "实验步骤卡片",
+      "intent_keywords": ["实验步骤", "实验流程", "步骤卡", "experiment", "step", "protocol"],
+      "code_file": "blocks/experiment-step-card.tsx",
+      "archetype_hint": ["experiment-workflow"]
+    },
+    {
+      "name": "computation-task-row",
+      "label_en": "Computation Task Row",
+      "label_zh": "计算任务行",
+      "intent_keywords": ["计算任务", "任务行", "任务列表", "computation", "task", "HPC"],
+      "code_file": "blocks/computation-task-row.tsx",
+      "archetype_hint": ["computation-dashboard", "list-table"]
+    },
+    {
+      "name": "step-card",
+      "label_en": "Step Card",
+      "label_zh": "步骤卡片",
+      "intent_keywords": ["步骤", "step", "workflow step", "执行步骤", "agent step", "collapsible step"],
+      "code_file": "blocks/step-card.tsx",
+      "archetype_hint": ["ai-chat-interface", "experiment-workflow"]
+    },
+    {
+      "name": "tool-activity",
+      "label_en": "Tool Activity",
+      "label_zh": "工具调用活动",
+      "intent_keywords": ["工具调用", "tool call", "工具活动", "tool activity", "function call"],
+      "code_file": "blocks/tool-activity.tsx",
+      "archetype_hint": ["ai-chat-interface"]
+    },
+    {
+      "name": "ask-card",
+      "label_en": "Ask Card",
+      "label_zh": "人工干预卡片",
+      "intent_keywords": ["人工干预", "needs human", "ask", "人工处理", "intervention", "urgency"],
+      "code_file": "blocks/ask-card.tsx",
+      "archetype_hint": ["ai-chat-interface"]
+    },
+    {
+      "name": "feedback-card",
+      "label_en": "Feedback Card",
+      "label_zh": "反馈选择卡",
+      "intent_keywords": ["反馈", "feedback", "用户反馈", "continue", "retry", "alternative"],
+      "code_file": "blocks/feedback-card.tsx",
+      "archetype_hint": ["ai-chat-interface"]
+    },
+    {
+      "name": "sow-card",
+      "label_en": "SOW Card",
+      "label_zh": "工作范围卡片",
+      "intent_keywords": ["SOW", "scope of work", "工作范围", "表单卡", "form card", "字段状态"],
+      "code_file": "blocks/sow-card.tsx",
+      "archetype_hint": ["ai-chat-interface", "create-edit-form"]
+    },
+    {
+      "name": "search-hit-card",
+      "label_en": "Search Hit Card",
+      "label_zh": "搜索结果卡片",
+      "intent_keywords": ["搜索结果", "search result", "搜索卡片", "hit card", "catalog card"],
+      "code_file": "blocks/search-hit-card.tsx",
+      "archetype_hint": ["data-explorer", "list-table"]
+    },
+    {
+      "name": "message-bubble",
+      "label_en": "Message Bubble",
+      "label_zh": "消息气泡（增强版）",
+      "intent_keywords": ["消息气泡", "message", "增强气泡", "附件", "编辑消息", "prose bubble"],
+      "code_file": "blocks/message-bubble.tsx",
+      "archetype_hint": ["ai-chat-interface"]
+    },
+    {
+      "name": "thinking-indicator",
+      "label_en": "Thinking Indicator",
+      "label_zh": "思考指示器",
+      "intent_keywords": ["思考中", "thinking", "loading", "processing", "等待", "spinner"],
+      "code_file": "blocks/thinking-indicator.tsx",
+      "archetype_hint": ["ai-chat-interface"]
+    },
+    {
+      "name": "project-card",
+      "label_en": "Project Card",
+      "label_zh": "项目卡片",
+      "intent_keywords": ["项目卡", "project", "项目概览", "project overview", "进度卡"],
+      "code_file": "blocks/project-card.tsx",
+      "archetype_hint": ["dashboard", "list-table"]
+    },
+    {
+      "name": "service-card",
+      "label_en": "Service Card",
+      "label_zh": "服务卡片",
+      "intent_keywords": ["服务卡", "service", "marketplace", "产品卡", "定价卡", "listing"],
+      "code_file": "blocks/service-card.tsx",
+      "archetype_hint": ["data-explorer", "list-table"]
+    },
+    {
+      "name": "topology-node",
+      "label_en": "Topology Node",
+      "label_zh": "拓扑图节点",
+      "intent_keywords": ["拓扑", "topology", "DAG", "节点", "agent node", "连接线", "graph node"],
+      "code_file": "blocks/topology-node.tsx",
+      "archetype_hint": ["ai-agent-config", "dashboard"]
+    },
+    {
+      "name": "event-line",
+      "label_en": "Event Line",
+      "label_zh": "事件分隔线",
+      "intent_keywords": ["事件", "event", "事件线", "系统消息", "proactive event", "severity"],
+      "code_file": "blocks/event-line.tsx",
+      "archetype_hint": ["ai-chat-interface"]
+    }
+  ]
+}

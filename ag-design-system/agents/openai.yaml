@@ -1,0 +1,3 @@
+display_name: Agentic Genius Design
+short_description: Apply the Agentic Genius token system and component library to UI work.
+default_prompt: Use the Agentic Genius design system to implement or review this UI. Reuse tokens and .ag-* components, keep brand colors constrained, and run the checklist before finishing.

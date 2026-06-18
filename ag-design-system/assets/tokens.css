@@ -1,0 +1,330 @@
+/* ============================================================================
+   Agentic Genius — Design Tokens（唯一事实源 / Single Source of Truth）
+   ----------------------------------------------------------------------------
+   一键换肤的本体。任何项目接入这套设计系统，只需 import 本文件。
+
+   分两层：
+   1) 原始色阶层（--n50…--n1000 等）—— 调色板的固定取值，不随主题变化。
+   2) 语义角色层（--color-*、--radius-*、--space-* 等）—— 组件只能引用这一层。
+      换肤 = 只改语义角色层的映射（见文件底部 [data-theme] 覆盖）。
+
+   ❗ 铁律：业务 UI 只引用「语义角色变量」和现成组件类。
+   基础库内部的控件固有尺寸必须先沉淀为 --font-size-* / --size-* / --border-* / --ring-* token。
+   ============================================================================ */
+
+:root {
+  /* ───────── 原始色阶层 Raw Palette ───────── */
+
+  /* Brand Anchor */
+  --w: #FFFFFF;
+  --b1000: #000000;          /* Pure Black：仅 logo/图标边线 */
+
+  /* Neutral N — 冷调蓝灰，UI 主力 */
+  --n50:  #F7F8FA;
+  --n100: #F0F3F7;
+  --n200: #E7ECF3;
+  --n300: #CDD4DF;
+  --n400: #B7BDCA;
+  --n500: #949CAC;
+  --n600: #667085;
+  --n700: #475569;
+  --n800: #344052;
+  --n900: #252B39;
+  --n1000:#0F1729;           /* Near Black：浅色主文本 / 暗色页面底 */
+
+  /* Signal — 信号色（克制使用：仅链接 hover / agent 状态点 / 代码高亮） */
+  --signal-blue:        #123AFF;   /* B500 */
+  --signal-blue-light:  #4161FF;   /* B400（暗色补偿） */
+  --signal-green:       #00BF74;   /* G700 */
+  --signal-green-light: #00DF87;   /* G600（暗色补偿） */
+  --signal-green-rgb:   0, 191, 116;  /* G700 的 RGB 分量，供 rgba() 调透明度（如 pulse 光晕） */
+
+  /* Status base（用于 toast / badge / inline icon） */
+  --r500: #F24E3F; --r600: #D22F21; --r100: #FFE8E4; --r800: #8C1409;
+  --y500: #FFC629; --y100: #FFF1CA; --y800: #A17600;
+  --s500: #25B3FF; --s100: #D0EFFF; --s800: #00669D;
+  --g100: #C7FFE9; --g800: #008F57;
+  --b100: #CED6FF; --b800: #001788;
+  --o500: #FF671D; --o100: #FFD8C4; --o800: #AB3800;
+
+  /* Decorative（仅装饰图形 / 插画 / 分类标签使用，不参与高频组件） */
+  --t100: #BFF8E7; --t800: #007C57;
+  --p-purple-100: #E7DEFF; --p-purple-800: #360ABC;
+  --p-pink-100:   #FDE9F4; --p-pink-800:   #7E163F;
+
+  /* ───────── 语义角色层 Semantic Roles（组件只引用这一层） ───────── */
+
+  /* Surface & background */
+  --color-bg:               var(--w);      /* 页面底 */
+  --color-surface:          var(--n50);    /* 卡片底 / 输入框底 */
+  --color-surface-elevated: var(--w);      /* 浮层 / 弹窗 */
+  --color-surface-hover:    var(--n100);   /* hover 底色 */
+
+  /* Border */
+  --color-border-subtle: var(--n200);      /* 卡片边 / 分割线 */
+  --color-border-strong: var(--n300);      /* 输入框 / 悬停 */
+
+  /* Text */
+  --color-text-primary:   var(--n1000);
+  --color-text-secondary: var(--n600);
+  --color-text-muted:     var(--n500);     /* 占位 / 禁用 */
+
+  /* Primary action（黑底白字，暗色翻转） */
+  --color-primary-bg:        var(--n1000);
+  --color-primary-text:      var(--w);
+  --color-primary-bg-hover:  var(--n900);
+
+  /* Secondary / ghost action */
+  --color-secondary-border:  var(--n300);
+  --color-secondary-hover:   var(--n50);
+  --color-ghost-text:        var(--n600);
+  --color-ghost-hover:       var(--n100);
+
+  /* Danger（仅不可逆破坏操作） */
+  --color-danger-bg:       var(--r500);
+  --color-danger-bg-hover: var(--r600);
+  --color-danger-text:     var(--w);
+
+  /* Focus ring —— 中性深色，❗绝不用品牌蓝 */
+  --color-focus-ring: var(--n1000);
+  --color-focus-halo: rgba(15, 23, 41, 0.12);  /* 输入框 focus 的 box-shadow halo */
+
+  /* Selected（卡片选中 / 当前激活）—— 中性，❗不用品牌蓝 */
+  --color-selected: var(--n1000);
+
+  /* Switch thumb 开启态色（off 态恒为白；on 态浅色模式白、暗色模式深，保证可见） */
+  --color-switch-thumb-on: var(--w);
+
+  /* Link */
+  --color-link:            var(--n1000);
+  --color-link-underline:  var(--n300);
+  --color-link-hover:      var(--signal-blue);   /* 唯一允许的品牌蓝控件用途 */
+
+  /* Agent 状态点（固定语义，不可交换） */
+  --color-agent-idle:      var(--signal-blue);   /* 待响应 */
+  --color-agent-running:   var(--signal-green);  /* 运行中 */
+  --color-agent-completed: var(--signal-green);
+  --color-agent-error:     var(--r500);
+  --color-agent-paused:    var(--n500);
+
+  /* 代码语法高亮（固定） */
+  --color-code-keyword: var(--signal-blue);
+  --color-code-string:  var(--signal-green);
+  --color-code-comment: var(--n500);
+  --color-code-fn:      var(--n1000);
+  --color-code-number:  var(--o500);
+  --color-code-bg:      var(--n50);
+
+  /* Chat */
+  --color-bubble-user-bg:   var(--n100);
+  --color-bubble-user-text: var(--n1000);
+
+  /* Status slots（Tag/Badge 语义槽，颜色与状态严格绑定） */
+  --color-status-default-bg: var(--n100); --color-status-default-text: var(--n700);
+  --color-status-info-bg:    var(--b100); --color-status-info-text:    var(--b800);
+  --color-status-success-bg: var(--g100); --color-status-success-text: var(--g800);
+  --color-status-warning-bg: var(--y100); --color-status-warning-text: var(--y800);
+  --color-status-error-bg:   var(--r100); --color-status-error-text:   var(--r800);
+
+  /* Overlay / Tooltip / Token stream（浮层与微交互） */
+  --color-overlay:       rgba(15, 23, 41, 0.40);   /* Modal/Drawer 背后遮罩 */
+  --color-tooltip-bg:    var(--n1000);             /* tooltip 深底（与页面反色） */
+  --color-tooltip-text:  var(--w);
+  --color-token-stream:  rgba(18, 58, 255, 0.08);  /* agent 最新 token 短暂高亮 */
+
+  /* ───────── Typography ───────── */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Menlo", "Cascadia Code", "Source Code Pro", monospace;
+
+  /* 字重（上限 600，❗禁止 700） */
+  --weight-regular: 400;
+  --weight-medium:  500;   /* 按钮 / 导航 / 链接 */
+  --weight-bold:    600;   /* 标题 / 强调（上限） */
+
+  /* Font size scale */
+  --font-size-micro: 11px;
+  --font-size-caption: 12px;
+  --font-size-small: 13px;
+  --font-size-control: 14px;
+  --font-size-body: 15px;
+  --font-size-body-lg: 16px;
+  --font-size-subheading: 18px;
+  --font-size-heading: 22px;
+  --font-size-page-title: 28px;
+  --font-size-display: 36px;
+
+  /* ───────── Spacing Scale（base 4px，所有 padding/margin/gap 从此取值） ───────── */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;     /* 默认 padding */
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-icon-text: 6px;  /* icon + text 专用间距 */
+
+  /* ───────── Control Sizes（基础库固有尺寸；业务 UI 不直接写裸 px） ───────── */
+  --border-width-default: 1px;
+  --border-width-strong: 2px;
+  --ring-width-focus: 2px;
+  --ring-offset-focus: 2px;
+  --ring-width-halo: 3px;
+  --size-icon-sm: 14px;
+  --size-icon-md: 16px;
+  --size-icon-lg: 20px;
+  --size-icon-btn: 32px;
+  --size-control-sm: 18px;
+  --size-control-md: 32px;
+  --size-control-lg: 40px;
+  --size-switch-w: 32px;
+  --size-switch-h: 18px;
+  --size-switch-thumb: 14px;
+  --size-checkbox: 16px;
+  --size-radio: 16px;
+  --size-spinner: 14px;
+  --size-progress-h: 6px;
+
+  --size-control-xl: 56px;
+  --size-slider-w: 200px;
+  --size-modal-max: 480px;
+  --size-drawer-max: 400px;
+  --size-toast-min: 280px;
+  --size-toast-max: 400px;
+  --size-menu-min: 180px;
+  --size-status-dot: 8px;
+  --size-checkmark-w: 9px;
+  --size-checkmark-h: 4px;
+  --size-indicator-bar: 4px;
+  --size-underline-offset: 3px;
+
+  /* ───────── Border Radius Scale（只从此取值，❗禁止自定义新 radius） ───────── */
+  --radius-none: 0;        /* agent 气泡 / 纯文本块 */
+  --radius-xs: 4px;        /* tag / badge */
+  --radius-sm: 6px;        /* 默认：按钮 / 输入框 / 小卡片 / code */
+  --radius-md: 8px;        /* 卡片 / panel */
+  --radius-lg: 12px;       /* modal / popover / 用户气泡 */
+  --radius-xl: 16px;       /* 大 feature 卡 */
+  --radius-full: 9999px;   /* 头像 / 圆点 / pill */
+
+  /* ───────── Elevation / Shadow（只从此取值，❗禁止自定义新阴影） ───────── */
+  --shadow-card:    rgba(15,23,41,0.08) 0 1px 2px 0, rgba(15,23,41,0.06) 0 4px 8px -2px;
+  --shadow-modal:   rgba(15,23,41,0.16) 0 8px 24px -4px;
+  --shadow-whisper: rgba(15,23,41,0.05) 0 4px 24px;
+  --ring-contained: 0 0 0 1px var(--color-border-subtle);   /* Level 2 Ring */
+  --ring-selected:  0 0 0 2px var(--color-selected);        /* Ring 选中 */
+  --shadow-inset:   inset 0 0 0 1px rgba(15,23,41,0.15);    /* Level 4 Inset */
+}
+
+/* ============================================================================
+   暗色主题覆盖 —— 换肤只需覆盖「语义角色层」。
+   两种触发方式都支持：手动 [data-theme="dark"]，或系统 prefers-color-scheme。
+   ============================================================================ */
+
+[data-theme="dark"] {
+  --color-bg:               var(--n1000);
+  --color-surface:          var(--n900);
+  --color-surface-elevated: var(--n800);
+  --color-surface-hover:    var(--n800);
+
+  --color-border-subtle: var(--n800);
+  --color-border-strong: var(--n700);
+
+  --color-text-primary:   var(--w);
+  --color-text-secondary: var(--n400);
+  --color-text-muted:     var(--n500);
+
+  --color-primary-bg:       var(--w);
+  --color-primary-text:     var(--n1000);
+  --color-primary-bg-hover: var(--n100);
+
+  --color-secondary-border: var(--n700);
+  --color-secondary-hover:  var(--n900);
+  --color-ghost-text:       var(--n400);
+  --color-ghost-hover:      var(--n800);
+
+  --color-focus-ring: var(--w);
+  --color-focus-halo: rgba(255, 255, 255, 0.18);
+  --color-selected:   var(--w);
+  --color-switch-thumb-on: var(--n1000);
+
+  --color-tooltip-bg:   var(--w);    /* 暗色页面上 tooltip 反色为浅底深字 */
+  --color-tooltip-text: var(--n1000);
+
+  --color-link:           var(--w);
+  --color-link-underline: var(--n700);
+  --color-link-hover:     var(--signal-blue-light);
+
+  --color-agent-idle:      var(--signal-blue-light);
+  --color-agent-running:   var(--signal-green-light);
+  --color-agent-completed: var(--signal-green-light);
+
+  --color-code-keyword: var(--signal-blue-light);
+  --color-code-string:  var(--signal-green-light);
+  --color-code-fn:      var(--w);
+  --color-code-bg:      var(--n1000);   /* 暗色与页面同底，靠 border 区分 */
+
+  --color-bubble-user-bg:   var(--n900);
+  --color-bubble-user-text: var(--n50);
+
+  /* 暗色模式阴影几乎不可见 → Whisper/Card 降级为 1px 边框 */
+  --shadow-card:    0 0 0 1px var(--n700);
+  --shadow-whisper: 0 0 0 1px var(--n700);
+  --shadow-inset:   inset 0 0 0 1px rgba(255,255,255,0.10);
+}
+
+/* 跟随系统：仅当未手动指定 data-theme 时生效 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg:               var(--n1000);
+    --color-surface:          var(--n900);
+    --color-surface-elevated: var(--n800);
+    --color-surface-hover:    var(--n800);
+    --color-border-subtle: var(--n800);
+    --color-border-strong: var(--n700);
+    --color-text-primary:   var(--w);
+    --color-text-secondary: var(--n400);
+    --color-text-muted:     var(--n500);
+    --color-primary-bg:       var(--w);
+    --color-primary-text:     var(--n1000);
+    --color-primary-bg-hover: var(--n100);
+    --color-secondary-border: var(--n700);
+    --color-secondary-hover:  var(--n900);
+    --color-ghost-text:       var(--n400);
+    --color-ghost-hover:      var(--n800);
+    --color-focus-ring: var(--w);
+    --color-focus-halo: rgba(255, 255, 255, 0.18);
+    --color-selected:   var(--w);
+    --color-link:           var(--w);
+    --color-link-underline: var(--n700);
+    --color-link-hover:     var(--signal-blue-light);
+    --color-agent-idle:      var(--signal-blue-light);
+    --color-agent-running:   var(--signal-green-light);
+    --color-agent-completed: var(--signal-green-light);
+    --color-code-keyword: var(--signal-blue-light);
+    --color-code-string:  var(--signal-green-light);
+    --color-code-fn:      var(--w);
+    --color-code-bg:      var(--n1000);
+    --color-bubble-user-bg:   var(--n900);
+    --color-bubble-user-text: var(--n50);
+    --shadow-card:    0 0 0 1px var(--n700);
+    --shadow-whisper: 0 0 0 1px var(--n700);
+    --shadow-inset:   inset 0 0 0 1px rgba(255,255,255,0.10);
+  }
+}
+
+/* 基础页面样式（接入后可直接生效） */
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
