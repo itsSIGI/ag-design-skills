@@ -320,28 +320,17 @@ done
 
 启动时静默拉取最新版，**装一次，之后永久自动**，仅在真正更新时提示一行。
 
-在 `~/.claude/settings.json` 的 `hooks` 中加入 `SessionStart`（已有其他 hook 就把这条合并进去）：
-
-```json
-{
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.ag-design-skills/scripts/auto-update.sh"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+只要你用 `bash scripts/install.sh` 安装，**自动更新已经帮你配好了** —— 脚本会把更新 hook 自动合并进 `~/.claude/settings.json`（保留你已有的所有配置，并先备份原文件）。重启 Claude Code 即可生效，无需手动改 JSON。
 
 之后每次启动 Claude Code：
 - 有新版本 → 自动拉取并打印 `✓ AG Design Skills 已更新到 <版本>: <说明>`
 - 无更新 / 无网络 → 完全静默，绝不阻塞启动
+
+> **想手动配置 / 重新配置？** 单独运行：
+> ```bash
+> bash ~/.ag-design-skills/scripts/configure-hook.sh
+> ```
+> 它是幂等的（已配置则跳过），优先用 `jq`，没装则降级用系统自带的 `python3` 安全合并。两者都没有时会打印手动配置片段。
 
 ### Cursor / Windsurf / Codex / 其他工具 —— 手动更新
 

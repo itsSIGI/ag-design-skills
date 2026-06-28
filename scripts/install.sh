@@ -65,24 +65,17 @@ for skill in "${SKILLS[@]}"; do
   ok "  $skill → $src"
 done
 
-# --- 3. 引导自动更新 --------------------------------------------------------
-HOOK_CMD="bash $INSTALL_DIR/scripts/auto-update.sh"
+# --- 3. 自动配置 Claude Code 更新 hook -------------------------------------
+info "配置 Claude Code 自动更新..."
+bash "$INSTALL_DIR/scripts/configure-hook.sh" || warn "hook 配置步骤出错,可稍后手动运行 scripts/configure-hook.sh"
+
+# --- 4. 收尾说明 ------------------------------------------------------------
 cat <<EOF
 
 $(ok "安装完成!")
 
-下一步 —— 启用自动更新(强烈推荐):
-
-  【Claude Code】每次启动自动拉取最新版,无需手动操作。
-  在 ~/.claude/settings.json 的 "hooks" 中加入 SessionStart:
-
-  {
-    "hooks": {
-      "SessionStart": [
-        { "hooks": [ { "type": "command", "command": "$HOOK_CMD" } ] }
-      ]
-    }
-  }
+  【Claude Code】自动更新已配置完毕 —— 重启 Claude Code 后,
+  每次启动会自动拉取最新版,无需任何手动操作。
 
   【Cursor / Codex / 其他工具】无 hook 机制,需要时手动更新:
 
