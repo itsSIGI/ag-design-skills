@@ -119,7 +119,7 @@ description: >
    - 品牌蓝/绿只在三处（链接 hover、agent 状态点、代码高亮）
    - 焦点环/选中态使用中性色
    - 字重 ≤ 600
-   - 图标来自 MingCute
+   - 图标来自白名单库（MingCute / Lucide），单项目单库（shadcn 自带 Lucide 豁免）
 
 3. **判定输出**：
    - `PASS`：全部通过

@@ -40,7 +40,7 @@
 
 - [ ] **无 `font-weight: 700`** 或更高——最大值 `var(--weight-bold)` = 600
 - [ ] 字体使用 `var(--font-sans)` / `var(--font-mono)`，**零 Web Font 引入**
-- [ ] 图标来自 **MingCute**（line 默认 / fill 选中态），**不混用**其他图标库或 emoji
+- [ ] 图标来自**白名单成套库**（MingCute / Lucide），**单项目单库**保持统一；shadcn 自带 Lucide 微图标豁免；**不**手写 SVG / 不用 emoji / 不混用多个主库
 - [ ] 大标题（≥22px）有负字距（排版组件已内置）
 - [ ] 字号使用排版组件或 `var(--font-size-*)`，不用裸 px
 

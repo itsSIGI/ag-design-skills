@@ -98,7 +98,7 @@
 
 - 标题文本左侧与下方内容的左侧对齐（视觉对齐，不是像素对齐）
 - 图标方向一致（如果一组图标都是 line 风格，不混入 fill 风格）
-- MingCute 图标与文本垂直居中对齐（用 `vertical-align: middle` 或 flex `align-items: center`）
+- 图标与文本垂直居中对齐（用 `vertical-align: middle` 或 flex `align-items: center`）
 - 大标题（≥22px）带负字距（排版组件已内置 `letter-spacing: -0.01em`）
 
 **FAIL 修法**：检查对齐，调整 flex 布局或 padding

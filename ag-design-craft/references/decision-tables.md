@@ -106,11 +106,11 @@
 
 | 场景 | 用 | 不用 | 原因 |
 |------|----|----|------|
-| 列表为空 | `<EmptyState>`（MingCute 图标 + 文案） | 自拼"暂无数据"灰字 | 需图标 + 引导文案 |
+| 列表为空 | `<EmptyState>`（白名单图标 + 文案） | 自拼"暂无数据"灰字 | 需图标 + 引导文案 |
 | 搜索无结果 | `<EmptyState>` + 搜索语义文案 | 同上 | — |
-| 错误页 | `<EmptyState>`（MingCute 图标 + 错误文案 + 重试按钮） | Toast | 错误是常驻状态 |
+| 错误页 | `<EmptyState>`（白名单图标 + 错误文案 + 重试按钮） | Toast | 错误是常驻状态 |
 
-> **ag-ext 有 `<EmptyState>` 组件**——搭配 MingCute 图标 + `<Body>`/`<Caption>` 文案。需在 recipe 中显式登记为复合块。
+> **ag-ext 有 `<EmptyState>` 组件**——搭配白名单图标（MingCute / Lucide）+ `<Body>`/`<Caption>` 文案。需在 recipe 中显式登记为复合块。
 
 ---
 

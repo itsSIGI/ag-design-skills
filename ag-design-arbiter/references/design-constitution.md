@@ -53,7 +53,7 @@
 ### 2.5 工程化脱轨
 - 业务代码中出现裸十六进制色值（无 `TOKEN_ESCAPE` 声明）
 - 手写 `:focus` / `:hover` 规则覆盖 shadcn/AG 组件内置交互态
-- 使用非 MingCute 图标库
+- 使用非白名单图标库（白名单：MingCute / Lucide）/ 手写 SVG 当图标 / 同项目混用多个主图标库
 - 引入 Web Font / Google Fonts
 - 自定义圆角或阴影值（不从 token 取值）
 
@@ -162,7 +162,7 @@
 | 焦点/选中态 | 中性色 `--color-focus-ring` / `--color-selected` |
 | 按钮颜色 | Primary=黑白中性，Danger=红，其余中性 |
 | 字重 | ≤ 600 |
-| 图标 | MingCute line 默认 / fill 选中 |
+| 图标 | 白名单库（MingCute / Lucide），单项目单库；shadcn 自带 Lucide 豁免 |
 | 圆角 | 按钮/输入 6px / 卡片 8px / 弹窗 12px / tag 4px |
 | 阴影 | 从 `--shadow-*` 取，暗色下降级为边框 |
 

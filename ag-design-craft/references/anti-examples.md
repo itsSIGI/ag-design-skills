@@ -143,31 +143,41 @@
 
 ---
 
-## #6 — 混用图标库
+## #6 — 图标用法不规范
 
-**症状**：项目中同时出现 MingCute + Lucide + FontAwesome 图标
+**症状**：同项目混用多个**主**图标库、自己手写 SVG 当图标、或用非白名单杂牌库
 
 ```tsx
-/* ❌ 错误 */
+/* ❌ 错误：同一项目里 MingCute + Lucide + FontAwesome 三个主库并存 */
 import { Calendar } from 'lucide-react';
 import { FaUser } from 'react-icons/fa';
 
-<Calendar size={16} />
-<FaUser size={16} />
+<i className="mgc_home_line" />        {/* MingCute */}
+<Calendar size={16} />                 {/* Lucide */}
+<FaUser size={16} />                   {/* FontAwesome（非白名单） */}
+
+/* ❌ 错误：自己手写 SVG 当图标 */
+<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5..." /></svg>
 ```
 
-**修正**：统一使用 MingCute 图标
+**修正**：**选定一个主库**，全程统一。两库写法二选一 —
 
 ```tsx
-/* ✅ 正确 */
-// 使用 MingCute 图标（line 默认 / fill 选中态）
+/* ✅ 正确 A：项目主库 = MingCute（icon font，line 默认 / fill 选中态） */
 <i className="mgc_calendar_line" style={{ fontSize: 'var(--size-icon-md)' }} aria-label="日历" />
 <i className="mgc_user_3_line" style={{ fontSize: 'var(--size-icon-md)' }} aria-label="用户" />
+
+/* ✅ 正确 B：项目主库 = Lucide（React 组件） */
+import { Calendar, User } from 'lucide-react';
+<Calendar className="size-[var(--size-icon-md)]" aria-label="日历" />
+<User className="size-[var(--size-icon-md)]" aria-label="用户" />
 ```
 
-**根因**：AG 设计系统明确规定 MingCute 为唯一图标库。混用会导致视觉风格不一致（线条粗细、圆角风格、填充规则各异）。
+> **shadcn 豁免**：shadcn 组件**内部自带**的 Lucide 功能性微图标（对勾 / 箭头 / 关闭 X）豁免，不算混用 —— 即便项目主库选了 MingCute，也无需替换它们。
 
-**规则引用**：Design Signatures `HIGH: MingCute 图标`
+**根因**：MingCute 与 Lucide 都是白名单成套库，单独用任一个都合规；问题在于**同项目混多个主库**（线条粗细、圆角、填充规则各异 → 风格不一致）、**手写 SVG**（不成套、不可维护）或**杂牌库**。
+
+**规则引用**：Design Signatures `HIGH: 白名单图标库`
 
 ---
 

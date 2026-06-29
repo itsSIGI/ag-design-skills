@@ -50,6 +50,6 @@ description: Agentic Genius 品牌设计系统——一键换肤的 design token
 
 ## 备注
 
-- 图标库统一用 [MingCute](https://www.mingcute.com/)（line 默认 / fill 选中），不混用其他图标库或 emoji。
+- 图标用**白名单成套库**：[MingCute](https://www.mingcute.com/)（icon font，line 默认 / fill 选中）或 [Lucide](https://lucide.dev/)（React 组件，`lucide-react`）。**单项目选定一个主库**保持风格统一；shadcn 组件内部自带的 Lucide 功能性微图标（对勾/箭头/X）豁免，不计入混用。禁止：手写/临时 SVG 当图标、非白名单杂牌库、同项目混用多个主库、用 emoji 代替图标。详见 `references/components-v2.md` 的「允许的图标库」。
 - 完整设计哲学与装饰色板（11×9）见用户原始文档 `agentic-genius-DESIGN.md`（如需扩展分类色相时参考）。
 - 本 skill 的 token/组件值均源自该文档与其 HTML 预览，二者保持一致。

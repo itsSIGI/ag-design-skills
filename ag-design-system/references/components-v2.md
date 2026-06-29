@@ -351,6 +351,36 @@ AG 链接——中性色 + 品牌蓝 hover（**唯一允许的品牌蓝控件用
 
 ---
 
+# 允许的图标库
+
+图标只用以下**白名单成套库**。核心原则：**单项目选定一个主库**，全程统一，保证线条粗细 / 圆角 / 填充风格一致。
+
+| 库 | 形式 | 写法 | 风格约定 |
+|----|------|------|---------|
+| [MingCute](https://www.mingcute.com/) | icon font | `<i className="mgc_xxx_line" />` | `_line` 默认 / `_fill` 选中态 |
+| [Lucide](https://lucide.dev/) | React 组件 | `import { Calendar } from 'lucide-react'` → `<Calendar />` | stroke 线性风格，`strokeWidth` 默认 2 |
+
+**通用约定**（两库都适用）：
+- 颜色用 `currentColor` 继承文字色，不写死颜色值。
+- 尺寸用 token：`--size-icon-sm/md/lg`（MingCute 用 `fontSize`，Lucide 用 `size` 或 `width/height`）。
+- 与文本垂直居中对齐（`vertical-align: middle` 或 flex `align-items: center`）。
+
+**两库写法示例**：
+```tsx
+// 项目主库 = MingCute（icon font）
+<i className="mgc_search_line" style={{ fontSize: 'var(--size-icon-md)' }} aria-label="搜索" />
+
+// 项目主库 = Lucide（React 组件，如本文件 EmptyState 的 <SearchIcon />）
+import { Search } from 'lucide-react';
+<Search className="size-[var(--size-icon-md)]" aria-label="搜索" />
+```
+
+**shadcn 豁免**：shadcn 组件**内部自带**的 Lucide 功能性微图标（对勾 / 箭头 / 关闭 X 等）豁免，**不计入混用违规** —— 即便项目主库选了 MingCute，也无需替换 shadcn 内置的那些图标。
+
+**禁止**：手写 / 临时拼的 SVG 当图标、非白名单杂牌库（FontAwesome / react-icons 等）、同项目混用多个**主**图标库、用 emoji 代替图标。
+
+---
+
 # 已废弃
 
 以下旧组件体系已废弃，不再使用：

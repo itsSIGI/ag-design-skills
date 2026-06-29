@@ -310,5 +310,5 @@
 | 自己造阴影 | 必须从 token 取 | 用 `--shadow-card` 等 |
 | 大面积留白 | AG 是信息密集型 | 适度紧凑，但保持呼吸感 |
 | 装饰过多 | "冷峻精确"风格 | 信息优先，装饰最少化 |
-| 图标混用 | AG 统一 MingCute | line 默认 / fill 选中 |
+| 混用多个主图标库 | 单项目单库（白名单 MingCute / Lucide） | 风格统一；shadcn 自带 Lucide 豁免 |
 | 手写 hover/focus | shadcn/AG 组件已内置 | 不要覆盖，直接用 shadcn/AG 组件 |

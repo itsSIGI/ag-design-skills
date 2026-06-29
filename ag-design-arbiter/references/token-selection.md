@@ -206,5 +206,5 @@
 - 品牌蓝用于焦点环、选中态、按钮填充
 - 字重 700
 - 自定义圆角 / 阴影（不从 token 取）
-- 非 MingCute 图标
+- 非白名单图标库（白名单：MingCute / Lucide）/ 手写 SVG 图标
 - Web Font / Google Fonts

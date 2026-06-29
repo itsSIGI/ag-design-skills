@@ -50,7 +50,7 @@
 ### 依赖
 - **设计系统**：shadcn/ui + AG 扩展组件（`components-v2.md`）+ `tokens.css`（版本：[当前版本]）
 - **开源组件**：[库名@版本]（如有）
-- **图标库**：MingCute（line 为主）
+- **图标库**：白名单库 MingCute / Lucide（单项目单库，标注实际所用）
 
 ### 关键实现说明
 - [组件 A]：使用 `<AgCard variant="ring">`，注意 hover 态自带

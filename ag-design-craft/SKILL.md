@@ -315,7 +315,7 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 1. **逐槽位渲染 recipe**——每个槽位使用对应的 shadcn/AG 组件或开源组件，严格匹配 recipe 中登记的组件名和 token
 2. 数据填充：把 mock 数据、文案、回调函数填进组件
 3. **页面级 wrapper**（外层 layout、卡片间 gap、grid 列宽等少量自定义层）使用 `var(--space-*)` / `var(--radius-*)` 等 token 变量
-4. 图标使用 [MingCute](https://www.mingcute.com/)（line 默认 / fill 选中态），不混用其他图标库
+4. 图标使用白名单库 [MingCute](https://www.mingcute.com/)（icon font）或 [Lucide](https://lucide.dev/)（React 组件），**单项目单库**保持统一；shadcn 自带 Lucide 微图标豁免
 5. 每个图表（ECharts 等）声明**固定像素高度**；图表内部配色可直接用 hex（从 tokens.md 原始色阶取）
 6. **不添加**用户未明确要求的 UI 元素
 7. **框架分叉**：

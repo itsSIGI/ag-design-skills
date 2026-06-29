@@ -56,7 +56,7 @@
 - [ ] Switch 仅用于即时生效开关；"提交后才生效"的字段用 Checkbox。
 - [ ] 所有 focusable 元素有可见 focus ring；仅图标按钮有 `aria-label`；装饰图标 `aria-hidden`。
 - [ ] Danger 操作带二次确认。
-- [ ] 图标统一来自 MingCute（line 默认 / fill 选中），`currentColor` 继承文字色，**不混用其他图标库或 emoji**。
+- [ ] 图标来自白名单成套库（MingCute / Lucide），单项目单库保持统一，`currentColor` 继承文字色；shadcn 自带 Lucide 微图标豁免；**不**手写 SVG / 不用 emoji / 不混用多个主库。
 
 ## 快速 grep 自查（可选）
 

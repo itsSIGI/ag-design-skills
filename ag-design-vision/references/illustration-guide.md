@@ -239,7 +239,7 @@ Constraints: match reference style, no text, transparent background, suitable fo
 
 ## 8. AG 品牌共存规则
 
-- **TIER_1 区域**（导航/页脚/系统 UI）：仅使用 MingCute 图标，不放插画
+- **TIER_1 区域**（导航/页脚/系统 UI）：仅使用白名单图标（MingCute / Lucide），不放插画
 - **TIER_2 区域**（Body sections）：可用简单的 icon-illustration，风格必须与 AG 克制感兼容
 - **TIER_3 区域**（Hero/品牌区）：插画风格自由，但需在过渡段逐渐收敛到 AG 风格
 - AG logo 使用遵循品牌规范——不改色、不变形、不放在复杂背景上
