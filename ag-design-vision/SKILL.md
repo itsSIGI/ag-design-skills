@@ -46,6 +46,7 @@ description: >
 > - 需要做情绪板 → 读 `mood-board-method.md`
 > - 需要构建页面叙事 → 读 `visual-narrative.md`
 > - 需要灵感参考 → 读 `aesthetic-library/inspirations/curated-references.md`
+> - **要出可视化设计稿（方向探索 / Vision Spec 交付）→ 读 `html-mockup-protocol.md`**
 
 ---
 
@@ -107,6 +108,7 @@ description: >
 | 页面组合参考 | [`references/aesthetic-library/compositions/page-compositions.md`](references/aesthetic-library/compositions/page-compositions.md) | Step 2-3 完整页面配方 |
 | 精选设计灵感 | [`references/aesthetic-library/inspirations/curated-references.md`](references/aesthetic-library/inspirations/curated-references.md) | Step 2 灵感来源（预收集的高质量参考 + 视觉 DNA） |
 | 动效开源库 | [`references/motion-libraries.md`](references/motion-libraries.md) | Step 3 §5 动效库选择 + Vision Spec §5 实现方案 |
+| 可视化设计稿协议 | [`references/html-mockup-protocol.md`](references/html-mockup-protocol.md) | Step 2 出方向稿 + Step 3/5 出视觉稿（必读，含 HTML/Pencil 工具选择） |
 
 ---
 
@@ -249,6 +251,20 @@ Web search 可用？（尝试搜索一次即知）
 
 6. **公开输出 3 张 Direction Card**，请用户选择
 
+### 2.4 生成 3 选 1 可视化设计稿（必做）
+
+> 光有文字 Card 不够直观。**同时画一张并排稿**，让用户看到 3 个方向的真实样子再选。
+
+1. 读 [`references/html-mockup-protocol.md`](references/html-mockup-protocol.md)（若未读）
+2. **按协议话术问用户用哪种工具**：独立 HTML / Pencil（3 选 1 对比默认推荐 HTML，一屏并排更快）
+3. 按所选工具出并排稿（HTML → `.design-mockups/<page-name>-<date>/directions.html`；Pencil → 一个画板 3 栏）：
+   - 横向 3 栏，每栏一个 Direction 的微缩真实稿（hero 区 + 一个内容区块示意）
+   - 每栏用该方向的配色/排版/布局参数**真实渲染**，挂真实 token，一眼看出差异
+   - 每栏顶部标 `Direction A/B/C + 风格名`
+4. 告诉用户稿的路径/截图，对照文字 Card 一起看
+
+**例外**：用户明确说"不用出预览 / 直接给方向就行" → 跳过本步，只给文字 Card。
+
 **⚠️ 必须用户确认**：
 
 ```markdown
@@ -383,9 +399,21 @@ Web search 可用？（尝试搜索一次即知）
 
 **输出**：完整 Vision Spec 草稿
 
----
+### Step 3.5：画完整视觉稿（必做）
 
-## Step 4：合规桥接检查
+> Vision Spec 是文字，用户仍看不到整体效果。**按 Spec 参数渲染一张完整视觉稿**，交付前让用户对着稿确认。
+
+1. 读 [`references/html-mockup-protocol.md`](references/html-mockup-protocol.md)（若未读）
+2. **按协议话术问用户用哪种工具**：独立 HTML / Pencil（精细稿、给设计师看、要导出 → 偏 Pencil）
+3. 按所选工具出完整稿（HTML → `.design-mockups/<page-name>-<date>/index.html`；Pencil → 完整画板 + 截图）：
+   - 按 Vision Spec 7 章节参数渲染完整首屏 + 1-2 个下滚 section 的静态稿
+   - 配色用 §2 Hero Palette + token 过渡；排版用 §3 字阶；布局用 §4 网格
+   - Hero 区（TIER_3）标出 `TOKEN_ESCAPE` 注释/备注；TIER_1 区全 token
+   - 挂真实 token（HTML 挂 tokens.css / Pencil 建 token 变量），还原真实观感
+4. 告诉用户稿的路径/截图，请用户对着稿确认整体效果
+5. 用户认可后再进 Step 4 合规检查；用户要改 → 回本步调整稿 + 同步改 Spec
+
+---
 
 **输入**：Step 3 的 Vision Spec 草稿
 
@@ -487,6 +515,11 @@ Web search 可用？（尝试搜索一次即知）
 - [ ] 创意区→标准区过渡视觉上顺滑（无突兀接缝）
 - [ ] design-constitution section 2 红线无违反
 - [ ] 所有动画有 prefers-reduced-motion 回退
+
+### Visualization / 可视化（交付前必须确认）
+- [ ] Step 2 已出 3 选 1 并排稿（HTML 或 Pencil，除非用户明确跳过）
+- [ ] Step 3.5 已出完整视觉稿并经用户对着稿确认
+- [ ] 稿挂了真实 token（HTML 挂 tokens.css / Pencil 建 token 变量），TIER_1 区域观感与真实系统一致
 
 ---
 

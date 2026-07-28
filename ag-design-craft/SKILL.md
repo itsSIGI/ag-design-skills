@@ -83,6 +83,7 @@ design-craft 生成的页面是**真实路由上的真实代码**，不挂免鉴
 | 跨 Skill 协作 | [`references/cross-skill-protocol.md`](references/cross-skill-protocol.md) | skill 间数据传递/回环/上下文共享 |
 | 页面原型 | [`references/page-archetypes/README.md`](references/page-archetypes/README.md) | 新页面选骨架 |
 | AI 聊天运行时 | [`references/assistant-ui-guide.md`](references/assistant-ui-guide.md) | AI 对话需要 streaming/持久化/分支时 |
+| 可视化设计稿协议 | [`../ag-design-vision/references/html-mockup-protocol.md`](../ag-design-vision/references/html-mockup-protocol.md) | Step 2.5 出预览稿（含 HTML/Pencil 工具选择） |
 
 ---
 
@@ -303,6 +304,26 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 规则胜出，但用户必须知情且能否决。
 
 **输出**：页面结构描述 + 显式冲突清单（可为空）
+
+---
+
+## Step 2.5：出静态预览稿（出方案默认执行）
+
+> **让用户不起 dev server、不登录就能看到方案效果。** 落地真实项目代码前，先出一张稿确认。
+
+1. 读 [`../ag-design-vision/references/html-mockup-protocol.md`](../ag-design-vision/references/html-mockup-protocol.md)（若未读）
+2. **按协议话术问用户用哪种工具**：独立 HTML / Pencil（代码预览场景默认推荐 HTML）
+3. 用锁定的 recipe（Step 1）+ 页面结构（Step 2）+ 真实 token，按所选工具出页面静态版：
+   - HTML → `.design-mockups/<page-name>-<date>/index.html`，挂 `ag-design-system/assets/tokens.css`，颜色/间距/圆角/字号全走 `var(--*)`
+   - Pencil → 建 token 变量后出画板 + 截图
+   - 组件用 token 还原**近似**静态样子（稿是给人看效果，不是可运行代码）
+4. 告诉用户稿的路径/截图，请用户确认后再进 Step 3 生成真实代码
+
+**复用**：若本次来自 vision 的 Vision Spec，vision 已出稿 → 直接复用作起点，不重画。
+
+**跳过条件**：
+- Patch Mode 局部修改（改颜色/间距/文案/单组件）
+- 用户明确说"直接写代码 / 不用预览 / 快速做"
 
 ---
 

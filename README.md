@@ -107,6 +107,7 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 - AI 主动搜索设计灵感（Dribbble / Behance / Awwwards）
 - 内置审美参考库（30+ 高质量设计参考，按 6 大视觉特质分类）
 - 风格方向探索（3 选 1 机制，用户确认后深化）
+- **可视化设计稿**：方向探索出 3 选 1 并排稿、Vision Spec 交付前出完整视觉稿，工具由用户选（独立 HTML / Pencil），直接看效果再决策
 - Vision Spec 生成（7 章节：视觉方向 / 配色 / 排版 / 布局 / 动效 / 插画 / AG 合规桥接）
 - TIER 分级 + TOKEN_ESCAPE 预算管理
 
@@ -115,6 +116,7 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 - `references/style-vocabulary.md` — 11+ 风格原型词汇表
 - `references/color-theory.md` — 配色理论与调色板配方
 - `references/motion-libraries.md` — 30+ 动效开源库推荐
+- `references/html-mockup-protocol.md` — 可视化设计稿协议（vision/craft 共享，出稿工具由用户选 HTML/Pencil，挂真实 token）
 - `references/aesthetic-library/` — 内置审美参考库（原型参数 / 行业配色 / Section 范式 / 页面组合 / 精选灵感）
 
 **触发词**：`Landing page` / `营销页` / `品牌页` / `视觉创新` / `高级感` / `品牌调性` / `视觉冲击力` / `有设计感` 等。
@@ -130,6 +132,7 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 - Pattern 匹配快速路径（命中已有模式则直接复用）
 - 12 种页面原型（Dashboard / List-Table / Entity-Detail / AI-Chat 等）
 - Vision Spec 模式（接收 vision 的 TIER_3 创意方案）
+- **静态预览稿**：落地真实代码前先出稿（HTML / Pencil 由用户选），不起 dev server、不登录就能看方案效果，确认后再落地
 - 多层质量关卡（Step 3.5 视觉自检 → Step 3.6 Token 校验 → Step 4 独立审计）
 - Patch Mode 局部修改快速路径
 
