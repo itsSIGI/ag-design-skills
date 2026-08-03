@@ -2,8 +2,8 @@
 name: sigi-design-audit
 version: 1.0.0
 description: >
-  ag-design-craft 产出代码的独立合规审计 sub-skill。冷启动、单一职责、不被主流程
-  上下文污染。由 ag-design-craft Step 4 自动调用，或手动触发："审计这段代码"、
+  sigi-design-build 产出代码的独立合规审计 sub-skill。冷启动、单一职责、不被主流程
+  上下文污染。由 sigi-design-build Step 4 自动调用，或手动触发："审计这段代码"、
   "audit design-craft output"、"check compliance"。支持三种模式：标准审计（需
   recipe）、独立审计（审计已有代码，无需 recipe）、局部审计（只查指定类别）。
   也支持反向定位模式：当用户提供 Decision Trace + 症状时，精确定位哪个节点出了问题。
@@ -11,13 +11,13 @@ description: >
   "只查 Token"、"检查品牌色"、"审计这个文件"。
 ---
 
-# ag-design-audit
+# sigi-design-audit
 
-`ag-design-craft` 主流程产出代码的**独立合规审计 sub-skill**。冷启动、单一职责、不被主流程上下文污染。
+`sigi-design-build` 主流程产出代码的**独立合规审计 sub-skill**。冷启动、单一职责、不被主流程上下文污染。
 
 **为什么独立**：长上下文末段，AI 自检时容易跳步、合理化违规。把审计拆成独立 sub-skill 让它**冷启动一次专注一件事**，不再受主流程压力影响。
 
-**跨 Skill 协作**：审计中发现的设计决策问题（标注 `→ arbiter`）升级到 `ag-design-arbiter`——格式约定见 [`ag-design-craft/references/cross-skill-protocol.md`](../ag-design-craft/references/cross-skill-protocol.md)
+**跨 Skill 协作**：审计中发现的设计决策问题（标注 `→ 设计决策`）转入本 skill 的**模式 3：设计决策仲裁**——格式约定见 [`sigi-design-build/references/cross-skill-protocol.md`](../sigi-design-build/references/cross-skill-protocol.md)
 
 ---
 
@@ -97,10 +97,10 @@ Token 合规: ✅
 
 - ❌ 不重写代码——只指出问题和修正方向，重写是主流程的职责
 - ❌ 不校验 shadcn/AG 组件内部样式——这些由 `components/ui/` + `components/ag/` 封装，不可能错
-- ❌ 不做设计决策——是否应该用 Donut 还是 Bar 这种问题归 `ag-design-arbiter`
+- ❌ 合规审计（模式 1）不做设计决策——是否应该用 Donut 还是 Bar 这种问题归**模式 3：设计决策仲裁**
 - ❌ 不校验 ECharts option 内部的 hex 值——这是唯一允许裸 hex 的场景
 
-**设计决策回路**：审计中发现的问题如果本质是**设计决策问题**（用了不合适的组件类型、布局模式有争议、语义角色不清晰），在 FAIL 报告中标注 `→ arbiter`，提示主流程将该项升级到 `ag-design-arbiter` 重新评估，而非直接要求修改代码。
+**设计决策回路**：审计中发现的问题如果本质是**设计决策问题**（用了不合适的组件类型、布局模式有争议、语义角色不清晰），在 FAIL 报告中标注 `→ 设计决策`，提示主流程将该项转入本 skill 的**模式 3：设计决策仲裁**重新评估，而非直接要求修改代码。
 
 ---
 
@@ -252,7 +252,7 @@ Token 合规: ✅
 
 ```markdown
 **建议沉淀**：
-- 把本次错误形态加进 `ag-design-craft/references/anti-examples.md`
-- 如根因是 sub-skill 漏报 → 在 `ag-design-audit/references/checklist.md` 补规则
-- 如根因是决策表查错 → 在 `ag-design-craft/references/decision-tables.md` 补行
+- 把本次错误形态加进 `sigi-design-build/references/anti-examples.md`
+- 如根因是 sub-skill 漏报 → 在 `sigi-design-audit/references/checklist.md` 补规则
+- 如根因是决策表查错 → 在 `sigi-design-build/references/decision-tables.md` 补行
 ```

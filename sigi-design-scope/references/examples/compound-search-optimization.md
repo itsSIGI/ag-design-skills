@@ -39,4 +39,4 @@ Agentic Genius 平台的化合物数据库模块，用户反馈"找化合物太�
 | 化合物对比视图 | Web | 计算化学家 | MVP | SMILES、分子量、LogP、ADMET 打分 | 勾选对比、导出 | entity-detail |
 | 筛选进度看板 | Web | 项目经理 | 后续迭代 | 已筛/待筛/通过/淘汰数量 | 无（只读） | dashboard |
 
-→ 交给 ag-design-craft
+→ 交给 sigi-design-build

@@ -1,10 +1,10 @@
 # Design Craft 翻车排查指南
 
-> 用 `ag-design-craft` 产出的代码不符合规范时，按本指南排查——大部分情况 30 秒内就能定位。
+> 用 `sigi-design-build` 产出的代码不符合规范时，按本指南排查——大部分情况 30 秒内就能定位。
 
 ## 默认机制：每次产出都有 Decision Summary
 
-ag-design-craft 在每次产出代码后**自动追加** Decision Summary，长这样：
+sigi-design-build 在每次产出代码后**自动追加** Decision Summary，长这样：
 
 ```
 ## Decision Summary
@@ -61,7 +61,7 @@ Trace 也看不清根因时，**调 sub-skill 反向定位**。直接对 AI 说�
 决策链路表：[把上面拿到的 trace 表整段贴回去]
 ```
 
-`ag-design-audit` sub-skill 会切换到 **Reverse Locate 模式**，输出：
+`sigi-design-audit` sub-skill 会切换到 **Reverse Locate 模式**，输出：
 
 ```
 症状归类：<A-H 类型>
@@ -98,9 +98,9 @@ Trace 也看不清根因时，**调 sub-skill 反向定位**。直接对 AI 说�
 
 每次档 3 反向定位完成后，**必须**做以下任一：
 
-1. 在 `ag-design-craft/references/anti-examples.md` 补一条反例（症状 + 修正 + 根因节点 ID）
-2. 如根因是 sub-skill 漏报 → 在 `ag-design-audit/references/checklist.md` 补对应规则
-3. 如根因是决策表缺业务场景 → 在 `ag-design-craft/references/decision-tables.md` 补该场景行
+1. 在 `sigi-design-build/references/anti-examples.md` 补一条反例（症状 + 修正 + 根因节点 ID）
+2. 如根因是 sub-skill 漏报 → 在 `sigi-design-audit/references/checklist.md` 补对应规则
+3. 如根因是决策表缺业务场景 → 在 `sigi-design-build/references/decision-tables.md` 补该场景行
 
 不沉淀 = 同样的错误下次还会犯。**每次诊断都该让 skill 变更聪明一点**。
 

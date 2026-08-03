@@ -1,6 +1,6 @@
 # Design Rules
 
-> Agentic Genius 设计系统推理规则层。本文件不含设计值——设计值见 `ag-design-system/references/tokens.md`。
+> Agentic Genius 设计系统推理规则层。本文件不含设计值——设计值见 `sigi-design-system/references/tokens.md`。
 
 ---
 

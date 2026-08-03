@@ -78,14 +78,14 @@
 **方式 A（推荐）——链接真实 tokens.css**：
 
 ```html
-<link rel="stylesheet" href="../ag-design-system/assets/tokens.css">
+<link rel="stylesheet" href="../sigi-design-system/assets/tokens.css">
 ```
 
-路径按 HTML 文件相对 `ag-design-system/assets/tokens.css` 的位置调整。
+路径按 HTML 文件相对 `sigi-design-system/assets/tokens.css` 的位置调整。
 
 **方式 B——内联核心 token**：
 
-当 HTML 稿要脱离仓库单独发给用户时，把 `ag-design-system/assets/tokens.css` 的
+当 HTML 稿要脱离仓库单独发给用户时，把 `sigi-design-system/assets/tokens.css` 的
 `:root { ... }` 语义角色层**内联**进 `<style>`，保证脱离仓库也能正确渲染。
 
 ### 用法规则

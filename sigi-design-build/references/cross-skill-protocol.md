@@ -23,17 +23,10 @@
        │ 策略冲突            │    │ 合规查询          │  B) Vision Spec│
        │                   │    ▼                  │               │
 ┌──────────────┐         合规裁决                   │  Step 4 ──────┼──▶ audit
-│  arbiter     │ ◀─── 接口 8 ──────────            │    ▼          │    合规审计
-│  设计决策仲裁 │                                   │  Step 5-6     │
-│              │ ◀─── craft 设计决策问题             └───────────────┘
-│              │ ──── 裁决结论 → recipe ──────────────────▶
-│              │ ◀─── audit → arbiter 标注
-└──────────────┘
-       ▲
-       │ → arbiter 标注
-┌──────────────┐
-│  audit       │
-│  合规审计     │
+│  audit       │ ◀─── 接口 8 ──────────            │    ▼          │    合规审计
+│  合规审计     │                                   │  Step 5-6     │
+│  + 设计决策   │ ◀─── craft 设计决策问题             └───────────────┘
+│    仲裁模式   │ ──── 裁决结论 → recipe ──────────────────▶
 └──────────────┘
 ```
 
@@ -67,38 +60,38 @@
 - 独立审计模式：只传代码，跳过 recipe 一致性检查
 - Vision Spec 模式：代码 + Recipe（含 TOKEN_ESCAPE 条目），audit 检查 TOKEN_ESCAPE 声明完整性
 
-## 接口 3：audit → arbiter（设计决策回路）
+## 接口 3：audit 合规审计 → audit 设计决策模式（设计决策回路）
 
 **触发**：audit 发现违规但本质是设计决策问题（不是代码实现问题）
 
 **传递物**：
 
 ```markdown
-## Audit → Arbiter 升级
+## 合规审计 → 设计决策 升级
 
 - **违规项**：[审计中发现的问题描述]
 - **位置**：[代码行号]
 - **为什么不是实现问题**：[说明这是设计层面的选择，不是写错了]
-- **需要 arbiter 裁决**：[具体的决策问题]
+- **需要裁决的问题**：[具体的决策问题]
 ```
 
-**arbiter 返回**：Arbiter Verdict 格式（见 arbiter SKILL.md 跨 Skill 协作接口）
+**返回**：Verdict 格式（见 `sigi-design-audit/references/arbitration-flow.md`）
 
-## 接口 4：arbiter → craft（裁决注入）
+## 接口 4：audit 设计决策模式 → craft（裁决注入）
 
-**触发**：craft Step 1.5 遇到多选一槽位，需要 arbiter 帮做决策
+**触发**：craft Step 1.5 遇到多选一槽位，需要设计决策帮做判断
 
 **传递物**：候选方案列表 + 业务场景描述
 
-**arbiter 返回**：Arbiter Verdict → craft 直接将推荐方案写入 recipe
+**返回**：Verdict → craft 直接将推荐方案写入 recipe
 
-## 接口 5：compass ↔ arbiter（策略冲突）
+## 接口 5：compass ↔ audit 设计决策模式（策略冲突）
 
 **触发**：compass Step 5 产出的多条策略相互矛盾
 
 **传递物**：冲突策略列表 + 各策略对应的角色/痛点
 
-**arbiter 返回**：优先级排序 + 理由（按 Trust > Task > A11y 维度）
+**返回**：优先级排序 + 理由（按 Trust > Task > A11y 维度）
 
 ---
 
@@ -133,14 +126,14 @@
 4. 过渡接缝（transition seam）按 spec 描述实现
 5. 动效编排按 spec 的 motion plan 实现
 
-## 接口 8：vision ↔ arbiter（Creative Compliance Check）
+## 接口 8：vision ↔ audit 设计决策模式（Creative Compliance Check）
 
 **触发**：vision Step 4 发现创意方向与 AG 红线有张力
 
-**vision → arbiter 查询**：
+**vision → 设计决策 查询**：
 
 ```markdown
-## Vision → Arbiter 合规查询
+## Vision → 设计决策 合规查询
 
 - **Creative Intent**: [想做什么]
 - **Potential Conflict**: [哪条红线/原则有张力]
@@ -149,10 +142,10 @@
 - **Fallback if Rejected**: [被否决后的回退方案]
 ```
 
-**arbiter → vision 裁决**：
+**设计决策 → vision 裁决**：
 
 ```markdown
-## Arbiter → Vision 合规裁决
+## 设计决策 → Vision 合规裁决
 
 - **Decision**: APPROVE / APPROVE_WITH_CONDITIONS / REJECT
 - **Conditions**: [具体约束，如有]
@@ -199,16 +192,15 @@
 ### 使用规则
 
 - **craft**：生成新页面前读 design-log，确保与已有页面一致
-- **audit**：审计时参考 design-log 中的项目级约定
+- **audit**：审计时参考 design-log 中的项目级约定；设计决策模式下参考 design-log 中的先例
 - **compass**：分析新需求时参考 design-log 了解项目上下文
-- **arbiter**：做决策时参考 design-log 中的先例
 - **vision**：生成 Vision Spec 时参考已有创意页面的风格，保持品牌一致性
 
 ### 维护规则
 
 - **craft 每次 PASS 后自动追加**一行到"已完成页面"
 - **vision 每次交付 Vision Spec 后追加**一行到"已完成页面"（标注风格和 TOKEN_ESCAPE 数量）
-- **arbiter 每次裁决有普遍性结论时**追加到"项目级设计约定"
+- **audit 设计决策模式每次裁决有普遍性结论时**追加到"项目级设计约定"
 - **compass 发现设计债务时**追加到"待解决的设计债务"
 - 不自动创建——用户首次使用时提议："是否要为本项目创建 design-log？"
 
@@ -250,7 +242,7 @@
 
 ## 项目级设计约定
 
-> 由 arbiter 裁决或团队确认的具有普遍性的设计规则。
+> 由 audit 设计决策模式裁决或团队确认的具有普遍性的设计规则。
 
 - 暂无
 

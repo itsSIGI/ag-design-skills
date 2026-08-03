@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "description": "ag-design-craft pattern library index. Hit a pattern → copy code + recipe, skip standard recipe build flow. / ag-design-craft pattern 库索引。命中 pattern 后直接抄代码 + recipe，跳过标准 recipe 构建流程。",
+  "description": "sigi-design-build pattern library index. Hit a pattern → copy code + recipe, skip standard recipe build flow. / sigi-design-build pattern 库索引。命中 pattern 后直接抄代码 + recipe，跳过标准 recipe 构建流程。",
   "patterns": [
     {
       "name": "kpi-stat-card",

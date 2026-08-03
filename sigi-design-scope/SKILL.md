@@ -43,7 +43,7 @@ description: >
 4. 向用户说明：已加载哪些方法论 + 哪些信息仍需补充
 5. 如项目目录下存在 `.claude/design-log.md`，读取已有页面和设计约定，注入后续分析上下文
 
-**跨 Skill 协作**：本 skill 的 Step 5.5 输出是 `ag-design-craft` 的直接输入——格式约定见 [`ag-design-craft/references/cross-skill-protocol.md`](../ag-design-craft/references/cross-skill-protocol.md)
+**跨 Skill 协作**：本 skill 的 Step 5.5 输出是 `sigi-design-build` 的直接输入——格式约定见 [`sigi-design-build/references/cross-skill-protocol.md`](../sigi-design-build/references/cross-skill-protocol.md)
 
 **输出**：已知上下文摘要 + 缺口列表
 
@@ -89,7 +89,7 @@ description: >
 
 **不做的事**：
 - ❌ 不做功能对比矩阵（那是 PM 的活）
-- ❌ 不评价"谁更好看"（用 arbiter 的维度评判）
+- ❌ 不评价"谁更好看"（用 `sigi-design-audit` 的设计决策模式评判）
 
 **输出**：竞品设计策略分析（差异化决策 + 可借鉴/不适用/已有更优解）
 
@@ -226,14 +226,14 @@ description: >
    - **信息字段**：候选字段逐一过剃刀
    - **交互元素**：按钮/输入/选择器 + 触发行为
    - **状态变体**
-   - **推荐页面原型**：匹配 `ag-design-craft/references/page-archetypes/` 中的原型
+   - **推荐页面原型**：匹配 `sigi-design-build/references/page-archetypes/` 中的原型
    - **推荐框架**：React / Vue / 其他（根据项目情况）
-   - **视觉创新**：是 / 否（默认"否"。Landing page、营销页、品牌页、需要审美创新的展示型页面标注"是"。标注"是"时触发 `ag-design-vision` skill，先产出 Vision Spec 再交给 craft 执行）
+   - **视觉创新**：是 / 否（默认"否"。Landing page、营销页、品牌页、需要审美创新的展示型页面标注"是"。标注"是"时触发 `sigi-design-vision` skill，先产出 Vision Spec 再交给 craft 执行）
 3. 每个模块末尾附：
-   - 视觉创新 = 否 → **→ 交给 ag-design-craft**
-   - 视觉创新 = 是 → **→ 先交给 ag-design-vision 产出 Vision Spec → 再交给 ag-design-craft**
+   - 视觉创新 = 否 → **→ 交给 sigi-design-build**
+   - 视觉创新 = 是 → **→ 先交给 sigi-design-vision 产出 Vision Spec → 再交给 sigi-design-build**
 
-**输出**：结构化 UI 模块规格表（可直接传递给 `ag-design-craft`）
+**输出**：结构化 UI 模块规格表（可直接传递给 `sigi-design-build`）
 
 ---
 

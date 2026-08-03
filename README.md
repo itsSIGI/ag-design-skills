@@ -17,12 +17,11 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 
 | Skill | 职责 | 一句话描述 |
 |-------|------|-----------|
-| **ag-design-compass** | 需求分析 | 将产品文档拆解为结构化的 UI 模块规格表 |
-| **ag-design-vision** | 视觉创意 | 为需要审美创新的页面生成 Vision Spec |
-| **ag-design-craft** | 代码生成 | 按 Recipe 生成符合设计系统的组件代码 |
-| **ag-design-arbiter** | 设计仲裁 | 在多个设计方案间做出有依据的裁决 |
-| **ag-design-audit** | 合规审计 | 独立冷启动审计，检查代码是否符合设计规范 |
-| **ag-design-system** | 设计基座 | Token 体系 + 组件规范 + 达标清单 |
+| **sigi-design-scope** | 需求分析 | 将产品文档拆解为结构化的 UI 模块规格表 |
+| **sigi-design-vision** | 视觉创意 | 为需要审美创新的页面生成 Vision Spec |
+| **sigi-design-build** | 代码生成 | 按 Recipe 生成符合设计系统的组件代码 |
+| **sigi-design-audit** | 合规审计 + 设计仲裁 | 独立冷启动审计，检查代码是否符合设计规范；并在多个设计方案间做出有依据的裁决 |
+| **sigi-design-system** | 设计基座 | Token 体系 + 组件规范 + 达标清单 |
 
 ---
 
@@ -47,17 +46,10 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
        │ 策略冲突            │    │ 合规查询          │  B) Vision Spec│
        │                   │    ▼                  │               │
 ┌──────────────┐         合规裁决                   │  Step 4 ──────┼──▶ audit
-│  arbiter     │ ◀─── 接口 8 ──────────            │    ▼          │    合规审计
-│  设计决策仲裁 │                                   │  Step 5-6     │
-│              │ ◀─── craft 设计决策问题             └───────────────┘
-│              │ ──── 裁决结论 → recipe ──────────────────▶
-│              │ ◀─── audit → arbiter 标注
-└──────────────┘
-       ▲
-       │ → arbiter 标注
-┌──────────────┐
-│  audit       │
-│  合规审计     │
+│  audit       │ ◀─── 接口 8 ──────────            │    ▼          │    合规审计
+│  合规审计     │                                   │  Step 5-6     │
+│  + 设计决策   │ ◀─── craft 设计决策问题             └───────────────┘
+│    仲裁模式   │ ──── 裁决结论 → recipe ──────────────────▶
 └──────────────┘
 ```
 
@@ -67,18 +59,18 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 |------|------|---------|---------|
 | 接口 1 | compass → craft | UI 模块规格表 | compass 完成需求分析 |
 | 接口 2 | craft → audit | 生成代码 + Locked Recipe | craft 代码生成完毕 |
-| 接口 3 | audit → arbiter | 违规升级（设计决策问题） | audit 发现非实现层问题 |
-| 接口 4 | arbiter → craft | 裁决结论注入 Recipe | craft 遇到多选一槽位 |
-| 接口 5 | compass ↔ arbiter | 策略冲突仲裁 | compass 策略相互矛盾 |
+| 接口 3 | audit 合规审计 → audit 设计决策模式 | 违规升级（设计决策问题） | audit 发现非实现层问题 |
+| 接口 4 | audit 设计决策模式 → craft | 裁决结论注入 Recipe | craft 遇到多选一槽位 |
+| 接口 5 | compass ↔ audit 设计决策模式 | 策略冲突仲裁 | compass 策略相互矛盾 |
 | 接口 6 | compass → vision | Creative Brief | 模块标注"视觉创新: 是" |
 | 接口 7 | vision → craft | Vision Spec (7 章节) | vision 完成视觉方案 |
-| 接口 8 | vision ↔ arbiter | 创意合规查询/裁决 | vision 发现红线张力 |
+| 接口 8 | vision ↔ audit 设计决策模式 | 创意合规查询/裁决 | vision 发现红线张力 |
 
 ---
 
 ## 各 Skill 详细介绍
 
-### ag-design-compass — 需求分析
+### sigi-design-scope — 需求分析
 
 **职责**：将产品需求文档、用户调研、会议记录等原始输入，拆解为结构化的 UI 模块规格表，供 craft 直接消费。
 
@@ -99,7 +91,7 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 
 ---
 
-### ag-design-vision — 视觉创意
+### sigi-design-vision — 视觉创意
 
 **职责**：为需要审美创新的页面（Landing page、品牌页、或用户明确要求视觉冲击力的任意页面类型）生成结构化的 Vision Spec。
 
@@ -123,7 +115,7 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 
 ---
 
-### ag-design-craft — 代码生成
+### sigi-design-build — 代码生成
 
 **职责**：按 Recipe 生成符合 AG 设计系统规范的 UI 组件代码。是整个工具链的**执行层**。
 
@@ -148,45 +140,28 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 
 ---
 
-### ag-design-arbiter — 设计仲裁
+### sigi-design-audit — 合规审计 + 设计仲裁
 
-**职责**：当存在多个设计方案需要取舍时，提供有理有据的裁决。不做设计，只做仲裁。
-
-**核心能力**：
-- 多方案对比评估（Trust > Task > Accessibility 维度排序）
-- 设计宪法执行（红线扫描、合规判定）
-- Token 选择指导（何时用标准 token、何时允许 TOKEN_ESCAPE）
-- 审美配方库（排版 / 配色 / 间距的经过验证的组合方案）
-
-**关键文件**：
-- `SKILL.md` — 仲裁流程与输出格式
-- `references/design-constitution.md` — 设计宪法（红线 + 原则）
-- `references/token-selection.md` — Token 选择规则
-- `references/aesthetic-recipes.md` — 审美配方库
-
-**触发方式**：被其他 Skill 通过接口调用，或用户直接要求比较方案时激活。
-
----
-
-### ag-design-audit — 合规审计
-
-**职责**：对 craft 产出的代码进行独立的合规审计。**冷启动、单一职责**，不被主流程上下文污染。
+**职责**：对 craft 产出的代码进行独立的合规审计。**冷启动、单一职责**，不被主流程上下文污染。此外承担**设计决策仲裁**——当存在多个设计方案需要取舍时，提供有理有据的裁决。
 
 **核心能力**：
 - Token 合规检查（硬编码检测、token 臆造检测、类名验证）
 - Recipe 一致性检查（代码是否匹配 Locked Recipe）
 - Vision Spec 模式下的 TOKEN_ESCAPE 声明完整性验证
 - PASS / FAIL 二元结论（FAIL 时列出具体违规项 + 修复建议）
+- 设计决策仲裁（模式 3）：多方案对比评估（Trust > Task > Accessibility 维度排序）、设计宪法执行（红线扫描、合规判定）
 
 **关键文件**：
-- `SKILL.md` — 审计流程与检查清单
+- `SKILL.md` — 审计流程与检查清单（含模式 3 设计决策仲裁）
 - `references/checklist.md` — 完整审计检查项
+- `references/arbitration-flow.md` — 设计决策仲裁流程（Step 0–5）
+- `references/design-constitution.md` — 设计宪法（红线 + 原则）
 
-**触发方式**：craft Step 4 自动调用。也可独立使用审计任意代码。
+**触发方式**：craft Step 4 自动调用。也可独立使用审计任意代码，或在需要方案取舍时进入设计决策模式。
 
 ---
 
-### ag-design-system — 设计基座
+### sigi-design-system — 设计基座
 
 **职责**：提供 Token 体系、组件规范、达标清单。不直接参与工作流，而是作为其他 Skill 的**权威数据源**。
 
@@ -238,12 +213,12 @@ bash scripts/install.sh
 
 > 之前用 `cp -r` 拷贝装过的人:直接跑一次 `bash scripts/install.sh` 即可，脚本会自动把旧拷贝目录替换为软链，无需手动清理。
 
-如果你想手动接入(不想用脚本)，把 6 个目录软链过去即可：
+如果你想手动接入(不想用脚本)，把 5 个目录软链过去即可：
 
 ```bash
 mkdir -p ~/.claude/skills
-for s in system compass vision craft arbiter audit; do
-  ln -sfn "$(pwd)/ag-design-$s" ~/.claude/skills/ag-design-$s
+for s in system scope vision build audit; do
+  ln -sfn "$(pwd)/sigi-design-$s" ~/.claude/skills/sigi-design-$s
 done
 ```
 
@@ -257,10 +232,10 @@ done
 
 ```
 请阅读 ag-design-skills/ 目录下的 SKILL.md 文件作为设计系统指令：
-- 生成 UI 代码时，遵循 ag-design-craft/SKILL.md 的 Recipe-first 流程
-- Token 值参考 ag-design-system/references/tokens.md
-- 组件用法参考 ag-design-system/references/components-v2.md
-- 页面原型参考 ag-design-craft/references/page-archetypes/
+- 生成 UI 代码时，遵循 sigi-design-build/SKILL.md 的 Recipe-first 流程
+- Token 值参考 sigi-design-system/references/tokens.md
+- 组件用法参考 sigi-design-system/references/components-v2.md
+- 页面原型参考 sigi-design-build/references/page-archetypes/
 ```
 
 或者在 Cursor 的 Project Rules（`.cursor/rules/`）中创建规则文件，将各 SKILL.md 的关键内容作为上下文注入。
@@ -273,7 +248,7 @@ done
 
 ```
 请将 ag-design-skills/ 目录下各 SKILL.md 作为设计系统规范。
-生成 UI 时遵循 ag-design-craft/SKILL.md 的流程，Token 和组件规范见 ag-design-system/。
+生成 UI 时遵循 sigi-design-build/SKILL.md 的流程，Token 和组件规范见 sigi-design-system/。
 ```
 
 ---
@@ -286,11 +261,11 @@ done
 # Design System Instructions
 
 生成 UI 代码时遵循以下规范：
-- 工作流：ag-design-craft/SKILL.md（Recipe-first 流程）
-- Token 体系：ag-design-system/references/tokens.md
-- 组件库：ag-design-system/references/components-v2.md
-- 决策表：ag-design-craft/references/decision-tables.md
-- 页面原型：ag-design-craft/references/page-archetypes/
+- 工作流：sigi-design-build/SKILL.md（Recipe-first 流程）
+- Token 体系：sigi-design-system/references/tokens.md
+- 组件库：sigi-design-system/references/components-v2.md
+- 决策表：sigi-design-build/references/decision-tables.md
+- 页面原型：sigi-design-build/references/page-archetypes/
 ```
 
 ---
@@ -299,8 +274,8 @@ done
 
 核心思路相同——将各 SKILL.md 的内容作为 System Prompt 或自定义指令注入。每个 SKILL.md 都是自包含的指令文档，AI 读取后即可按流程执行。推荐优先注入：
 
-1. `ag-design-craft/SKILL.md` — 代码生成主流程（必选）
-2. `ag-design-system/references/tokens.md` + `components-v2.md` — Token 和组件参考（必选）
+1. `sigi-design-build/SKILL.md` — 代码生成主流程（必选）
+2. `sigi-design-system/references/tokens.md` + `components-v2.md` — Token 和组件参考（必选）
 3. 其余 skill 按需注入
 
 #### 3. 验证安装
@@ -383,7 +358,7 @@ git -C ~/.ag-design-skills log -1 --pretty='%h %s (%cr)'
 ```
 这两个方案哪个更好？[贴出方案 A 和方案 B]
 ```
-→ 激活 `arbiter`，从 Trust / Task / Accessibility 维度评估
+→ 激活 `sigi-design-audit` 的设计决策模式，从 Trust / Task / Accessibility 维度评估
 
 ---
 
@@ -460,7 +435,7 @@ Recipe 是契约：代码不得偏离 Recipe，新增必须回 Step 1 补行。
 
 ```
 ag-design-skills/
-├── ag-design-system/          # 设计基座：Token + 组件规范
+├── sigi-design-system/          # 设计基座：Token + 组件规范
 │   ├── SKILL.md
 │   ├── assets/
 │   │   └── tokens.css         # 完整 CSS Token 文件
@@ -471,7 +446,7 @@ ag-design-skills/
 │       ├── vue.md              # Vue 用法
 │       └── checklist.md        # 达标自检
 │
-├── ag-design-compass/         # 需求分析
+├── sigi-design-scope/         # 需求分析
 │   ├── SKILL.md
 │   └── references/
 │       ├── design-goal-strategy-framework.md
@@ -480,7 +455,7 @@ ag-design-skills/
 │       ├── domain-context.md
 │       └── examples/           # 案例参考
 │
-├── ag-design-vision/          # 视觉创意
+├── sigi-design-vision/          # 视觉创意
 │   ├── SKILL.md
 │   └── references/
 │       ├── style-vocabulary.md         # 风格原型词汇表
@@ -499,7 +474,7 @@ ag-design-skills/
 │       │   └── inspirations/           # 精选设计灵感
 │       └── examples/                   # Vision Spec 示例
 │
-├── ag-design-craft/           # 代码生成
+├── sigi-design-build/           # 代码生成
 │   ├── SKILL.md
 │   ├── TROUBLESHOOTING.md
 │   └── references/
@@ -520,17 +495,12 @@ ag-design-skills/
 │       ├── page-archetypes/            # 12 种页面原型
 │       └── patterns/                   # 可复用模式
 │
-├── ag-design-arbiter/         # 设计仲裁
-│   ├── SKILL.md
-│   └── references/
-│       ├── design-constitution.md      # 设计宪法
-│       ├── token-selection.md          # Token 选择规则
-│       └── aesthetic-recipes.md        # 审美配方
-│
-└── ag-design-audit/           # 合规审计
+└── sigi-design-audit/           # 合规审计 + 设计仲裁
     ├── SKILL.md
     └── references/
-        └── checklist.md                # 审计清单
+        ├── checklist.md                # 审计清单
+        ├── arbitration-flow.md         # 设计决策仲裁流程
+        └── design-constitution.md      # 设计宪法（红线 + 原则）
 ```
 
 ---

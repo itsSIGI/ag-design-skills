@@ -1,6 +1,6 @@
 # Anti-Examples — 翻车案例库
 
-> 每次 `ag-design-audit` 返回 FAIL 后，把"错误代码 + 修正方向"沉淀到这里。
+> 每次 `sigi-design-audit` 返回 FAIL 后，把"错误代码 + 修正方向"沉淀到这里。
 > 新案例追加到末尾，编号递增。
 
 ---
@@ -139,7 +139,7 @@
 
 **根因**：AG 设计系统的 6 条红线之首——"禁止手写视觉值"。shadcn/AG 组件已内置所有交互态，手写 `:focus`（尤其蓝色 focus）= 直接违规。
 
-**规则引用**：ag-design-system 红线 #0、6 条铁律 #1
+**规则引用**：sigi-design-system 红线 #0、6 条铁律 #1
 
 ---
 

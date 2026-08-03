@@ -12,7 +12,7 @@ description: >
   不用于：非 AG 项目、纯后端任务、单 token 查询。
 ---
 
-# ag-design-craft
+# sigi-design-build
 
 Agentic Genius 设计系统的 UI 生成执行层。**核心心智**：有完整的设计 token 体系（`tokens.css`）和双层组件库（shadcn/ui 标准组件 + AG 扩展组件）。先锁定 **Recipe**（页面原型 + shadcn/AG 组件 + token 映射），再往里填数据。shadcn/ui 组件用 Tailwind utility + token 定制，AG 扩展组件封装业务模式，开发者只需关注"组件之间的缝隙"和"组合层规则"。
 
@@ -36,8 +36,8 @@ design-craft 生成的页面是**真实路由上的真实代码**，不挂免鉴
 
 **激活本 skill 后的第一件事**——在跟用户聊业务之前——必须按顺序完成：
 
-1. 读 `ag-design-system` skill 的 `references/components-v2.md`，把当前 shadcn/ui + AG 扩展组件清单载入上下文
-2. 读 `ag-design-system` skill 的 `references/tokens.md`，载入 token 体系
+1. 读 `sigi-design-system` skill 的 `references/components-v2.md`，把当前 shadcn/ui + AG 扩展组件清单载入上下文
+2. 读 `sigi-design-system` skill 的 `references/tokens.md`，载入 token 体系
 3. 读 [`references/patterns/pattern-index.json`](references/patterns/pattern-index.json)，知道当前有哪些可复用页面 pattern
 4. 之后才开始处理用户输入
 
@@ -60,18 +60,18 @@ design-craft 生成的页面是**真实路由上的真实代码**，不挂免鉴
 
 | 类别 | 文件 | 何时读 |
 |------|------|--------|
-| Token 体系 | `ag-design-system/references/tokens.md` | 取色值/间距/圆角 |
-| 组件用法 | `ag-design-system/references/components-v2.md` | 做具体组件 |
-| 组件示例 | `ag-design-system/references/components-v2.md` | 复制组件用法 |
-| React 用法 | `ag-design-system/references/react.md` | React 项目 |
-| Vue 用法 | `ag-design-system/references/vue.md` | Vue 项目 |
-| 达标自检 | `ag-design-system/references/checklist.md` | 产出后核对 |
+| Token 体系 | `sigi-design-system/references/tokens.md` | 取色值/间距/圆角 |
+| 组件用法 | `sigi-design-system/references/components-v2.md` | 做具体组件 |
+| 组件示例 | `sigi-design-system/references/components-v2.md` | 复制组件用法 |
+| React 用法 | `sigi-design-system/references/react.md` | React 项目 |
+| Vue 用法 | `sigi-design-system/references/vue.md` | Vue 项目 |
+| 达标自检 | `sigi-design-system/references/checklist.md` | 产出后核对 |
 | 业务→组件决策 | [`references/decision-tables.md`](references/decision-tables.md) | 选组件类型 |
 | 组合层规则 | [`references/design-rules.md`](references/design-rules.md) | anti-pattern / 布局 |
 | 开源组件指南 | [`references/open-source-guide.md`](references/open-source-guide.md) | 用第三方库时 |
 | 视觉质量自检 | [`references/quality-self-check.md`](references/quality-self-check.md) | Step 3.5 |
 | 视觉精修指南 | [`references/visual-polish-guide.md`](references/visual-polish-guide.md) | Step 3 生成 + Step 3.5 Polish Pass |
-| 审美配方 | [`../ag-design-arbiter/references/aesthetic-recipes.md`](../ag-design-arbiter/references/aesthetic-recipes.md) | Step 3 排版/配色/间距配方 |
+| 审美配方 | [`references/aesthetic-recipes.md`](references/aesthetic-recipes.md) | Step 3 排版/配色/间距配方 |
 | 非正常路径 | [`references/harden-checklist.md`](references/harden-checklist.md) | Step 3.5 |
 | 翻车案例 | [`references/anti-examples.md`](references/anti-examples.md) | FAIL 后参考 |
 | 组件缺失协议 | [`references/component-missing-protocol.md`](references/component-missing-protocol.md) | Step 1.4.5 缺失处理 |
@@ -83,7 +83,7 @@ design-craft 生成的页面是**真实路由上的真实代码**，不挂免鉴
 | 跨 Skill 协作 | [`references/cross-skill-protocol.md`](references/cross-skill-protocol.md) | skill 间数据传递/回环/上下文共享 |
 | 页面原型 | [`references/page-archetypes/README.md`](references/page-archetypes/README.md) | 新页面选骨架 |
 | AI 聊天运行时 | [`references/assistant-ui-guide.md`](references/assistant-ui-guide.md) | AI 对话需要 streaming/持久化/分支时 |
-| 可视化设计稿协议 | [`../ag-design-vision/references/html-mockup-protocol.md`](../ag-design-vision/references/html-mockup-protocol.md) | Step 2.5 出预览稿（含 HTML/Pencil 工具选择） |
+| 可视化设计稿协议 | [`../sigi-design-vision/references/html-mockup-protocol.md`](../sigi-design-vision/references/html-mockup-protocol.md) | Step 2.5 出预览稿（含 HTML/Pencil 工具选择） |
 
 ---
 
@@ -311,10 +311,10 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 
 > **让用户不起 dev server、不登录就能看到方案效果。** 落地真实项目代码前，先出一张稿确认。
 
-1. 读 [`../ag-design-vision/references/html-mockup-protocol.md`](../ag-design-vision/references/html-mockup-protocol.md)（若未读）
+1. 读 [`../sigi-design-vision/references/html-mockup-protocol.md`](../sigi-design-vision/references/html-mockup-protocol.md)（若未读）
 2. **按协议话术问用户用哪种工具**：独立 HTML / Pencil（代码预览场景默认推荐 HTML）
 3. 用锁定的 recipe（Step 1）+ 页面结构（Step 2）+ 真实 token，按所选工具出页面静态版：
-   - HTML → `.design-mockups/<page-name>-<date>/index.html`，挂 `ag-design-system/assets/tokens.css`，颜色/间距/圆角/字号全走 `var(--*)`
+   - HTML → `.design-mockups/<page-name>-<date>/index.html`，挂 `sigi-design-system/assets/tokens.css`，颜色/间距/圆角/字号全走 `var(--*)`
    - Pencil → 建 token 变量后出画板 + 截图
    - 组件用 token 还原**近似**静态样子（稿是给人看效果，不是可运行代码）
 4. 告诉用户稿的路径/截图，请用户确认后再进 Step 3 生成真实代码
@@ -340,12 +340,12 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 5. 每个图表（ECharts 等）声明**固定像素高度**；图表内部配色可直接用 hex（从 tokens.md 原始色阶取）
 6. **不添加**用户未明确要求的 UI 元素
 7. **框架分叉**：
-   - React 项目 → 读 `ag-design-system/references/react.md` 获取 className 型 + 交互态 hooks 写法
-   - Vue 项目 → 读 `ag-design-system/references/vue.md` 获取 class 型 + 交互态写法
+   - React 项目 → 读 `sigi-design-system/references/react.md` 获取 className 型 + 交互态 hooks 写法
+   - Vue 项目 → 读 `sigi-design-system/references/vue.md` 获取 class 型 + 交互态写法
    - 其他 → 从 `components-v2.md` 复制组件结构
 8. **审美精修**（生成代码时同步执行，不是事后补）：
    - 读 [`references/visual-polish-guide.md`](references/visual-polish-guide.md) 应用精修技巧
-   - 参考 [`aesthetic-recipes.md`](../ag-design-arbiter/references/aesthetic-recipes.md) 选择字号组合 / 间距节奏 / 配色方案
+   - 参考 [`aesthetic-recipes.md`](references/aesthetic-recipes.md) 选择字号组合 / 间距节奏 / 配色方案
    - 可点击卡片必须有 `transition` + hover 微浮声明
    - 大数字（KPI 值）加 `font-variant-numeric: tabular-nums` + 负字距
    - 背景使用 `bg → surface → surface-secondary` 三级层次
@@ -372,7 +372,7 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 
 **输入**：Step 3 出的代码
 
-**操作**：在交给 `ag-design-audit` 之前，主流程**自己**走三份清单。这不是合规校验（合规由 sub-skill 干），是**让"合规但平庸"升级到"合规且精致"** 的补强。
+**操作**：在交给 `sigi-design-audit` 之前，主流程**自己**走三份清单。这不是合规校验（合规由 sub-skill 干），是**让"合规但平庸"升级到"合规且精致"** 的补强。
 
 ### 3.5.A 视觉质量自检 — [`references/quality-self-check.md`](references/quality-self-check.md)
 
@@ -434,14 +434,14 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 
 **输入**：Step 3 生成的代码 + Step 1 recipe
 
-**操作**：调用 `ag-design-audit` sub-skill 执行最终审计。
+**操作**：调用 `sigi-design-audit` sub-skill 执行最终审计。
 
 > ### 铁律：Step 4 必须由 sub-skill 执行
 >
 > **不要**在主流程里"自己跑一遍 checklist"——长上下文末段，主流程模型已经有压力，会跳步、合理化违规。
 > sub-skill 是冷启动、单一职责、不被主流程污染。把审计权完全让渡给它。
 
-调用方式：把 Step 3 的代码 + Step 1 的 recipe 传给 `ag-design-audit` sub-skill。
+调用方式：把 Step 3 的代码 + Step 1 的 recipe 传给 `sigi-design-audit` sub-skill。
 
 ---
 
@@ -502,7 +502,7 @@ PASS 后，在最终代码块**之后**必须追加 Decision Summary（~200 toke
 
 ## 6 条铁律汇总
 
-1. **ALWAYS Reference BEFORE Implement** — 写组件前必须先从 ag-design-system 查到 shadcn/AG 组件，不凭记忆
+1. **ALWAYS Reference BEFORE Implement** — 写组件前必须先从 sigi-design-system 查到 shadcn/AG 组件，不凭记忆
 2. **Recipe 是契约** — 代码不得偏离 recipe，新增必须回 Step 1 补行
 3. **业务层零硬编码** — 颜色/间距/圆角/阴影/字重全走 `var(--)` 或 shadcn/AG 组件
 4. **品牌蓝/绿只在三处** — 链接 hover、agent 状态点、代码高亮
@@ -550,7 +550,7 @@ PASS 后，在最终代码块**之后**必须追加 Decision Summary（~200 toke
 
 ## Vision Spec Mode（视觉创新页面）
 
-> 当 craft 收到来自 `ag-design-vision` 的 Vision Spec 时激活。适用于 Landing page、营销页、品牌页等需要审美创新的场景。
+> 当 craft 收到来自 `sigi-design-vision` 的 Vision Spec 时激活。适用于 Landing page、营销页、品牌页等需要审美创新的场景。
 
 ### 触发条件
 
@@ -605,7 +605,7 @@ Vision 模式：Vision Spec + 用户描述 → Step 1 recipe（含 TOKEN_ESCAPE�
 
 ### Step 4 audit 的变化
 
-传给 `ag-design-audit` 时额外附上：
+传给 `sigi-design-audit` 时额外附上：
 - Vision Spec 的 §7 TIER mapping
 - Recipe 中所有 TOKEN_ESCAPE 条目
 - audit 会检查 TOKEN_ESCAPE 声明完整性（每个自定义值都有对应声明）

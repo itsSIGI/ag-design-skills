@@ -3,7 +3,7 @@ name: sigi-design-vision
 version: 1.1.0
 description: >
   创意视觉策略 skill。为需要审美创新的任何页面生成结构化的 Vision Spec，供
-  ag-design-craft 直接执行。不按页面类型硬切——Dashboard、表格、表单也可能需要
+  sigi-design-build 直接执行。不按页面类型硬切——Dashboard、表格、表单也可能需要
   视觉创新。通过用户意图信号（"高级感"、"品牌调性"、"视觉冲击力"等）或受众
   特征（面向外部用户/决策者/投资人）按需激活。核心机制：AI 主动搜索设计灵感 →
   风格方向探索（3 选 1）→ 深化 Vision Spec（7 章节）→ 合规桥接 → 交付 craft。
@@ -15,14 +15,14 @@ description: >
   不用于：纯组件修改、Patch Mode 修补、纯后端任务。
 ---
 
-# ag-design-vision
+# sigi-design-vision
 
 创意视觉策略师——为需要审美创新的场景生成结构化的、craft 可直接执行的 **Vision Spec**。
 
 **定位边界**：
 
-| 维度 | vision | arbiter | craft |
-|------|--------|---------|-------|
+| 维度 | vision | audit | craft |
+|------|--------|-------|-------|
 | 角色 | 创造者（生成视觉方向） | 裁判（在方案间仲裁） | 执行者（按方案写代码） |
 | 何时 | 无现成视觉方向 | 有方案需选择/验证 | 有方案需实现 |
 | 输出 | Vision Spec（结构化视觉方案） | Verdict（裁决结论） | 代码 |
@@ -98,9 +98,9 @@ description: >
 | 插画指导 | [`references/illustration-guide.md`](references/illustration-guide.md) | Step 3 插画章节 + §7 三级优先策略 + §9 质量把控 |
 | 情绪板 | [`references/mood-board-method.md`](references/mood-board-method.md) | Step 2 方向探索 |
 | 视觉叙事 | [`references/visual-narrative.md`](references/visual-narrative.md) | Step 3 布局章节 |
-| AG 设计宪法 | `ag-design-arbiter/references/design-constitution.md` | Step 4 合规检查 |
-| AG Token 规则 | `ag-design-arbiter/references/token-selection.md` | Step 4 TOKEN_ESCAPE |
-| 跨 Skill 协作 | `ag-design-craft/references/cross-skill-protocol.md` | 接口数据格式 |
+| AG 设计宪法 | [`../sigi-design-audit/references/design-constitution.md`](../sigi-design-audit/references/design-constitution.md) | Step 4 合规检查 |
+| AG Token 规则 | [`../sigi-design-system/references/token-selection.md`](../sigi-design-system/references/token-selection.md) | Step 4 TOKEN_ESCAPE |
+| 跨 Skill 协作 | `sigi-design-build/references/cross-skill-protocol.md` | 接口数据格式 |
 | 审美参考库 | [`references/aesthetic-library/`](references/aesthetic-library/README.md) | Step 2 灵感来源（尤其无 web search 时） |
 | 风格原型参数 | [`references/aesthetic-library/archetypes/archetype-params.md`](references/aesthetic-library/archetypes/archetype-params.md) | Step 2 具体视觉参数 |
 | 行业配色方案 | [`references/aesthetic-library/palettes/industry-palettes.md`](references/aesthetic-library/palettes/industry-palettes.md) | Step 3 §2 配色策略 |
@@ -435,10 +435,10 @@ Web search 可用？（尝试搜索一次即知）
    - 无品牌污染（AG logo/品牌色使用规则）
    - 不破坏工程化基础
 
-4. **有冲突时**：调用 arbiter（接口 8），传递：
+4. **有冲突时**：用 `sigi-design-audit` 的设计决策模式（接口 8），传递：
 
 ```markdown
-## Vision → Arbiter 合规查询
+## Vision → 设计决策 合规查询
 
 - **Creative Intent**: [Vision Spec 想做什么]
 - **Potential Conflict**: [哪条红线/原则有张力]
@@ -579,11 +579,11 @@ Web search 可用？（尝试搜索一次即知）
 3. TIER_1/TIER_2 区域走正常 craft 流程（components-v2.md + decision-tables）
 4. 过渡接缝（transition seam）按 spec 描述实现
 
-### 接口 8：vision ↔ arbiter（Creative Compliance Check）
+### 接口 8：vision ↔ audit（Creative Compliance Check）
 
 **触发**：vision Step 4 发现红线张力
 
-Vision → Arbiter 查询：
+Vision → 设计决策 查询：
 ```markdown
 - **Creative Intent**: [想做什么]
 - **Potential Conflict**: [哪条红线有张力]
@@ -592,7 +592,7 @@ Vision → Arbiter 查询：
 - **Fallback if Rejected**: [被否决后的方案]
 ```
 
-Arbiter → Vision 裁决：
+设计决策 → Vision 裁决：
 ```markdown
 - **Decision**: APPROVE / APPROVE_WITH_CONDITIONS / REJECT
 - **Conditions**: [具体约束]
@@ -609,7 +609,7 @@ Arbiter → Vision 裁决：
 | 用户简报信息不足 | 追问，给出具体选项帮助用户填充 |
 | 3 个方向都不满意 | 追问用户偏好，生成新一轮 3 个方向 |
 | TOKEN_ESCAPE 超预算 | 回 Step 3，按"配色 > 排版 > 动效"优先级精简 |
-| arbiter REJECT | 按 arbiter 条件修正，或给用户呈现冲突让用户决定 |
+| 设计决策 REJECT | 按裁决条件修正，或给用户呈现冲突让用户决定 |
 | 风格原型库不匹配 | 用 mood-board-method.md 从零构建方向，在 Vision Spec 中标注"自定义风格" |
 | craft 反馈无法实现 | 回 Step 3 调整技术栈建议，或降低动效/插画复杂度 |
 
@@ -623,4 +623,4 @@ Arbiter → Vision 裁决：
 | 调色板配方积累 | 创意配色方案获用户认可 | 新配方 → color-theory.md |
 | 动效模式积累 | 新动效编排成功实现 | 新模式 → motion-choreography.md |
 | 示例沉淀 | Vision Spec 成功交付并实现 | 新示例 → examples/ |
-| 反面教材 | Vision Spec 被 arbiter REJECT 或用户否决 | 记录原因，避免重犯 |
+| 反面教材 | Vision Spec 被设计决策裁决 REJECT 或用户否决 | 记录原因，避免重犯 |

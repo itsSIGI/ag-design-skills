@@ -176,7 +176,7 @@ BioGenesis（虚构）是一家 AI 驱动的药物发现公司，正在筹备品
 
 **路由说明**：
 
-- 视觉创新 = **是**（Hero ~ CTA 区）→ **先交给 ag-design-vision 产出 Vision Spec → 再交给 ag-design-craft**
+- 视觉创新 = **是**（Hero ~ CTA 区）→ **先交给 sigi-design-vision 产出 Vision Spec → 再交给 sigi-design-build**
   - 配色模式建议：全新配色（无完整品牌指南）
   - 情绪关键词传递：高级感、可信赖、创新
-- 视觉创新 = 否（导航栏、页脚）→ **直接交给 ag-design-craft**（走 AG 标准 TIER_1 规范）
+- 视觉创新 = 否（导航栏、页脚）→ **直接交给 sigi-design-build**（走 AG 标准 TIER_1 规范）

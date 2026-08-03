@@ -1,6 +1,6 @@
 # Diagnostic Protocol
 
-ag-design-craft 的诊断协议：Decision Summary（自动输出）+ Decision Trace（按需触发）+ 反向定位。
+sigi-design-build 的诊断协议：Decision Summary（自动输出）+ Decision Trace（按需触发）+ 反向定位。
 
 ---
 
@@ -67,7 +67,7 @@ PASS 后，在最终代码块**之后**必须追加 Decision Summary（~200 toke
 | 3 | Step 3 | 代码生成 | <严格按 recipe \| 偏离> | <偏离原因如有> |
 | 3.5 | Step 3.5 | 质量自检 | <7 项全过 \| N 项回修> | quality-self-check.md |
 | 3.6 | Step 3.6 | Token 校验 | <全过 \| N 项修正> | 检查项清单 |
-| 4 | Step 4 | 合规审计 | <PASS \| FAIL after N rounds> | ag-design-audit 结论 |
+| 4 | Step 4 | 合规审计 | <PASS \| FAIL after N rounds> | sigi-design-audit 结论 |
 ```
 
 ### 节点 ID 命名规则
@@ -80,10 +80,10 @@ PASS 后，在最终代码块**之后**必须追加 Decision Summary（~200 toke
 
 ## 反向定位（用户指出问题后）
 
-用户拿到 Decision Trace 后说"产出 X 不对"，主流程或 `ag-design-audit` sub-skill 进入**反向定位模式**：
+用户拿到 Decision Trace 后说"产出 X 不对"，主流程或 `sigi-design-audit` sub-skill 进入**反向定位模式**：
 
 1. **症状归类**——属于哪类违规（recipe 错 / 渲染偏离 / sub-skill 漏报 / 决策表查错）
-2. **节点匹配**——根据症状类型对应到 trace 哪一行（见 ag-design-audit Reverse Locate）
+2. **节点匹配**——根据症状类型对应到 trace 哪一行（见 sigi-design-audit Reverse Locate）
 3. **根因定性**——精确到一个或两个节点 + 解释"为什么这一步出错"
 4. **修复方向**——分两类：
    - 立刻可改：本次代码改哪几行

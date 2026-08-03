@@ -1,4 +1,4 @@
-# ag-design-audit Checklist
+# sigi-design-audit Checklist
 
 > 7 类审计项。逐条过，每条违规要**具体到行号 + 违反的规则名**。
 
