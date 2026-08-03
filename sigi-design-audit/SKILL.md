@@ -49,6 +49,8 @@ description: >
 
 ## 输出格式
 
+完整模板 → [`references/audit-report-template.md`](references/audit-report-template.md)
+
 ### 通过
 
 ```

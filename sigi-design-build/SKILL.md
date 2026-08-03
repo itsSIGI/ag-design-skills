@@ -115,6 +115,7 @@ Agentic Genius 设计系统的 UI 生成执行层。**核心心智**：有完整
 > ### 铁律：Locked Recipe 必须公开输出 + 等用户确认
 
 完整格式与 stop-and-ask 场景见 [`references/recipe-gate.md`](references/recipe-gate.md)。
+输出格式模板 → [`references/recipe-template.md`](references/recipe-template.md)
 
 **不可协商的三条**：
 1. Locked Recipe 表必须出现在**对用户可见**的输出中，不能只在 thinking 里
