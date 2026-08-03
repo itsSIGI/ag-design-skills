@@ -1,11 +1,12 @@
 ---
 name: sigi-design-scope
-version: 1.0.0
 description: >
-  需求拆解与设计策略推导。当用户想分析产品需求文档、用户调研、会议记录或功能简报，
-  推导用户角色、操作动线、设计目标和可执行的设计策略时使用。触发词："帮我拆解需求"、
-  "分析这个需求"、"推导设计策略"、"做需求分析"、"design compass"、"设计罗盘"。
-  支持读取飞书/文档链接。不用于：生成 UI 代码、从零写 PRD、评审现有设计。
+  Use when analyzing product requirement docs, user research, meeting notes,
+  or feature briefs to derive user roles, task flows, design goals, and
+  actionable design strategies — before any visual or code work begins.
+  支持读取飞书/文档链接。
+  触发：帮我拆解需求 / 分析这个需求 / 推导设计策略 / 做需求分析。
+  不用于：生成 UI 代码、从零写 PRD、评审现有设计。
 ---
 
 # Design Compass — 需求拆解与设计策略推导

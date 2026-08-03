@@ -1,6 +1,13 @@
 ---
 name: sigi-design-system
-description: Agentic Genius 品牌设计系统——一键换肤的 design token + 成品组件库。当用户基于 Agentic Genius 规范开发 UI、需要让颜色/排版/组件符合该设计系统、为项目接入这套设计 token（换肤）、或生成符合"开发者优先·中性色主导"风格的界面时使用。涵盖按钮、输入框、Select、搜索、表单控件、卡片、导航、Agent 状态点、代码块、Chat 气泡、链接、Tag 等全部组件，含 light/dark 双模式与硬性达标自检清单。
+description: >
+  Use when looking up Agentic Genius design tokens, component APIs, or
+  compliance checklists — the authoritative data source other sigi-design
+  skills read from. Also use when onboarding a project onto these tokens
+  (React / Vue / vanilla).
+  涵盖 shadcn/ui 26 标准组件 + AG 7 扩展组件，含 light/dark 双模式。
+  触发：token 是什么 / 这个组件怎么用 / 接入设计系统 / 换肤。
+  不用于：生成完整页面（用 sigi-design-build）。
 ---
 
 # Agentic Genius Design System

@@ -1,15 +1,13 @@
 ---
 name: sigi-design-build
-version: 1.0.0
 description: >
-  Agentic Genius B 端 UI 代码生成执行层。当用户要生成符合 Agentic Genius 设计系统的
-  UI 页面、组件、Dashboard、数据可视化时使用——从文字描述、user story、Figma URL 或
-  截图出发。核心机制：Recipe-first + Token-gate——先锁定组件配方（page archetype +
-  shadcn/ui + AG 扩展组件 + token 映射），再填数据生成代码。所有视觉值走 var(--*) 语义
-  token，业务层零硬编码。触发词："帮我设计一下"、"设计一个页面/弹窗/卡片"、"做个页面"、
-  "生成看板"、"做 dashboard"、"生成 UI"、"把设计稿做成代码"、"design-craft"、
-  包含 figma.com/design URL 的代码生成请求、或描述 Agentic Genius 功能的 user story。
-  不用于：非 AG 项目、纯后端任务、单 token 查询。
+  Use when generating UI code for the Agentic Genius design system — pages,
+  components, dashboards, data viz — from text descriptions, user stories,
+  Figma URLs, or screenshots. Runs after sigi-design-scope or sigi-design-vision
+  when either has produced a spec.
+  触发：帮我设计一下 / 设计一个页面 / 做个页面 / 生成看板 / 做 dashboard /
+  生成 UI / 把设计稿做成代码 / 含 figma.com/design URL 的代码生成请求。
+  不用于：纯后端任务、单 token 查询、非 AG 项目。
 ---
 
 # sigi-design-build

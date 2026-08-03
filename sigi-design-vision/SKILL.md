@@ -1,17 +1,11 @@
 ---
 name: sigi-design-vision
-version: 1.1.0
 description: >
-  创意视觉策略 skill。为需要审美创新的任何页面生成结构化的 Vision Spec，供
-  sigi-design-build 直接执行。不按页面类型硬切——Dashboard、表格、表单也可能需要
-  视觉创新。通过用户意图信号（"高级感"、"品牌调性"、"视觉冲击力"等）或受众
-  特征（面向外部用户/决策者/投资人）按需激活。核心机制：AI 主动搜索设计灵感 →
-  风格方向探索（3 选 1）→ 深化 Vision Spec（7 章节）→ 合规桥接 → 交付 craft。
-  触发词："Landing page"、"营销页"、"品牌页"、"hero section"、"视觉创新"、
-  "creative direction"、"mood board"、"design-vision"、"视觉风格"、
-  "沉浸式"、"storytelling"、"motion-driven"、"editorial layout"、
-  "高级感"、"品牌调性"、"视觉冲击力"、"不要太普通"、"独特风格"、"好看一点"、
-  "精致一些"、"有设计感"。
+  Use when a page needs aesthetic innovation beyond standard components —
+  before any UI code is written. Any page type qualifies, including dashboards,
+  if the user signals aesthetic intent.
+  触发：Landing page / 营销页 / 品牌页 / 视觉创新 / 视觉风格 / 视觉冲击力 /
+  品牌调性 / creative direction / mood board。
   不用于：纯组件修改、Patch Mode 修补、纯后端任务。
 ---
 

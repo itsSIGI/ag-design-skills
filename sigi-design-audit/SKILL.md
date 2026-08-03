@@ -1,14 +1,13 @@
 ---
 name: sigi-design-audit
-version: 1.0.0
 description: >
-  sigi-design-build 产出代码的独立合规审计 sub-skill。冷启动、单一职责、不被主流程
-  上下文污染。由 sigi-design-build Step 4 自动调用，或手动触发："审计这段代码"、
-  "audit design-craft output"、"check compliance"。支持三种模式：标准审计（需
-  recipe）、独立审计（审计已有代码，无需 recipe）、局部审计（只查指定类别）。
-  也支持反向定位模式：当用户提供 Decision Trace + 症状时，精确定位哪个节点出了问题。
-  触发词："定位问题"、"trace 反查"、"reverse locate"、"哪一步出错"、
-  "只查 Token"、"检查品牌色"、"审计这个文件"。
+  Use when UI code needs independent compliance review against the Agentic
+  Genius design system, or when a design decision needs arbitration between
+  multiple valid options. Cold-start and single-purpose — never contaminated
+  by the generating context.
+  触发：审计这段代码 / check compliance / 只查 Token / 检查品牌色 /
+  定位问题 / 哪一步出错 / 帮我选方案 / 这两个设计哪个好 / 评审这个设计。
+  不用于：生成 UI 代码、需求拆解。
 ---
 
 # sigi-design-audit
