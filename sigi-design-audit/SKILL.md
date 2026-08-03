@@ -164,6 +164,32 @@ Token 合规: ✅
 
 ---
 
+# 模式 3：设计决策仲裁
+
+## 触发条件
+
+- 用户要在多个设计方案间取舍："帮我选方案" / "这两个设计哪个好" / "该怎么选"
+- 用户要求评审现有设计："评审这个设计" / "设计决策"
+- 审计过程中发现的问题属于**设计决策层**而非实现层违规
+
+## 操作
+
+读 [`references/arbitration-flow.md`](references/arbitration-flow.md)，按其中的 Step 0–5 执行：
+定义决策对象 → 红线筛查 → 方案取舍 → 映射到工程表达 → 验收结论 → 自检交付。
+
+判据来源：[`references/design-constitution.md`](references/design-constitution.md)。
+**所有裁决必须引用设计宪法条款编号**，不许凭品味裁决。
+
+## 与合规审计的区别
+
+| | 合规审计（模式 1） | 设计决策仲裁（模式 3） |
+|--|------------------|---------------------|
+| 判什么 | 代码是否违反 token/组件规范 | 多个合规方案中选哪个 |
+| 输出 | PASS / FAIL + 违规清单 | Verdict + 引用的宪法条款 |
+| 判据 | `checklist.md` | `design-constitution.md` |
+
+---
+
 # 模式 2：反向定位（Reverse Locate）
 
 当用户**已经拿到 Decision Trace** 并指出具体症状时，切换到反向定位模式——精确找到 trace 上哪个节点导致了问题。

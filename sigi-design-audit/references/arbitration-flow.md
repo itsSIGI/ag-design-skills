@@ -1,15 +1,10 @@
----
-name: ag-design-arbiter
-version: 1.0.0
-description: >
-  设计决策仲裁。当用户需要做 UI/UX 方案取舍、审查现有设计、比较多个方案、或需要
-  设计决策指导时使用。触发词："帮我选方案"、"这两个设计哪个好"、"评审这个设计"、
-  "设计决策"、"design arbiter"、"设计仲裁"、"该怎么选"。
-  不用于：生成 UI 代码（用 ag-design-craft）、拆解需求（用 ag-design-compass）、
-  代码审计（用 ag-design-audit）。
----
+# 设计决策仲裁流程
 
-# Design Arbiter — 设计决策仲裁
+> 本文件由 `sigi-design-audit` 的"设计决策"模式使用。
+> 当审计发现的问题属于**设计决策层**（而非实现层违规）时，按本流程做裁决。
+> 判据来源：[`design-constitution.md`](design-constitution.md)
+
+---
 
 ## 核心原则
 
@@ -39,7 +34,7 @@ description: >
 
 ## Step 1: 红线筛查
 
-**输入**：Step 0 的场景摘要 + [references/design-constitution.md](references/design-constitution.md) 的红线
+**输入**：Step 0 的场景摘要 + [design-constitution.md](design-constitution.md) 的红线
 
 **操作**：
 1. 逐项检查所有一票否决红线（§2）
@@ -52,7 +47,7 @@ description: >
 
 ## Step 2: 方案取舍
 
-**输入**：通过红线的一个或多个方案 + [references/design-constitution.md](references/design-constitution.md) 的公理与原则
+**输入**：通过红线的一个或多个方案 + [design-constitution.md](design-constitution.md) 的公理与原则
 
 **操作**：
 
@@ -66,7 +61,7 @@ description: >
    - 空间弹性（§3.7）
 4. 每个任务区块强制只保留一个主操作
 5. 高风险行为必须有二次确认或撤销机制
-6. **审美食谱参考**：对于"该选什么"类决策，查阅 [references/aesthetic-recipes.md](references/aesthetic-recipes.md) 提供具体配方
+6. **审美食谱参考**：对于"该选什么"类决策，查阅 [aesthetic-recipes.md](../../sigi-design-build/references/aesthetic-recipes.md) 提供具体配方
 7. **业务约束评估**（在以上设计维度之后考虑）：
    - **工期影响**：方案 A 比方案 B 多用多少开发时间？差异是否值得？
    - **技术债**：方案是否引入长期维护负担？
@@ -79,7 +74,7 @@ description: >
 
 ## Step 3: 映射到工程表达
 
-**输入**：Step 2 的被选方案 + [references/token-selection.md](references/token-selection.md) 的 token 规则
+**输入**：Step 2 的被选方案 + [token-selection.md](../../sigi-design-system/references/token-selection.md) 的 token 规则
 
 **操作**：
 
@@ -104,7 +99,7 @@ description: >
 
 ## Step 4: 验收并形成结论
 
-**输入**：Step 3 的设计决策说明 + [references/design-constitution.md](references/design-constitution.md) 的验收协议
+**输入**：Step 3 的设计决策说明 + [design-constitution.md](design-constitution.md) 的验收协议
 
 **操作**：
 
@@ -152,7 +147,7 @@ description: >
 2. 哪个 Trust 更高？→ 信息更透明的胜出
 3. 哪个任务链路更短？→ 步骤更少的胜出
 4. 哪个更符合现有设计系统？→ 一致性胜出
-5. 以上都平手 → 查 [references/aesthetic-recipes.md](references/aesthetic-recipes.md) 按审美配方选
+5. 以上都平手 → 查 [aesthetic-recipes.md](../../sigi-design-build/references/aesthetic-recipes.md) 按审美配方选
 
 ---
 
@@ -164,7 +159,7 @@ description: >
 
 - 用户没有给出具体方案，而是描述了一个设计困惑
 - 问题类型："需要弹窗吗"、"这里用表格还是卡片"、"要不要拆成多个页面"
-- 从 audit 回路过来的设计决策问题（标注 `→ arbiter`）
+- 从合规审计（模式 1）回路过来的设计决策问题
 
 ### 操作
 
@@ -176,74 +171,6 @@ description: >
    - 在 AG 设计系统中的实现路径（shadcn/AG 组件 / 需要开源组件）
 3. **走标准 Step 1-4 流程**评估这些自生成的候选方案
 4. 输出**推荐 + 理由 + 替代方案**
-
----
-
-## 跨 Skill 协作接口
-
-### arbiter 作为接收方
-
-| 来源 | 触发 | arbiter 输入 | arbiter 输出 |
-|------|------|-------------|-------------|
-| **craft Step 1.5** | recipe 有多选一槽位 | 候选方案 + 业务场景描述 | 推荐方案 + 理由 |
-| **audit FAIL** | 审计发现设计决策问题（标注 `→ arbiter`） | 违规代码 + 症状描述 | 设计决策裁决 + 修改方向 |
-| **compass Step 5** | 多条策略冲突 | 策略列表 + 冲突描述 | 策略优先级排序 |
-| **vision Step 4** | 创意方向与 AG 红线有张力 | Creative Intent + 冲突点 + TIER + 提议方案 + 回退方案 | 合规裁决（见下方接口 8 格式） |
-
-### arbiter 作为发起方
-
-| 目标 | 触发 | arbiter 输出 | 目标 skill 操作 |
-|------|------|-------------|----------------|
-| **craft** | arbiter 裁决了组件/布局方案 | 裁决结论 + token 映射 | craft 直接用于 recipe |
-| **audit** | arbiter 裁决涉及合规边界 | TOKEN_ESCAPE 声明 | audit 在该项豁免检查 |
-
-### 接口 8：vision ↔ arbiter（Creative Compliance Check）
-
-当 `ag-design-vision` 在 Step 4 发现创意方向与 AG 红线有张力时，向 arbiter 发起合规查询。
-
-**vision → arbiter 查询格式**：
-
-```markdown
-## Vision → Arbiter 合规查询
-
-- **Creative Intent**: [想做什么]
-- **Potential Conflict**: [哪条红线/原则有张力]
-- **TIER Zone**: [TIER_2 / TIER_3]
-- **Proposed Resolution**: [TOKEN_ESCAPE 声明 + 理由]
-- **Fallback if Rejected**: [被否决后的回退方案]
-```
-
-**arbiter → vision 裁决格式**：
-
-```markdown
-## Arbiter → Vision 合规裁决
-
-- **Decision**: APPROVE / APPROVE_WITH_CONDITIONS / REJECT
-- **Conditions**: [具体约束，如有]
-- **TIER Confirmation**: [确认 TIER 分类]
-- **TOKEN_ESCAPE Approved**: [批准的 ESCAPE 清单 + 作用域限制]
-```
-
-**裁决规则**：
-- TIER_3 区域的创意自由度最高，只要不违反红线（§2）通常 APPROVE
-- TIER_2 区域需要更严格审查，创意必须在 AG 组件变体范围内
-- TIER_1 区域不接受创意偏离——vision 不应对 TIER_1 区域提出 TOKEN_ESCAPE
-- REJECT 时必须提供具体的回退建议
-
-### 数据传递格式
-
-arbiter 的裁决结论统一用以下格式，方便其他 skill 消费：
-
-```markdown
-## Arbiter Verdict
-
-- **决策点**：[一句话描述]
-- **裁决**：[方案名 / REJECT]
-- **维度评分**：Trust [高/中/低] | Task [高/中/低] | A11y [高/中/低]
-- **业务约束**：[工期影响 / 技术债评估]
-- **token 映射**：[关键 shadcn/AG 组件 / var(--*)]（如适用）
-- **豁免声明**：[TOKEN_ESCAPE 项]（如有）
-```
 
 ---
 
