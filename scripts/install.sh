@@ -4,7 +4,7 @@
 #
 # 作用:
 #   1. 把仓库克隆到 ~/.ag-design-skills（已存在则更新）
-#   2. 把 6 个 ag-design-* skill 软链到 ~/.claude/skills/
+#   2. 把 6 个 sigi-design-* skill（含入口）软链到 ~/.claude/skills/
 #   3. 引导启用 Claude Code 自动更新
 #
 # 用法:
@@ -19,6 +19,16 @@ REPO_URL="https://github.com/itsSIGI/ag-design-skills.git"
 INSTALL_DIR="${AG_DESIGN_DIR:-$HOME/.ag-design-skills}"
 SKILLS_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 SKILLS=(
+  sigi-design
+  sigi-design-system
+  sigi-design-scope
+  sigi-design-vision
+  sigi-design-build
+  sigi-design-audit
+)
+
+# 旧版命名，用于清理改名后遗留的悬空软链
+LEGACY_SKILLS=(
   ag-design-system
   ag-design-compass
   ag-design-vision
@@ -47,6 +57,20 @@ else
 fi
 
 # --- 2. 软链 skill 到 Claude Code skills 目录 -------------------------------
+# 清理旧版 ag-design-* 遗留（改名后会变成悬空软链）
+if [ -d "$SKILLS_DIR" ]; then
+  for old in "${LEGACY_SKILLS[@]}"; do
+    old_path="$SKILLS_DIR/$old"
+    if [ -L "$old_path" ]; then
+      info "  清理旧软链: $old"
+      rm "$old_path"
+    elif [ -d "$old_path" ]; then
+      info "  清理旧拷贝目录: $old"
+      rm -rf "$old_path"
+    fi
+  done
+fi
+
 mkdir -p "$SKILLS_DIR"
 info "软链 skills 到 $SKILLS_DIR"
 for skill in "${SKILLS[@]}"; do
