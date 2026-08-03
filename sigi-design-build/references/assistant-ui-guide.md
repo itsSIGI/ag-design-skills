@@ -219,7 +219,7 @@ assistant-ui primitives 不带样式。用 Tailwind className + AG token 变量�
 
 ## Recipe 登记方式
 
-在 craft Step 1 recipe 表中：
+在 build Step 1 recipe 表中：
 
 | 字段 | 值 |
 |------|---|

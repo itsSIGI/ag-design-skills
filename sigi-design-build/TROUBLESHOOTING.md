@@ -1,4 +1,4 @@
-# Design Craft 翻车排查指南
+# sigi-design-build 翻车排查指南
 
 > 用 `sigi-design-build` 产出的代码不符合规范时，按本指南排查——大部分情况 30 秒内就能定位。
 
@@ -113,4 +113,4 @@ Trace 也看不清根因时，**调 sub-skill 反向定位**。直接对 AI 说�
 | 看简短决策摘要 | （自动输出，无需触发） |
 | 看完整决策链路表 | `decision trace` / `决策链路` |
 | 让 AI 反向定位问题 | `trace 反查` + 贴症状 + 贴 trace |
-| 重新跑合规审计 | `审计这段代码` / `audit design-craft output` |
+| 重新跑合规审计 | `审计这段代码` / `audit sigi-design-build output` |

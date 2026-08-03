@@ -11,11 +11,11 @@ description: >
 
 # sigi-design-vision
 
-创意视觉策略师——为需要审美创新的场景生成结构化的、craft 可直接执行的 **Vision Spec**。
+创意视觉策略师——为需要审美创新的场景生成结构化的、build 可直接执行的 **Vision Spec**。
 
 **定位边界**：
 
-| 维度 | vision | audit | craft |
+| 维度 | vision | audit | build |
 |------|--------|-------|-------|
 | 角色 | 创造者（生成视觉方向） | 裁判（在方案间仲裁） | 执行者（按方案写代码） |
 | 何时 | 无现成视觉方向 | 有方案需选择/验证 | 有方案需实现 |
@@ -60,13 +60,13 @@ description: >
 ├─ 用户明确要求创意视觉处理？
 │  YES → 激活 vision（任何页面类型都可以，包括 Dashboard）
 │
-├─ compass Step 5.5 标注 `视觉创新: 是`？
+├─ scope Step 5.5 标注 `视觉创新: 是`？
 │  YES → 激活 vision
 │
 ├─ 页面是 Landing page / 营销页 / 品牌页 / 展示页？
 │  YES → 默认激活 vision（除非用户说"简单做就行"）
 │
-└─ 以上均否 → 标准 craft，不激活 vision
+└─ 以上均否 → 标准 build，不激活 vision
 ```
 
 **关键变化**：不再按页面类型硬切。Dashboard、表格、表单都可能需要 vision——取决于用户的审美诉求和受众特征。当不确定时，主动询问：
@@ -94,7 +94,6 @@ description: >
 | 视觉叙事 | [`references/visual-narrative.md`](references/visual-narrative.md) | Step 3 布局章节 |
 | AG 设计宪法 | [`../sigi-design-audit/references/design-constitution.md`](../sigi-design-audit/references/design-constitution.md) | Step 4 合规检查 |
 | AG Token 规则 | [`../sigi-design-system/references/token-selection.md`](../sigi-design-system/references/token-selection.md) | Step 4 TOKEN_ESCAPE |
-| 跨 Skill 协作 | `sigi-design-build/references/cross-skill-protocol.md` | 接口数据格式 |
 | 审美参考库 | [`references/aesthetic-library/index.md`](references/aesthetic-library/index.md) | Step 2-3 需灵感/参数时按索引定位 |
 | 动效开源库 | [`references/motion-libraries.md`](references/motion-libraries.md) | Step 3 §5 动效库选择 + Vision Spec §5 实现方案 |
 | 可视化设计稿协议 | [`references/html-mockup-protocol.md`](references/html-mockup-protocol.md) | Step 2 出方向稿 + Step 3/5 出视觉稿（必读，含 HTML/Pencil 工具选择） |
@@ -113,7 +112,7 @@ description: >
 
 ## Step 1：创意简报分析
 
-**输入**：用户描述 / compass 传来的规格表（含 `视觉创新: 是`）/ 参考 URL/截图
+**输入**：用户描述 / scope 传来的规格表（含 `视觉创新: 是`）/ 参考 URL/截图
 
 **操作**：从输入中提取并结构化以下信息：
 
@@ -131,7 +130,7 @@ description: >
   - 品牌：[已有品牌色/字体/logo？需要遵循品牌规范？]
   - 技术：[框架限制？需要 SSR？动效库偏好？]
   - 内容：[文案已定？图片已有？需要插画？]
-- **设计目标**：[从 compass 继承，或从用户描述提炼]
+- **设计目标**：[从 scope 继承，或从用户描述提炼]
 ```
 
 **输出**：结构化 Creative Brief
@@ -218,7 +217,7 @@ description: >
    - 无品牌污染（AG logo/品牌色使用规则）
    - 不破坏工程化基础
 
-4. **有冲突时**：用 `sigi-design-audit` 的设计决策模式（接口 8），传递：
+4. **有冲突时**：用 `sigi-design-audit` 的设计决策模式，传递：
 
 ```markdown
 ## Vision → 设计决策 合规查询
@@ -236,34 +235,19 @@ description: >
 
 ---
 
-## Step 5：交付 craft
+## Step 5：交付 sigi-design-build
 
 **输入**：通过合规检查的 Vision Spec
 
 **操作**：
 
-1. 在 Vision Spec 末尾追加 **Craft Implementation Guide**：
+1. 在 Vision Spec 末尾追加 **Build Implementation Guide** —— 模板见
+   [`references/build-handoff-guide.md`](references/build-handoff-guide.md)，含三个小节：
+   Recipe 策略 / Transition Seam 实现 / 技术栈建议
 
-```markdown
-## Craft Implementation Guide / 实现指南
+2. 将 Vision Spec 传递给 `sigi-design-build`
 
-### Recipe 策略
-- **TIER_3 区域**（Hero 等）：按 Vision Spec 值直接实现，每个 TOKEN_ESCAPE 在 recipe 中单独登记
-- **TIER_2 区域**（Body sections）：走标准 recipe 流程，从 decision-tables + components-v2.md 选组件
-- **TIER_1 区域**（Nav/Footer）：走标准 recipe 流程，零偏离
-
-### Transition Seam 实现
-- [描述从创意区到标准区的 CSS 过渡方式——如渐变覆盖层、颜色渐变、间距渐变]
-
-### 技术栈建议
-- **动效库**：[CSS-only / Framer Motion / GSAP，基于动效复杂度选择]
-- **响应式**：[clamp() 为主 / media query 补充]
-- **字体加载**：[如有 display font，加载策略]
-```
-
-2. 将 Vision Spec 传递给 craft（接口 7）
-
-**输出**：完整的 Vision Spec + Craft Implementation Guide
+**输出**：完整的 Vision Spec + Build Implementation Guide
 
 ---
 
@@ -296,4 +280,19 @@ AG Bridge（衔接）/ Visualization（可视化，Step 2 与 Step 3.5 的稿必
 | TOKEN_ESCAPE 超预算 | 回 Step 3，按"配色 > 排版 > 动效"优先级精简 |
 | 设计决策 REJECT | 按裁决条件修正，或给用户呈现冲突让用户决定 |
 | 风格原型库不匹配 | 用 mood-board-method.md 从零构建方向，在 Vision Spec 中标注"自定义风格" |
-| craft 反馈无法实现 | 回 Step 3 调整技术栈建议，或降低动效/插画复杂度 |
+| build 反馈无法实现 | 回 Step 3 调整技术栈建议，或降低动效/插画复杂度 |
+
+---
+
+## 交付与下一步
+
+**产物**：`docs/sigi-design/vision/<date>-<topic>.md`
+
+产物头部必须写死下游指令：
+
+> 下一步：用 sigi-design-build 按本 Spec 生成代码。
+> TIER_3 区域的每个 TOKEN_ESCAPE 需在 build 的 recipe 中单独登记。
+
+**唯一下游**：`sigi-design-build`。
+
+**不许**：在此直接写页面代码、跳过 build 自行实现、交付前没让用户对着可视化稿确认。

@@ -7,13 +7,13 @@
 
 ## Vision Spec Mode（视觉创新页面）
 
-> 当 craft 收到来自 `sigi-design-vision` 的 Vision Spec 时激活。适用于 Landing page、营销页、品牌页等需要审美创新的场景。
+> 当 build 收到来自 `sigi-design-vision` 的 Vision Spec 时激活。适用于 Landing page、营销页、品牌页等需要审美创新的场景。
 
 ### 触发条件
 
 - 用户说"按照 Vision Spec 生成"
 - vision skill 交付了完整 Vision Spec（7 章节结构化方案）
-- compass 模块规格表标注 `视觉创新: 是`，且 vision 已产出 Spec
+- scope 模块规格表标注 `视觉创新: 是`，且 vision 已产出 Spec
 
 ### 与标准流程的关系
 

@@ -1,6 +1,6 @@
 # 示例：生物科技公司品牌官网 Landing Page
 
-> 本示例覆盖 compass Step 1 → Step 5.5 全流程，包含 Step 5 策略拆解和视觉创新标记。
+> 本示例覆盖 scope Step 1 → Step 5.5 全流程，包含 Step 5 策略拆解和视觉创新标记。
 > 展示如何将品牌展示型需求拆解为可执行的 UI 模块规格，并触发 vision skill。
 
 ## 背景

@@ -14,7 +14,7 @@
 2. 浏览器正常登录 —— 本地 = 本地前端 + 真实后端
 3. 导航到你的页面 → 带真实鉴权 + 真实数据的真实样子
 
-design-craft 生成的页面是**真实路由上的真实代码**，不挂免鉴权预览路由。
+sigi-design-build 生成的页面是**真实路由上的真实代码**，不挂免鉴权预览路由。
 
 ---
 
@@ -66,7 +66,6 @@ design-craft 生成的页面是**真实路由上的真实代码**，不挂免鉴
 | 局部修改协议 | [`patch-mode.md`](patch-mode.md) | 用户要"改一下"时 |
 | 多页面流程 | [`multi-page-flow.md`](multi-page-flow.md) | 向导/onboarding/多步表单 |
 | 响应式 + 交接 | [`responsive-and-handoff.md`](responsive-and-handoff.md) | 断点/Dev Handoff/演化协议 |
-| 跨 Skill 协作 | [`cross-skill-protocol.md`](cross-skill-protocol.md) | skill 间数据传递/回环/上下文共享 |
 | 页面原型 | [`page-archetypes/README.md`](page-archetypes/README.md) | 新页面选骨架 |
 | AI 聊天运行时 | [`assistant-ui-guide.md`](assistant-ui-guide.md) | AI 对话需要 streaming/持久化/分支时 |
 | 可视化设计稿协议 | [`../../sigi-design-vision/references/html-mockup-protocol.md`](../../sigi-design-vision/references/html-mockup-protocol.md) | Step 2.5 出预览稿（含 HTML/Pencil 工具选择） |

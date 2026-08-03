@@ -16,7 +16,7 @@ description: >
 
 **为什么独立**：长上下文末段，AI 自检时容易跳步、合理化违规。把审计拆成独立 sub-skill 让它**冷启动一次专注一件事**，不再受主流程压力影响。
 
-**跨 Skill 协作**：审计中发现的设计决策问题（标注 `→ 设计决策`）转入本 skill 的**模式 3：设计决策仲裁**——格式约定见 [`sigi-design-build/references/cross-skill-protocol.md`](../sigi-design-build/references/cross-skill-protocol.md)
+**跨 Skill 协作**：审计中发现的设计决策问题（标注 `→ 设计决策`）转入本 skill 的**模式 3：设计决策仲裁**——流程见 [`references/arbitration-flow.md`](references/arbitration-flow.md)
 
 ---
 
@@ -24,8 +24,8 @@ description: >
 
 主流程必须把以下两份输入完整传入：
 
-1. **生成代码**：design-craft Step 3 产出的完整组件代码
-2. **recipe**：design-craft Step 1 产出的 Locked Recipe 表（slot / 组件类型 / 来源 / shadcn/AG 组件 / token 引用 / 验证来源）
+1. **生成代码**：sigi-design-build Step 3 产出的完整组件代码
+2. **recipe**：sigi-design-build Step 1 产出的 Locked Recipe 表（slot / 组件类型 / 来源 / shadcn/AG 组件 / token 引用 / 验证来源）
 
 任一缺失 → 拒绝审计，要求补齐后重提。
 
@@ -105,14 +105,14 @@ Token 合规: ✅
 
 # 模式 1B：独立审计（审计已有代码）
 
-当需要审计**非 craft 产出的代码**（已有代码库、PR diff、其他人写的代码）时，进入独立审计模式。
+当需要审计**非 build 产出的代码**（已有代码库、PR diff、其他人写的代码）时，进入独立审计模式。
 
 ## 触发条件
 
 以下任一：
 - 用户提供代码 + 说"审计这段代码"但**没有 recipe**
 - 用户说"审计这个文件 / 这个 PR / 这段已有代码"
-- 代码明显不是来自 craft 流程（没有 Decision Summary、没有 recipe）
+- 代码明显不是来自 build 流程（没有 Decision Summary、没有 recipe）
 
 ## 输入
 
@@ -197,7 +197,7 @@ Token 合规: ✅
 
 同时满足三点才进入反向定位模式：
 
-1. 用户提供了 **Decision Trace 表**（来自 design-craft Step 6 的标准格式）
+1. 用户提供了 **Decision Trace 表**（来自 sigi-design-build Step 6 的标准格式）
 2. 用户描述了**具体症状**（"X 不对"、"应该是 Y"）
 3. 用户使用触发词："定位问题" / "trace 反查" / "reverse locate" / "哪一步出错"
 
@@ -255,3 +255,15 @@ Token 合规: ✅
 - 如根因是 sub-skill 漏报 → 在 `sigi-design-audit/references/checklist.md` 补规则
 - 如根因是决策表查错 → 在 `sigi-design-build/references/decision-tables.md` 补行
 ```
+
+---
+
+## 交付与下一步
+
+**产物**：PASS / FAIL 结论 + 违规清单。
+
+**这里是终点**——audit 不产出代码、不启动新流程。
+
+- **PASS** → 交还给用户，流程结束
+- **FAIL** → 回 `sigi-design-build` 逐条修复后重审
+- **2 轮仍 FAIL** → 停止自动修复，把冲突呈现给用户决策

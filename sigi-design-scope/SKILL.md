@@ -9,7 +9,7 @@ description: >
   不用于：生成 UI 代码、从零写 PRD、评审现有设计。
 ---
 
-# Design Compass — 需求拆解与设计策略推导
+# sigi-design-scope — 需求拆解与设计策略推导
 
 ## 核心原则
 
@@ -44,7 +44,7 @@ description: >
 4. 向用户说明：已加载哪些方法论 + 哪些信息仍需补充
 5. 如项目目录下存在 `.claude/design-log.md`，读取已有页面和设计约定，注入后续分析上下文
 
-**跨 Skill 协作**：本 skill 的 Step 5.5 输出是 `sigi-design-build` 的直接输入——格式约定见 [`sigi-design-build/references/cross-skill-protocol.md`](../sigi-design-build/references/cross-skill-protocol.md)
+**跨 Skill 协作**：本 skill 的 Step 5.5 输出是 `sigi-design-build` 的直接输入——格式见 [`references/output-template.md`](references/output-template.md) 的 UI 模块规格表模板
 
 **输出**：已知上下文摘要 + 缺口列表
 
@@ -214,7 +214,7 @@ description: >
 
 ---
 
-## Step 5.5: UI 模块规格表（design-craft 入参）
+## Step 5.5: UI 模块规格表（sigi-design-build 入参）
 
 **输入**：Step 5 的设计策略 + Step 3 的角色
 
@@ -229,7 +229,7 @@ description: >
    - **状态变体**
    - **推荐页面原型**：匹配 `sigi-design-build/references/page-archetypes/` 中的原型
    - **推荐框架**：React / Vue / 其他（根据项目情况）
-   - **视觉创新**：是 / 否（默认"否"。Landing page、营销页、品牌页、需要审美创新的展示型页面标注"是"。标注"是"时触发 `sigi-design-vision` skill，先产出 Vision Spec 再交给 craft 执行）
+   - **视觉创新**：是 / 否（默认"否"。Landing page、营销页、品牌页、需要审美创新的展示型页面标注"是"。标注"是"时触发 `sigi-design-vision` skill，先产出 Vision Spec 再交给 sigi-design-build 执行）
 3. 每个模块末尾附：
    - 视觉创新 = 否 → **→ 交给 sigi-design-build**
    - 视觉创新 = 是 → **→ 先交给 sigi-design-vision 产出 Vision Spec → 再交给 sigi-design-build**
@@ -263,14 +263,14 @@ description: >
 
 ## 回环修正机制
 
-> compass 流程不是纯线性的——后续发现可以倒回修正前序结论。
+> scope 流程不是纯线性的——后续发现可以倒回修正前序结论。
 
 ### 允许回环的场景
 
 | 场景 | 触发 | 操作 |
 |------|------|------|
 | **用户测试后推翻角色假设** | 用户说"实际使用发现角色 X 的痛点不对" | 回到 Step 3 修正角色卡片 → 重推 Step 4-5 |
-| **craft 实现中发现策略不可行** | craft 反馈"策略 Y 在当前设计系统无法实现" | 回到 Step 5 调整策略，标注技术约束 |
+| **build 实现中发现策略不可行** | build 反馈"策略 Y 在当前设计系统无法实现" | 回到 Step 5 调整策略，标注技术约束 |
 | **新增文档改变结论** | 用户追加了新的调研报告或数据 | 回到 Step 2 重新摄入 → 增量更新后续 Step |
 | **stakeholder 否决设计目标** | 用户说"老板不同意这个方向" | 回到 Step 4 修改设计目标 → 重推 Step 5-5.5 |
 
@@ -280,3 +280,18 @@ description: >
 2. **增量更新**：只重做受影响的 Step，不从头重来
 3. **保留历史**：修改前的结论不删除，标注 `[v1, 已被 v2 替代]`
 4. **置信度升级**：被验证过的结论从 `[待验证]` 升级为 `[已验证: 来源]`
+
+---
+
+## 交付与下一步
+
+**产物**：`docs/sigi-design/specs/<date>-<topic>.md`
+
+产物头部必须写死下游指令：
+
+> 下一步：用 sigi-design-build 按本规格表生成代码。
+> 若模块标注「视觉创新: 是」，先用 sigi-design-vision 出 Vision Spec。
+
+**唯一下游**：`sigi-design-build`（若有视觉创新标注则先经 `sigi-design-vision`）。
+
+**不许**：在此直接写代码、跳过 build 自行实现、把规格表只留在对话里不落盘。

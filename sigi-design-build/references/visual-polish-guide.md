@@ -1,7 +1,7 @@
 # 视觉精修指南 — 从 70 分到 90 分
 
 > aesthetic-recipes.md 保证"不出错"（70 分安全线），本文件教**怎么做好看**——在 AG 的克制调色板里创造高级感。
-> 用于 craft Step 3 代码生成 + Step 3.5 Polish Pass。
+> 用于 build Step 3 代码生成 + Step 3.5 Polish Pass。
 
 ---
 

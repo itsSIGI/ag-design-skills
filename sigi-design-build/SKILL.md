@@ -286,3 +286,14 @@ Agentic Genius 设计系统的 UI 生成执行层。**核心心智**：有完整
 收到 `sigi-design-vision` 的 Vision Spec 时激活 → 读 [`references/vision-spec-mode.md`](references/vision-spec-mode.md)。
 
 **要点**：不替代标准流程，只改 Step 1 的 recipe 输入来源。TIER_3 区域按 Spec 自建并登记 TOKEN_ESCAPE，TIER_1/2 走标准组件。Recipe Gate 不免除。
+
+---
+
+## 交付与下一步
+
+**产物**：项目里的真实代码。
+
+**唯一下游**：`sigi-design-audit`（Step 4 强制调用，不可跳过）。
+
+**不许**：自己跑一遍 checklist 就宣称 PASS、audit FAIL 后不修直接交付、
+超过 2 轮自动修复还不升级给用户。

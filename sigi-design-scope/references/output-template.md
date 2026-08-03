@@ -1,6 +1,9 @@
 # 输出模板
 
-> Design Compass 各 Step 的标准输出格式。
+> sigi-design-scope 各 Step 的标准输出格式。
+
+> 下一步：用 sigi-design-build 按本规格表生成代码。
+> 若模块标注「视觉创新: 是」，先用 sigi-design-vision 出 Vision Spec。
 
 ---
 

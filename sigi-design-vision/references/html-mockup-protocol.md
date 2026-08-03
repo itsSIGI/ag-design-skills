@@ -1,11 +1,11 @@
 # 可视化设计稿协议 / Visual Mockup Protocol
 
 > **目的**：让"出设计方案"这件事变得**可视化**。无论是 vision 探索视觉方向、
-> vision 交付 Vision Spec，还是 craft 出方案，都先画一张**能直接看到效果的
+> vision 交付 Vision Spec，还是 build 出方案，都先画一张**能直接看到效果的
 > 设计稿**（独立 HTML 或 Pencil，由用户选），让用户看到真实效果再决策，
 > 而不是读文字想象。
 >
-> 本文件是 vision 和 craft 共享的权威协议。两个 skill 都引用它。
+> 本文件是 vision 和 build 共享的权威协议。两个 skill 都引用它。
 
 ---
 
@@ -17,7 +17,7 @@
 |------|--------|--------|------|
 | 视觉方向探索（3 选 1） | vision Step 2 | 3 张并排缩略稿，每个 Direction 一张 | 问用户（HTML / Pencil），3 选 1 对比默认推荐 HTML |
 | Vision Spec 交付前 | vision Step 3/5 | 1 张完整视觉稿（hero + 配色 + 排版 + 布局） | 问用户（HTML / Pencil） |
-| craft 出方案 | craft Step 3 前 | 1 张静态预览稿，确认后再落地项目代码 | 问用户（HTML / Pencil），代码预览默认推荐 HTML |
+| build 出方案 | build Step 3 前 | 1 张静态预览稿，确认后再落地项目代码 | 问用户（HTML / Pencil），代码预览默认推荐 HTML |
 
 **不画的情况**：
 - 纯 Patch Mode 局部修改（改个颜色/间距/文案）——直接改，不用出稿
@@ -113,7 +113,7 @@ Pencil 走自己的变量体系，做法：
 
 ```
 .design-mockups/<page-name>-<yyyymmdd>/
-  ├─ index.html              # HTML：craft 单方案 / vision 单视觉稿
+  ├─ index.html              # HTML：build 单方案 / vision 单视觉稿
   ├─ directions.html         # HTML：vision 3 选 1 并排稿
   ├─ mockup.pen              # Pencil：设计文件（若用 Pencil）
   ├─ screenshots/            # Pencil 导出的截图
@@ -139,7 +139,7 @@ Pencil 走自己的变量体系，做法：
 - 或 Pencil：已导出截图 `.design-mockups/xxx/screenshots/`
 
 请确认：
-1. **就按这个来** — 进入下一步（vision 深化 / craft 落地代码）
+1. **就按这个来** — 进入下一步（vision 深化 / build 落地代码）
 2. **调整** — 告诉我改哪里（配色/布局/字号/间距…）
 3. **换种工具再看** — 想看另一种（HTML ↔ Pencil）我再出一版
 ```
@@ -172,9 +172,9 @@ Pencil 走自己的变量体系，做法：
 - 排版用 Typography Composition 的字阶
 - 布局用 Layout Choreography 的网格
 - Hero 区标出 TOKEN_ESCAPE 注释/备注
-- 交付前让用户对着稿确认，再走接口 7 交给 craft
+- 交付前让用户对着稿确认，再交给 sigi-design-build
 
-### craft Step 3 前：静态预览稿
+### build Step 3 前：静态预览稿
 
 recipe 锁定后、生成真实项目代码前，先出稿（代码预览场景默认推荐 HTML）：
 
@@ -188,7 +188,7 @@ recipe 锁定后、生成真实项目代码前，先出稿（代码预览场景�
 ## 护栏
 
 1. **稿是给人看的，不是运行代码**：不必引入构建工具、不必真实可交互；用 token 还原观感即可。
-2. **不替代最终代码**：设计稿（HTML/Pencil）只是方案预览。用户确认后，craft 仍走"真实路由真实代码"流程。
+2. **不替代最终代码**：设计稿（HTML/Pencil）只是方案预览。用户确认后，build 仍走"真实路由真实代码"流程。
 3. **不入库**：所有稿写进 `.design-mockups/`（已 gitignore），不进项目源码目录。
 4. **token 一致性**：稿里的 TIER_1 区域颜色/间距必须和真实系统一致，否则预览会误导决策。
 5. **`.pen` 只用 pencil MCP 读写**：绝不用 Read/Grep 碰 `.pen` 文件。

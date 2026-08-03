@@ -30,41 +30,38 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 ```
 用户需求
   │
-  ├─── 功能性页面 ──────────────────────────────────────────────┐
-  │                                                              │
-  ├─── 需要审美创新？ ─── YES ──┐                                │
-  │                              │                                │
-  ▼                              ▼                                ▼
-┌──────────────┐         ┌──────────────┐         ┌───────────────┐
-│  compass     │         │  vision      │         │  craft        │
-│  需求拆解     │         │  视觉创意     │         │  UI 代码生成   │
-│              │ 规格表   │              │ Vision  │               │
-│  Step 1-6   │────────▶│  Step 0-5    │─Spec──▶│  Step 1-6     │
-│              │ +视觉创新│              │         │               │
-└──────────────┘ 标记    └──────────────┘         │  接收两种输入：│
-       ▲                   ▲    │                  │  A) 标准 recipe│
-       │ 策略冲突            │    │ 合规查询          │  B) Vision Spec│
-       │                   │    ▼                  │               │
-┌──────────────┐         合规裁决                   │  Step 4 ──────┼──▶ audit
-│  audit       │ ◀─── 接口 8 ──────────            │    ▼          │    合规审计
-│  合规审计     │                                   │  Step 5-6     │
-│  + 设计决策   │ ◀─── craft 设计决策问题             └───────────────┘
-│    仲裁模式   │ ──── 裁决结论 → recipe ──────────────────▶
-└──────────────┘
+  ├─── 需求不清晰 ──▶ sigi-design-scope ──── 规格表 ─────┐
+  │                        │                             │
+  │                        │ 模块标注「视觉创新: 是」      │
+  │                        ▼                             │
+  ├─── 需要审美创新 ──▶ sigi-design-vision ─ Vision Spec ─┤
+  │                                                       │
+  └─── 直接做页面 ────────────────────────────────────────┤
+                                                          ▼
+                                              ┌────────────────────┐
+                                              │  sigi-design-build │
+                                              │  接收两种输入：      │
+                                              │  A) 标准 recipe     │
+                                              │  B) Vision Spec     │
+                                              └─────────┬──────────┘
+                                                        │ Step 4 强制调用
+                                                        ▼
+                                              ┌────────────────────┐
+                                              │  sigi-design-audit │
+                                              │  PASS → 交还用户    │
+                                              │  FAIL → 回 build 修 │
+                                              └────────────────────┘
 ```
 
-### 8 个协作接口
+### 3 个协作接口
+
+协作不靠中心化协议文件，靠**产物文件当总线**——每个 skill 的产出文档头部写死下游指令，换会话也不断链。
 
 | 接口 | 方向 | 传递内容 | 触发条件 |
 |------|------|---------|---------|
-| 接口 1 | compass → craft | UI 模块规格表 | compass 完成需求分析 |
-| 接口 2 | craft → audit | 生成代码 + Locked Recipe | craft 代码生成完毕 |
-| 接口 3 | audit 合规审计 → audit 设计决策模式 | 违规升级（设计决策问题） | audit 发现非实现层问题 |
-| 接口 4 | audit 设计决策模式 → craft | 裁决结论注入 Recipe | craft 遇到多选一槽位 |
-| 接口 5 | compass ↔ audit 设计决策模式 | 策略冲突仲裁 | compass 策略相互矛盾 |
-| 接口 6 | compass → vision | Creative Brief | 模块标注"视觉创新: 是" |
-| 接口 7 | vision → craft | Vision Spec (7 章节) | vision 完成视觉方案 |
-| 接口 8 | vision ↔ audit 设计决策模式 | 创意合规查询/裁决 | vision 发现红线张力 |
+| 接口 1 | scope → build（或先经 vision） | UI 模块规格表 | scope 完成需求分析 |
+| 接口 2 | vision → build | Vision Spec (7 章节) | vision 完成视觉方案 |
+| 接口 3 | build → audit | 生成代码 + Locked Recipe | build Step 4，强制调用 |
 
 ---
 
@@ -72,14 +69,14 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 
 ### sigi-design-scope — 需求分析
 
-**职责**：将产品需求文档、用户调研、会议记录等原始输入，拆解为结构化的 UI 模块规格表，供 craft 直接消费。
+**职责**：将产品需求文档、用户调研、会议记录等原始输入，拆解为结构化的 UI 模块规格表，供 build 直接消费。
 
 **核心能力**：
 - 文档摄入与结构化提取（支持飞书链接、截图、文本）
 - 角色识别与操作动线绘制
 - 需求目标 → 设计目标的方法论推导（JTBD / FOGG / AIDA 等框架）
 - 设计策略拆解（机制级，非 UI 级）
-- UI 模块规格表输出（craft 的直接入参）
+- UI 模块规格表输出（build 的直接入参）
 
 **关键文件**：
 - `SKILL.md` — 完整工作流（Step 1-6）
@@ -108,7 +105,7 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 - `references/style-vocabulary.md` — 11+ 风格原型词汇表
 - `references/color-theory.md` — 配色理论与调色板配方
 - `references/motion-libraries.md` — 30+ 动效开源库推荐
-- `references/html-mockup-protocol.md` — 可视化设计稿协议（vision/craft 共享，出稿工具由用户选 HTML/Pencil，挂真实 token）
+- `references/html-mockup-protocol.md` — 可视化设计稿协议（vision/build 共享，出稿工具由用户选 HTML/Pencil，挂真实 token）
 - `references/aesthetic-library/` — 内置审美参考库（原型参数 / 行业配色 / Section 范式 / 页面组合 / 精选灵感）
 
 **触发词**：`Landing page` / `营销页` / `品牌页` / `视觉创新` / `高级感` / `品牌调性` / `视觉冲击力` / `有设计感` 等。
@@ -133,7 +130,6 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 - `references/decision-tables.md` — 业务场景→组件类型决策表
 - `references/page-archetypes/` — 12 种页面原型
 - `references/visual-polish-guide.md` — 视觉精修指南
-- `references/cross-skill-protocol.md` — 8 个跨 Skill 协作接口定义
 - `references/open-source-guide.md` — 开源组件集成指南
 
 **触发方式**：用户要求生成 UI 页面、组件时激活。
@@ -142,7 +138,7 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 
 ### sigi-design-audit — 合规审计 + 设计仲裁
 
-**职责**：对 craft 产出的代码进行独立的合规审计。**冷启动、单一职责**，不被主流程上下文污染。此外承担**设计决策仲裁**——当存在多个设计方案需要取舍时，提供有理有据的裁决。
+**职责**：对 build 产出的代码进行独立的合规审计。**冷启动、单一职责**，不被主流程上下文污染。此外承担**设计决策仲裁**——当存在多个设计方案需要取舍时，提供有理有据的裁决。
 
 **核心能力**：
 - Token 合规检查（硬编码检测、token 臆造检测、类名验证）
@@ -157,7 +153,7 @@ AG Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。�
 - `references/arbitration-flow.md` — 设计决策仲裁流程（Step 0–5）
 - `references/design-constitution.md` — 设计宪法（红线 + 原则）
 
-**触发方式**：craft Step 4 自动调用。也可独立使用审计任意代码，或在需要方案取舍时进入设计决策模式。
+**触发方式**：build Step 4 自动调用。也可独立使用审计任意代码，或在需要方案取舍时进入设计决策模式。
 
 ---
 
@@ -340,19 +336,19 @@ git -C ~/.ag-design-skills log -1 --pretty='%h %s (%cr)'
 ```
 帮我做一个数据概览 Dashboard，包含 4 个 KPI 卡片和一个折线图
 ```
-→ 激活 `craft`，走 Recipe-first 流程
+→ 激活 `sigi-design-build`，走 Recipe-first 流程
 
 **示例 2：需求分析 → 代码生成**
 ```
 这是我们的产品需求文档 [粘贴文档内容]，帮我分析并生成对应页面
 ```
-→ 激活 `compass`（需求分析）→ 输出规格表 → 交给 `craft`（代码生成）
+→ 激活 `sigi-design-scope`（需求分析）→ 输出规格表 → 交给 `sigi-design-build`（代码生成）
 
 **示例 3：视觉创新页面**
 ```
 帮我做一个有科技感的产品 Landing page
 ```
-→ 激活 `vision`（搜索灵感、生成 3 个方向供选择）→ 选定方向后生成 Vision Spec → 交给 `craft`（按 Spec 生成代码）
+→ 激活 `vision`（搜索灵感、生成 3 个方向供选择）→ 选定方向后生成 Vision Spec → 交给 `sigi-design-build`（按 Spec 生成代码）
 
 **示例 4：设计方案对比**
 ```
@@ -380,7 +376,7 @@ token-bridge.css（语义映射）
 
 ### Recipe-first 工作流
 
-craft 的核心机制——**先锁定组件配方（Recipe），再写代码**：
+build 的核心机制——**先锁定组件配方（Recipe），再写代码**：
 
 1. 拆分 UI 为语义槽位（slot）
 2. 查决策表选组件类型
@@ -484,7 +480,6 @@ ag-design-skills/
 │       ├── visual-polish-guide.md      # 视觉精修
 │       ├── quality-self-check.md       # 质量自检
 │       ├── harden-checklist.md         # 非正常路径清单
-│       ├── cross-skill-protocol.md     # 跨 Skill 协作协议
 │       ├── assistant-ui-guide.md       # assistant-ui 集成指南
 │       ├── patch-mode.md               # 局部修改协议
 │       ├── multi-page-flow.md          # 多页面流程
@@ -511,11 +506,11 @@ AG Design Skills 具备自我进化能力：
 
 | 机制 | 触发条件 | 产出 |
 |------|---------|------|
-| Pattern 沉淀 | 某模式成功 3 次 | 新代码模板 → `craft/patterns/` |
-| 翻车案例积累 | audit FAIL | 案例 → `craft/anti-examples.md` |
+| Pattern 沉淀 | 某模式成功 3 次 | 新代码模板 → `build/patterns/` |
+| 翻车案例积累 | audit FAIL | 案例 → `build/anti-examples.md` |
 | 风格原型扩展 | 新视觉风格成功交付 | 新原型 → `vision/style-vocabulary.md` |
 | 配色配方积累 | 配色方案获用户认可 | 新配方 → `vision/color-theory.md` |
-| 决策表补行 | 决策表未覆盖场景 | 新行 → `craft/decision-tables.md` |
+| 决策表补行 | 决策表未覆盖场景 | 新行 → `build/decision-tables.md` |
 | 灵感库沉淀 | 成功使用新设计参考 | 新条目 → `vision/aesthetic-library/` |
 
 ---

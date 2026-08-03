@@ -83,7 +83,7 @@
 
 ## 8. Vision Spec 合规（仅 Vision Spec 模式启用）
 
-> 当 craft 以 Vision Spec 模式生成代码时启用本类审计。标准模式下跳过。
+> 当 build 以 Vision Spec 模式生成代码时启用本类审计。标准模式下跳过。
 
 ### 8.1 TOKEN_ESCAPE 声明完整性
 
