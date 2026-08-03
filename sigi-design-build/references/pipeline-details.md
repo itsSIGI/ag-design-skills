@@ -1,6 +1,6 @@
-# Pipeline 细则 — Step 0 / Step 3.6
+# Pipeline 细则 — Step 0 / 1 / 2 / 2.5 / 3 / 3.6 / 4
 
-> 从 SKILL.md 下沉的分步细则。Step 0 在有 Figma/截图输入时读；Step 3.6 在交付前读。
+> 从 SKILL.md 下沉的分步细则。SKILL.md 各 Step 只留摘要 + 铁律，执行到某步时回本文件查该步的完整操作。
 
 ---
 
