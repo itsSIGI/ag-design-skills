@@ -1,5 +1,5 @@
 ---
-name: ag-design-audit
+name: sigi-design-audit
 version: 1.0.0
 description: >
   ag-design-craft 产出代码的独立合规审计 sub-skill。冷启动、单一职责、不被主流程

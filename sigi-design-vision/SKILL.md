@@ -1,5 +1,5 @@
 ---
-name: ag-design-vision
+name: sigi-design-vision
 version: 1.1.0
 description: >
   创意视觉策略 skill。为需要审美创新的任何页面生成结构化的 Vision Spec，供

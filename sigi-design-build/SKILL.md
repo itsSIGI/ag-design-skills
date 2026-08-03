@@ -1,5 +1,5 @@
 ---
-name: ag-design-craft
+name: sigi-design-build
 version: 1.0.0
 description: >
   Agentic Genius B 端 UI 代码生成执行层。当用户要生成符合 Agentic Genius 设计系统的

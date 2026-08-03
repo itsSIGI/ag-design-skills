@@ -1,5 +1,5 @@
 ---
-name: ag-design-compass
+name: sigi-design-scope
 version: 1.0.0
 description: >
   需求拆解与设计策略推导。当用户想分析产品需求文档、用户调研、会议记录或功能简报，
