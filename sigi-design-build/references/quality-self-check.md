@@ -102,3 +102,45 @@
 - 大标题（≥22px）带负字距（排版组件已内置 `letter-spacing: -0.01em`）
 
 **FAIL 修法**：检查对齐，调整 flex 布局或 padding
+
+---
+
+# Step 3.5 三份清单速查（从 SKILL.md 下沉）
+
+> 主流程在进 Step 4 之前自己走这三份清单。这不是合规校验（合规由 sub-skill 干），
+> 是**让"合规但平庸"升级到"合规且精致"** 的补强。任一 FAIL → 回 Step 3 改完再走。
+
+## 3.5.A 视觉质量自检 — 本文件上方 7 节
+
+逐条过 7 项：
+1. Squint Test（眯眼能否分主次）
+2. 多维度视觉层级（至少 2–3 维）
+3. 60-30-10 视觉重量（品牌色 ≤ 10%，仅链接 hover / agent 状态 / 代码高亮）
+4. 垂直节奏一致
+5. 用 `gap` 不用 `margin`（间距统一走 `var(--space-*)`）
+6. Focus 用 `:focus-visible`（焦点环用中性色 `var(--color-focus-ring)`）
+7. 光学对齐（标题 / 图标方向）
+
+任一 FAIL → **回 Step 3 改完再走**，不带已知问题进 Step 4。
+
+## 3.5.B Polish Pass — [`visual-polish-guide.md`](visual-polish-guide.md) §7
+
+逐条过 10 项精修检查：
+1. 页面有一个明确的视觉焦点
+2. 文本层级用了 ≥2 个维度（字号+字重+颜色）
+3. 同一卡片内 primary 色文本 ≤ 2 个
+4. 间距有"紧-松"的节奏变化（标题粘内容，内容块断开）
+5. 可点击卡片有 hover 微浮效果（shadow + translateY transition）
+6. 大数字有 tabular-nums + 负字距
+7. 背景用了 bg/surface/surface-secondary 层次
+8. 边框优先用 subtle 而非 strong
+9. 页面最多 1-2 处彩色元素（避免色彩竞争）
+10. 可交互元素都有 transition 声明（0.15-0.2s ease）
+
+任一未达 → **回 Step 3 改完再走**。Polish Pass 是从 70 分到 90 分的关键。
+
+## 3.5.C Harden 清单 — [`harden-checklist.md`](harden-checklist.md)
+
+逐条过 10 项非正常路径：空态 / loading / error / 长文本 / 极端数据 / 0-1-N 状态 / 权限缺失 / 小视口 / 键盘可达 / 时区时间。
+
+每条：✅ 已覆盖 / ❌ 缺失（回 Step 3 补）/ ➖ 业务无关（标注理由）。

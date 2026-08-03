@@ -16,98 +16,31 @@ Agentic Genius 设计系统的 UI 生成执行层。**核心心智**：有完整
 
 ---
 
-## Step -1：预览与校验环境
+## 加载即执行（启动协议）
 
-> 本 skill **只含知识 + 规则**，不往项目里注入运行时代码。预览靠项目本身的 dev server。
+激活后**第一件事**，在跟用户聊业务之前按顺序完成：
 
-**预览 = 本地跑项目 dev server + 正常登录**：
+1. 读 `sigi-design-system/references/components-v2.md` — 载入组件清单
+2. 读 `sigi-design-system/references/tokens.md` — 载入 token 体系
+3. 读 [`references/patterns/pattern-index.json`](references/patterns/pattern-index.json) — 载入可复用 pattern
 
-1. 起项目 dev server（如 `pnpm dev`）
-2. 浏览器正常登录 —— 本地 = 本地前端 + 真实后端
-3. 导航到你的页面 → 带真实鉴权 + 真实数据的真实样子
+跳过加载直接开工 = 高概率中后段翻车。
 
-design-craft 生成的页面是**真实路由上的真实代码**，不挂免鉴权预览路由。
+**完整权威来源索引 + 渐进披露策略** → [`references/skill-startup.md`](references/skill-startup.md)
 
----
-
-## 加载即执行（Skill 启动协议）
-
-**激活本 skill 后的第一件事**——在跟用户聊业务之前——必须按顺序完成：
-
-1. 读 `sigi-design-system` skill 的 `references/components-v2.md`，把当前 shadcn/ui + AG 扩展组件清单载入上下文
-2. 读 `sigi-design-system` skill 的 `references/tokens.md`，载入 token 体系
-3. 读 [`references/patterns/pattern-index.json`](references/patterns/pattern-index.json)，知道当前有哪些可复用页面 pattern
-4. 之后才开始处理用户输入
-
-跳过加载协议直接开工 = 高概率在中后段翻车。**先吃组件清单、token 体系和 pattern 库，再说做什么页面**。
-
-> ### 省 token：渐进披露，命中即止
->
-> **别预读整个 references 库**。按需读：
-> - 先查 decision-tables §10 业务表 / pattern-index（都很小）
-> - **命中 pattern → 只读那个 pattern 的代码 + recipe，直接抄填，跳过规则库通读**
-> - 命中原型 → 读那个原型 + 它指向的真实文件；未命中才按需读规则文件
-
----
-
-**两种输入模式**：
-- **文字描述** → 从 Step 1 开始
-- **Figma URL**（含 `figma.com`）或**截图** → 先执行 **Step 0**，再从 Step 1 继续
-
-**权威来源**：
-
-| 类别 | 文件 | 何时读 |
-|------|------|--------|
-| Token 体系 | `sigi-design-system/references/tokens.md` | 取色值/间距/圆角 |
-| 组件用法 | `sigi-design-system/references/components-v2.md` | 做具体组件 |
-| 组件示例 | `sigi-design-system/references/components-v2.md` | 复制组件用法 |
-| React 用法 | `sigi-design-system/references/react.md` | React 项目 |
-| Vue 用法 | `sigi-design-system/references/vue.md` | Vue 项目 |
-| 达标自检 | `sigi-design-system/references/checklist.md` | 产出后核对 |
-| 业务→组件决策 | [`references/decision-tables.md`](references/decision-tables.md) | 选组件类型 |
-| 组合层规则 | [`references/design-rules.md`](references/design-rules.md) | anti-pattern / 布局 |
-| 开源组件指南 | [`references/open-source-guide.md`](references/open-source-guide.md) | 用第三方库时 |
-| 视觉质量自检 | [`references/quality-self-check.md`](references/quality-self-check.md) | Step 3.5 |
-| 视觉精修指南 | [`references/visual-polish-guide.md`](references/visual-polish-guide.md) | Step 3 生成 + Step 3.5 Polish Pass |
-| 审美配方 | [`references/aesthetic-recipes.md`](references/aesthetic-recipes.md) | Step 3 排版/配色/间距配方 |
-| 非正常路径 | [`references/harden-checklist.md`](references/harden-checklist.md) | Step 3.5 |
-| 翻车案例 | [`references/anti-examples.md`](references/anti-examples.md) | FAIL 后参考 |
-| 组件缺失协议 | [`references/component-missing-protocol.md`](references/component-missing-protocol.md) | Step 1.4.5 缺失处理 |
-| 诊断协议 | [`references/diagnostic-protocol.md`](references/diagnostic-protocol.md) | Step 5-6 决策追踪 |
-| 翻车排查 | [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) | 产出问题排查 |
-| 局部修改协议 | [`references/patch-mode.md`](references/patch-mode.md) | 用户要"改一下"时 |
-| 多页面流程 | [`references/multi-page-flow.md`](references/multi-page-flow.md) | 向导/onboarding/多步表单 |
-| 响应式 + 交接 | [`references/responsive-and-handoff.md`](references/responsive-and-handoff.md) | 断点/Dev Handoff/演化协议 |
-| 跨 Skill 协作 | [`references/cross-skill-protocol.md`](references/cross-skill-protocol.md) | skill 间数据传递/回环/上下文共享 |
-| 页面原型 | [`references/page-archetypes/README.md`](references/page-archetypes/README.md) | 新页面选骨架 |
-| AI 聊天运行时 | [`references/assistant-ui-guide.md`](references/assistant-ui-guide.md) | AI 对话需要 streaming/持久化/分支时 |
-| 可视化设计稿协议 | [`../sigi-design-vision/references/html-mockup-protocol.md`](../sigi-design-vision/references/html-mockup-protocol.md) | Step 2.5 出预览稿（含 HTML/Pencil 工具选择） |
+**预览方式**：本 skill 只含知识 + 规则，不注入运行时代码。预览靠项目自己的 dev server（`pnpm dev` + 正常登录）。生成的是真实路由上的真实代码，不挂免鉴权预览路由。
 
 ---
 
 ## Step 0：读取 Figma 设计稿 / 截图（可选）
 
-用户提供 `https://figma.com/design/:fileKey/...?node-id=...` 或截图时执行：
+用户给 `figma.com/design/...` URL 或截图时先走本步 → 完整流程见 [`references/pipeline-details.md`](references/pipeline-details.md)。
 
-### Figma URL 模式
-
-1. 调用 `get_figma_data` 获取节点数据
-2. 调用 `download_figma_images` 获取截图
-3. 看截图理解模块划分和数据类型
-4. **从截图和节点数据中识别每一个组件型元素**（弹窗 / 表格 / 表单 / 按钮 / Tabs / Card / ...），列出 `Figma 节点 → shadcn/AG 组件候选` 的初步映射。**这份映射就是 Step 1 recipe 的输入**
-
-### 截图模式
-
-1. 读截图，理解模块划分
-2. 识别组件型元素，列出 `截图区域 → shadcn/AG 组件候选` 映射
+产出 `Figma 节点 / 截图区域 → shadcn/AG 组件候选` 映射，**这份映射就是 Step 1 recipe 的输入**。
 
 > ### 铁律：识别 ≠ 实现
 >
-> 识别出"这里是个 Modal"后 **绝不要** 直接自己拼。Step 1 必须先从 `components-v2.md` 确认 shadcn/AG 组件存在及用法，才能进入 Step 3。
-
-**失败回退**：
-- MCP/截图不可用 → 请用户提供截图或文字描述节点结构，降级走文字模式
-- URL 无效 / 文件私有 → **暂停**，请用户核对；不允许悄悄回退到无设计稿模式
+> 识别出"这里是个 Modal"后 **绝不要** 直接自己拼。Step 1 必须先从 `components-v2.md` 确认组件存在及用法。
 
 ---
 
@@ -150,12 +83,7 @@ design-craft 生成的页面是**真实路由上的真实代码**，不挂免鉴
 
 > ### 铁律：ALWAYS Reference BEFORE Implement
 >
-> - **ALWAYS** 从 `components-v2.md` 确认 shadcn/AG 组件存在且了解用法后再写代码
-> - **NEVER** 凭训练记忆写 shadcn/AG 组件名或 token 变量名
-> - **NO EXCEPTIONS** — 即便是 `Button`、`Input` 这种"显然知道"的组件
-> - 训练数据里的 AG 设计系统信息一定过期或不完整。**记忆 = 翻车的最大单一来源**
->
-> 跳过确认直接写代码 = 违反 skill 协议，**必须重做**。
+> 写组件前必须先从 `components-v2.md` 查到用法，不凭记忆。详见文末[铁律汇总](#6-条铁律汇总)。
 
 **操作**：
 
@@ -174,93 +102,24 @@ design-craft 生成的页面是**真实路由上的真实代码**，不挂免鉴
    - **业务语言输入** → 先查 §10「业务语言直查表」：命中 pattern 直接抄代码，命中原型抄布局骨架
    - 通用 UI 场景 → 查 §1–§7；表中标注"待确认"的必须告知用户
 4. **1.4** 对每个槽位从 `components-v2.md` 确认 shadcn/AG 组件名、用法、变体
-5. 产出 **recipe**——结构化清单：
-
-   | 字段 | 含义 |
-   |------|------|
-   | `slot` | 业务语义（"删除确认弹窗"、"分子数据列表"） |
-   | `component_type` | 组件类型（Modal、Table、Button、Card…） |
-   | `source` | 来源：`shadcn`（shadcn/ui 标准组件）、`ag-ext`（AG 扩展组件）或 `开源-<库名>` |
-   | `component` | 组件名（如 `Dialog`、`AgMetricCard`、`Button variant="primary"`）或开源组件名 |
-   | `token_refs` | 引用的关键 token（`var(--color-surface)`、`var(--space-4)`） |
-   | `notes` | 特殊说明（开源组件需 token 化包装等） |
+5. 产出 **recipe** 结构化清单，字段：`slot`（业务语义）· `component_type` · `source`（`shadcn` / `ag-ext` / `开源-<库名>`）· `component` · `token_refs` · `notes`。字段含义详见 [`references/pipeline-details.md`](references/pipeline-details.md)。
 
 ### 1.4.5 组件缺失处理协议 — [`references/component-missing-protocol.md`](references/component-missing-protocol.md)
 
-某槽位**找不到合适 shadcn/AG 组件**时，按四种情况显式处理（完整流程见引用文件）：
+某槽位找不到合适 shadcn/AG 组件时按四种情况处理：**A** 重查全文（别假装确认了）· **B** 用现有组件拼并在 recipe 显式登记复合块 · **C** 查 [`references/open-source-guide.md`](references/open-source-guide.md) 标注包装方案 · **D** 真缺则停下问用户，确认前不进 Step 2。
 
-- **情况 A**（库里有你没找到）：重读 `components-v2.md` 全文搜索，别假装确认了
-- **情况 B**（可用组件组合）：用现有 shadcn/AG 组件拼（如 `Card` + `CardContent` + `Badge`），recipe **显式登记复合块** + notes 说明
-- **情况 C**（需开源组件）：查 [`references/open-source-guide.md`](references/open-source-guide.md) 获取推荐库 + token 化包装标准，recipe 中标注来源和包装方案
-- **情况 D**（真缺）：**停下来**给用户"缺失声明 + 路径选择"，确认前不进 Step 2
-
-#### 关键不变量（必守）
-
-- **绝不允许**：Step 3 用 `<div>` 沉默拼一个看起来像组件的东西
-- 复合块在 recipe **显式登记**（B）；开源组件**显式标注包装方案**（C）；真缺组件**显式停下问用户**（D）
-- **核心**：recipe 不限制创新，限制"沉默的偏离"——所有偏离必须留痕
+**关键不变量**：绝不允许 Step 3 用 `<div>` 沉默拼一个看起来像组件的东西。recipe 不限制创新，限制"沉默的偏离"——所有偏离必须留痕。
 
 ### 1.5 Recipe Gate（写代码前的强制门禁）
 
 > ### 铁律：Locked Recipe 必须公开输出 + 等用户确认
->
-> Step 1.4 完成 recipe 后，**禁止直接进入 Step 2/3**，必须先做完下面 A+B 两件事。
 
-#### A. 公开输出 Locked Recipe 表
+完整格式与 stop-and-ask 场景见 [`references/recipe-gate.md`](references/recipe-gate.md)。
 
-主流程**必须**用以下固定格式输出：
-
-```markdown
-## Locked Recipe
-
-| Slot | 组件类型 | 来源 | 组件 | Token 引用 | 验证来源 | 备注 |
-|------|---------|------|-----|-----------|---------|------|
-| ...  | ...     | shadcn | `Dialog` | var(--color-primary-bg) | shadcn/dialog ✓ | ... |
-
-## Spacing 决策（每段间距的真实 token）
-
-| 区域 | Token 变量 | 像素值 |
-|------|-----------|--------|
-| ...  | var(--space-4) | 16 |
-```
-
-**"验证来源"列**只能是以下三种之一，**不许空着**：
-
-| 验证类型 | 何时用 | 例子 |
-|---------|------|------|
-| `shadcn/[component]` ✓ | 从 components-v2.md 确认 shadcn/ui 组件存在 | `Dialog` 在 components-v2.md shadcn 标准组件章节 |
-| `ag/[component]` ✓ | 从 components-v2.md 确认 AG 扩展组件存在 | `AgMetricCard` 在 components-v2.md AG 扩展组件章节 |
-| `tokens.md` ✓ | 确认 token 变量存在 | `var(--color-surface)` 在 tokens.md 语义颜色表 |
-
-**不允许的"验证"**：
-- "凭印象" / "我记得" / "应该有"
-- "Tailwind 默认有这个 class"（AG 设计系统有自己的 token 和组件变体）
-- "其他项目这样用"（不能证明设计系统支持）
-
-#### B. 触发 stop-and-ask 的场景
-
-recipe 中任一行属于以下情况，**必须停下问用户**：
-
-1. **类名存在性验证后仍不确定**
-2. **多选一**：业务场景可对应 ≥2 个合规方案
-3. **风格不在 token 体系内**：想用某颜色/圆角/字号但 tokens.md 没有对应变量
-4. **开源组件选择**：有多个候选库，需用户决定
-5. **"我不确定"的任何瞬间**
-
-输出格式（必须给用户具体选项）：
-
-```markdown
-⚠️ Slot [X] 待用户决策
-
-候选路径：
-1. 方案 A —— [来源/做法]，优：... 缺：...
-2. 方案 B —— ...
-3. 方案 C —— ...
-
-我建议 [N]，理由 [...]。请回 "选 A" / "选 B" / "选 C" 后继续。
-```
-
-收到用户明确选择前，**禁止进 Step 2**。
+**不可协商的三条**：
+1. Locked Recipe 表必须出现在**对用户可见**的输出中，不能只在 thinking 里
+2. 每行"验证来源"列必须填 `shadcn/[x] ✓` / `ag/[x] ✓` / `tokens.md ✓` 之一，不许空着、不许写"凭印象"
+3. 收到用户 "recipe 通过" / "选 X" 前，禁止进 Step 2
 
 #### 关键不变量
 
@@ -282,15 +141,7 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 >
 > AG 设计系统有 `Card` 组件（5 种 elevation 变体）。容器层级——每层最多一个 border 语义，不嵌套卡片边框。
 
-需要确定的事：
-
-1. 模块的单一职责（先信息架构，后视觉；不混入无关数据）
-2. 容器层级——遵循 `Card` 组件的 5 级 elevation 规则（`default` / `ring` / `whisper` / `selected` / `inset`），不自造阴影
-3. 图表类型：汇总/聚合率 → **Gauge**；占比/构成 → **Donut**；时序 → **Bar/Column**
-4. **Bar/Column 图独占全宽行**，不放进分列网格
-5. 全局筛选器位置：**紧靠页面标题右侧**
-6. **白底铁律**：`Card` 组件默认白底（`var(--color-bg)`），不自行加灰底。卡片区分靠 elevation 和间距，不靠底色差异
-7. 替代映射查表——任何"用 div 自拼组件"的冲动，先查 [`references/decision-tables.md §7`](references/decision-tables.md)
+**需要确定的 7 件事**（单一职责 / 容器 elevation 层级 / 图表类型选择 / Bar 图独占全宽 / 筛选器紧靠标题右侧 / 白底铁律 / 替代映射查表）详见 [`references/pipeline-details.md`](references/pipeline-details.md) 与 [`references/decision-tables.md §7`](references/decision-tables.md)。
 
 **冲突显式化**：若用户原始请求与布局规则冲突，**不静默改写**。在输出里列出：
 
@@ -307,21 +158,11 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 
 ## Step 2.5：出静态预览稿（出方案默认执行）
 
-> **让用户不起 dev server、不登录就能看到方案效果。** 落地真实项目代码前，先出一张稿确认。
+落地真实代码前先出一张稿，让用户不起 dev server、不登录就能看效果。完整步骤见 [`references/pipeline-details.md`](references/pipeline-details.md)。
 
-1. 读 [`../sigi-design-vision/references/html-mockup-protocol.md`](../sigi-design-vision/references/html-mockup-protocol.md)（若未读）
-2. **按协议话术问用户用哪种工具**：独立 HTML / Pencil（代码预览场景默认推荐 HTML）
-3. 用锁定的 recipe（Step 1）+ 页面结构（Step 2）+ 真实 token，按所选工具出页面静态版：
-   - HTML → `.design-mockups/<page-name>-<date>/index.html`，挂 `sigi-design-system/assets/tokens.css`，颜色/间距/圆角/字号全走 `var(--*)`
-   - Pencil → 建 token 变量后出画板 + 截图
-   - 组件用 token 还原**近似**静态样子（稿是给人看效果，不是可运行代码）
-4. 告诉用户稿的路径/截图，请用户确认后再进 Step 3 生成真实代码
+按 [`../sigi-design-vision/references/html-mockup-protocol.md`](../sigi-design-vision/references/html-mockup-protocol.md) 问用户选 HTML（默认推荐）或 Pencil，用锁定的 recipe + 真实 token 出静态版，确认后再进 Step 3。
 
-**复用**：若本次来自 vision 的 Vision Spec，vision 已出稿 → 直接复用作起点，不重画。
-
-**跳过条件**：
-- Patch Mode 局部修改（改颜色/间距/文案/单组件）
-- 用户明确说"直接写代码 / 不用预览 / 快速做"
+**跳过**：Patch Mode 局部修改，或用户明确说"直接写代码 / 不用预览"。vision 已出稿则直接复用。
 
 ---
 
@@ -329,26 +170,9 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 
 **输入**：Step 1 的 recipe + Step 2 的页面结构
 
-**操作**：
+**操作**：逐槽位渲染 recipe（严格匹配登记的组件名和 token）→ 填 mock 数据 → 页面级 wrapper 走 `var(--space-*)` / `var(--radius-*)` → 同步做审美精修。**完整 8 条操作明细见 [`references/pipeline-details.md`](references/pipeline-details.md)**，含图标白名单、图表固定高度、React/Vue 框架分叉、精修要点。
 
-1. **逐槽位渲染 recipe**——每个槽位使用对应的 shadcn/AG 组件或开源组件，严格匹配 recipe 中登记的组件名和 token
-2. 数据填充：把 mock 数据、文案、回调函数填进组件
-3. **页面级 wrapper**（外层 layout、卡片间 gap、grid 列宽等少量自定义层）使用 `var(--space-*)` / `var(--radius-*)` 等 token 变量
-4. 图标使用白名单库 [MingCute](https://www.mingcute.com/)（icon font）或 [Lucide](https://lucide.dev/)（React 组件），**单项目单库**保持统一；shadcn 自带 Lucide 微图标豁免
-5. 每个图表（ECharts 等）声明**固定像素高度**；图表内部配色可直接用 hex（从 tokens.md 原始色阶取）
-6. **不添加**用户未明确要求的 UI 元素
-7. **框架分叉**：
-   - React 项目 → 读 `sigi-design-system/references/react.md` 获取 className 型 + 交互态 hooks 写法
-   - Vue 项目 → 读 `sigi-design-system/references/vue.md` 获取 class 型 + 交互态写法
-   - 其他 → 从 `components-v2.md` 复制组件结构
-8. **审美精修**（生成代码时同步执行，不是事后补）：
-   - 读 [`references/visual-polish-guide.md`](references/visual-polish-guide.md) 应用精修技巧
-   - 参考 [`aesthetic-recipes.md`](references/aesthetic-recipes.md) 选择字号组合 / 间距节奏 / 配色方案
-   - 可点击卡片必须有 `transition` + hover 微浮声明
-   - 大数字（KPI 值）加 `font-variant-numeric: tabular-nums` + 负字距
-   - 背景使用 `bg → surface → surface-secondary` 三级层次
-   - 边框优先 `--color-border-subtle`，只在强分隔处用 `--color-border-strong`
-   - 每个页面确认一个视觉焦点，其余元素降权
+生成时同步读 [`references/visual-polish-guide.md`](references/visual-polish-guide.md) + [`references/aesthetic-recipes.md`](references/aesthetic-recipes.md)。
 
 **关键不变量**：
 
@@ -358,9 +182,7 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 
 > ### 铁律：Recipe 是契约
 >
-> Step 1 锁定的组件配方 = 生成代码的契约。
-> 代码里如果出现 recipe 没有的组件 / 自拼 div / 自造 class —— **回到 Step 1 补行**，不允许在 Step 3 偷加。
-> "顺手"加一个用户没要求的导出按钮、刷新按钮、加载态——同样违规。
+> 代码不得偏离 Step 1 锁定的 recipe，新增组件必须回 Step 1 补行，不在 Step 3 偷加。详见文末[铁律汇总](#6-条铁律汇总)。
 
 **输出**：完整的组件代码
 
@@ -368,44 +190,15 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 
 ## Step 3.5：质量自检 + Polish + Harden（进 Step 4 前的软关）
 
-**输入**：Step 3 出的代码
+**输入**：Step 3 出的代码。在交给 `sigi-design-audit` 之前，主流程**自己**走三份清单——不是合规校验，是让"合规但平庸"升级到"合规且精致"。
 
-**操作**：在交给 `sigi-design-audit` 之前，主流程**自己**走三份清单。这不是合规校验（合规由 sub-skill 干），是**让"合规但平庸"升级到"合规且精致"** 的补强。
+| 清单 | 文件 | 内容 |
+|------|------|------|
+| 3.5.A 视觉质量自检 | [`references/quality-self-check.md`](references/quality-self-check.md) | 7 项：Squint Test / 多维层级 / 60-30-10 / 垂直节奏 / gap / focus-visible / 光学对齐 |
+| 3.5.B Polish Pass | [`references/visual-polish-guide.md`](references/visual-polish-guide.md) §7 | 10 项精修：焦点、层级维度、间距节奏、hover 微浮、tabular-nums… |
+| 3.5.C Harden | [`references/harden-checklist.md`](references/harden-checklist.md) | 10 项非正常路径：空态 / loading / error / 长文本 / 极端数据 / 权限 / 小视口 / 键盘 / 时区 |
 
-### 3.5.A 视觉质量自检 — [`references/quality-self-check.md`](references/quality-self-check.md)
-
-逐条过 7 项：
-1. Squint Test（眯眼能否分主次）
-2. 多维度视觉层级（至少 2–3 维）
-3. 60-30-10 视觉重量（品牌色 ≤ 10%，仅链接 hover / agent 状态 / 代码高亮）
-4. 垂直节奏一致
-5. 用 `gap` 不用 `margin`（间距统一走 `var(--space-*)`）
-6. Focus 用 `:focus-visible`（焦点环用中性色 `var(--color-focus-ring)`）
-7. 光学对齐（标题 / 图标方向）
-
-任一 FAIL → **回 Step 3 改完再走**，不带已知问题进 Step 4。
-
-### 3.5.B Polish Pass — [`references/visual-polish-guide.md`](references/visual-polish-guide.md) §7
-
-逐条过 10 项精修检查：
-1. 页面有一个明确的视觉焦点
-2. 文本层级用了 ≥2 个维度（字号+字重+颜色）
-3. 同一卡片内 primary 色文本 ≤ 2 个
-4. 间距有"紧-松"的节奏变化（标题粘内容，内容块断开）
-5. 可点击卡片有 hover 微浮效果（shadow + translateY transition）
-6. 大数字有 tabular-nums + 负字距
-7. 背景用了 bg/surface/surface-secondary 层次
-8. 边框优先用 subtle 而非 strong
-9. 页面最多 1-2 处彩色元素（避免色彩竞争）
-10. 可交互元素都有 transition 声明（0.15-0.2s ease）
-
-任一未达 → **回 Step 3 改完再走**。Polish Pass 是从 70 分到 90 分的关键。
-
-### 3.5.C Harden 清单 — [`references/harden-checklist.md`](references/harden-checklist.md)
-
-逐条过 10 项非正常路径：空态 / loading / error / 长文本 / 极端数据 / 0-1-N 状态 / 权限缺失 / 小视口 / 键盘可达 / 时区时间。
-
-每条：✅ 已覆盖 / ❌ 缺失（回 Step 3 补）/ ➖ 业务无关（标注理由）。
+**任一 FAIL → 回 Step 3 改完再走**，不带已知问题进 Step 4。Harden 每条标 ✅ 已覆盖 / ❌ 缺失 / ➖ 业务无关（须注明理由）。
 
 ---
 
@@ -413,88 +206,30 @@ recipe 中任一行属于以下情况，**必须停下问用户**：
 
 > ### 铁律：把页面交给用户看 / 提交之前，必须做 token 合规检查且全过
 
-**检查项**：
+6 项检查（硬编码 / token 臆造 / 组件存在性 / 品牌色 / 字重 / 焦点环）的完整判定标准见 [`references/pipeline-details.md`](references/pipeline-details.md)。
 
-1. **硬编码检测**——代码中不得出现裸 hex/rgb/hsl 色值（ECharts option 内除外）、裸 px 间距（布局 width/height 除外）、裸 border-radius、裸 box-shadow
-2. **token 臆造检测**——所有 `var(--*)` 引用必须在 `tokens.css` / `tokens.md` 中存在
-3. **组件存在性检测**——所有使用的 shadcn/AG 组件必须在 `components/ui/` 或 `components/ag/` 目录中存在，且在 `components-v2.md` 中有记录
-4. **品牌色使用检查**——`#123AFF`（蓝）和 `#00BF74`（绿）及对应 token 只出现在三处：链接 hover、agent 状态点、代码高亮
-5. **字重检查**——不出现 `font-weight: 700` 或 `--weight-bold` 以上的值
-6. **焦点环检查**——focus 相关样式使用 `var(--color-focus-ring)`（中性色），不用品牌蓝
-
-**约束**：
-- 全过**才**交付 / 进 Step 4；❌ 不允许"我看了应该没问题"跳过
-- 任一失败 → 修完再检，不带已知违规进 Step 4
+全过**才**交付 / 进 Step 4。❌ 不允许"我看了应该没问题"跳过；任一失败 → 修完再检。
 
 ---
 
 ## Step 4：合规校验（独立 sub-skill）
 
-**输入**：Step 3 生成的代码 + Step 1 recipe
-
-**操作**：调用 `sigi-design-audit` sub-skill 执行最终审计。
+把 Step 3 的代码 + Step 1 的 recipe 传给 `sigi-design-audit` sub-skill 执行最终审计。
 
 > ### 铁律：Step 4 必须由 sub-skill 执行
 >
-> **不要**在主流程里"自己跑一遍 checklist"——长上下文末段，主流程模型已经有压力，会跳步、合理化违规。
-> sub-skill 是冷启动、单一职责、不被主流程污染。把审计权完全让渡给它。
+> **不要**在主流程里"自己跑一遍 checklist"——长上下文末段，主流程会跳步、合理化违规。sub-skill 是冷启动、单一职责、不被污染的。把审计权完全让渡给它。
 
-调用方式：把 Step 3 的代码 + Step 1 的 recipe 传给 `sigi-design-audit` sub-skill。
+**结果处理**：✅ PASS → 输出最终代码；❌ FAIL → 按违规项逐条修正后重跑 sub-skill；**最多 2 轮自动修复**，2 轮仍 FAIL 则停止并向用户说明冲突请求人工确认。
 
----
-
-## 输出处理
-
-sub-skill 返回结果后：
-
-| sub-skill 结论 | 主流程动作 |
-|----------------|-----------|
-| ✅ PASS | 输出最终代码给用户 |
-| ❌ FAIL | 按 sub-skill 列出的违规项**逐条修正**代码，重新跑 sub-skill |
-| 2 轮仍 FAIL | 停止自动修复，向用户说明具体冲突并请求人工确认 |
-
-**最多 2 轮自动修复**。第 3 轮起必须升级到用户。
-
-**绝不允许**：
-- ❌ 看到 FAIL 后不修，直接输出代码
-- ❌ 自己重新跑一遍 checklist 后宣称 PASS（绕过 sub-skill）
-- ❌ 修了一半就停，剩下的留个注释让用户改
+**绝不允许**：看到 FAIL 不修直接输出 · 自己重跑 checklist 宣称 PASS（绕过 sub-skill）· 修一半留注释让用户改。
 
 ---
 
-## Step 5：决策摘要输出（每次产出末尾必须执行）
+## Step 5 / Step 6：诊断输出 — [`references/diagnostic-protocol.md`](references/diagnostic-protocol.md)
 
-PASS 后，在最终代码块**之后**必须追加 Decision Summary（~200 tokens）：
-
-```markdown
-## Decision Summary
-
-- **页面类型**：[原型名 或 "自由布局"]
-- **核心组件**：[shadcn/AG 组件清单 / 开源组件清单]
-- **开源依赖**：[第三方库名 + 版本，无则写"无"]
-- **Token 覆盖率**：[所有视觉值中 token 引用的比例]
-- **品牌色使用**：[蓝/绿出现位置，或"未使用"]
-- **已知限制**：[Harden 中标 ➖ 的项 + 原因]
-- **框架**：[React / Vue / Vanilla]
-```
-
----
-
-## Step 6：决策链路表（按需触发）
-
-> ⚠️ **不要默认输出**——只在用户**明确要求**时才执行。
-
-触发词："decision trace" / "决策链路" / "你为什么这么做" / "完整 trace" / "详细决策"
-
-输出标准化 trace 表格：
-
-```markdown
-| 节点 ID | 决策点 | 候选项 | 选择 | 理由 | 依据文件 |
-|---------|--------|--------|------|------|---------|
-| R-01 | 页面原型 | dashboard / list-table | dashboard | 用户要求 KPI 概览 | page-archetypes/ |
-| R-02 | KPI 容器 | Card / 开源 Card | Card variant="ring" | AG 设计系统原生 | components-v2.md |
-| ... | ... | ... | ... | ... | ... |
-```
+- **Step 5 Decision Summary（每次产出末尾必须执行）**：PASS 后在最终代码块之后追加 ~200 tokens 摘要（页面类型 / 核心组件 / 开源依赖 / Token 覆盖率 / 品牌色使用 / 已知限制 / 框架）。固定格式见引用文件。
+- **Step 6 Decision Trace（按需触发，⚠️ 不要默认输出）**：仅在用户说 "decision trace" / "决策链路" / "你为什么这么做" / "完整 trace" / "详细决策" 时输出标准化 trace 表格 + 反向定位。
 
 ---
 
@@ -548,81 +283,6 @@ PASS 后，在最终代码块**之后**必须追加 Decision Summary（~200 toke
 
 ## Vision Spec Mode（视觉创新页面）
 
-> 当 craft 收到来自 `sigi-design-vision` 的 Vision Spec 时激活。适用于 Landing page、营销页、品牌页等需要审美创新的场景。
+收到 `sigi-design-vision` 的 Vision Spec 时激活 → 读 [`references/vision-spec-mode.md`](references/vision-spec-mode.md)。
 
-### 触发条件
-
-- 用户说"按照 Vision Spec 生成"
-- vision skill 交付了完整 Vision Spec（7 章节结构化方案）
-- compass 模块规格表标注 `视觉创新: 是`，且 vision 已产出 Spec
-
-### 与标准流程的关系
-
-Vision Spec Mode **不替代**标准 Step 1-6 流程，而是**修改 Step 1 的 recipe 输入来源**：
-
-```
-标准模式：  用户描述 → Step 1 recipe → Step 2-6
-Vision 模式：Vision Spec + 用户描述 → Step 1 recipe（含 TOKEN_ESCAPE）→ Step 2-6
-```
-
-### Step 1 的变化：读 Vision Spec 构建 Recipe
-
-1. **读 TIER mapping**（Vision Spec §7）确定每个 section 的 TIER 分类：
-   - **TIER_1 区域**：走标准 recipe 流程，使用 shadcn/AG 组件 + 标准 token
-   - **TIER_2 区域**：走标准 recipe，可使用 shadcn/AG 组件变体（暗色变体等）
-   - **TIER_3 区域**：按 Vision Spec 自建结构，每个自定义值登记为 TOKEN_ESCAPE
-
-2. **TIER_3 区域的 recipe 登记**：
-
-   | Slot | 组件类型 | 来源 | 组件 / 自建 | Token 引用 | 验证来源 | 备注 |
-   |------|---------|------|----------------|-----------|---------|------|
-   | Hero 标题 | Display Text | vision-spec | 自建 | TOKEN_ESCAPE: hero-title-size | Vision Spec §3 | clamp(40px, 5vw+12px, 64px) |
-   | Hero 背景 | Section | vision-spec | 自建 | TOKEN_ESCAPE: hero-section-bg | Vision Spec §2 | #0C0F1A |
-
-   - `来源` 列标注 `vision-spec`
-   - `验证来源` 列标注 Vision Spec 对应章节号
-   - 每个 TOKEN_ESCAPE 必须在 recipe 中显式登记
-
-3. **过渡接缝（Transition Seam）**：
-   - 读 Vision Spec §7 的过渡描述
-   - 在 recipe 中为过渡带分配独立 slot（如"Hero→Body 渐变过渡"）
-   - 过渡带的视觉值走 TOKEN_ESCAPE 或标准 token 渐变
-
-### Step 3 的变化：按 Spec 生成代码
-
-- **TIER_3 区域**：按 Vision Spec §2-§6 的具体参数值生成（配色、排版、布局、动效、插画）
-- **TIER_1/2 区域**：仍走标准 shadcn/AG 组件 + token，与普通页面无异
-- **动效**：按 Vision Spec §5 的 motion plan 实现，包括 easing、duration、trigger、stagger
-- **prefers-reduced-motion**：必须按 Spec §5 的回退方案实现
-
-### Step 3.6 Token 校验的变化
-
-- TOKEN_ESCAPE 声明的值**不算硬编码违规**（已在 recipe 中显式登记）
-- 但 TOKEN_ESCAPE 总数必须 ≤ 15，TIER_1 区域必须 = 0
-- 未在 recipe 登记的硬编码仍然违规
-
-### Step 4 audit 的变化
-
-传给 `sigi-design-audit` 时额外附上：
-- Vision Spec 的 §7 TIER mapping
-- Recipe 中所有 TOKEN_ESCAPE 条目
-- audit 会检查 TOKEN_ESCAPE 声明完整性（每个自定义值都有对应声明）
-
-### 关键不变量
-
-- ✅ TIER_1 区域零 TOKEN_ESCAPE——导航、Footer 等必须用标准 AG 组件
-- ✅ Recipe Gate（Step 1.5）仍然强制执行——Vision Spec 不免除 recipe 门禁
-- ✅ 6 条铁律在 Vision Spec Mode 下同样有效
-- ❌ 不允许"整个页面都是 TIER_3"——至少导航和 Footer 是 TIER_1
-
----
-
-## 自演化机制
-
-| 机制 | 触发条件 | 产出 |
-|------|---------|------|
-| Anti-examples 积累 | audit FAIL | 翻车案例 → anti-examples.md |
-| Pattern 沉淀 | 某模式成功 3 次 | 代码模板 → patterns/ |
-| Archetype 扩展 | 遇到新页面类型 | 布局骨架 → page-archetypes/ |
-| Decision-tables 补行 | 决策表未覆盖场景 | 新行 → decision-tables.md |
-| 开源组件指南更新 | 团队切换/新增库 | open-source-guide.md |
+**要点**：不替代标准流程，只改 Step 1 的 recipe 输入来源。TIER_3 区域按 Spec 自建并登记 TOKEN_ESCAPE，TIER_1/2 走标准组件。Recipe Gate 不免除。
