@@ -240,14 +240,14 @@ done
 
 ## 7. 验收标准
 
-- [ ] 5 个 skill + 1 入口全部改名完成，`git mv` 保留历史
-- [ ] arbiter 3 个 reference 按消费方归位，无遗留引用路径
-- [ ] 全仓库无 `ag-design-` 残留引用（README/SKILL.md/scripts 全覆盖）
-- [ ] 每个 SKILL.md 的 description 无流程摘要
-- [ ] build / vision 主文件 ≤300 行
-- [ ] 每个 SKILL.md 末尾有"交付与下一步"单一 terminal state
-- [ ] install.sh 能清理旧软链并正确安装新名字
-- [ ] 触发测试用例能跑，vision/build 边界不混淆
+- [x] 5 个 skill + 1 入口全部改名完成，`git mv` 保留历史
+- [x] arbiter 3 个 reference 按消费方归位，无遗留引用路径
+- [x] 全仓库无 `ag-design-` 残留引用（README/SKILL.md/scripts 全覆盖）
+- [x] 每个 SKILL.md 的 description 无流程摘要
+- [x] build / vision 主文件 ≤300 行
+- [x] 每个 SKILL.md 末尾有"交付与下一步"单一 terminal state
+- [x] install.sh 能清理旧软链并正确安装新名字
+- [ ] 触发测试用例能跑，vision/build 边界不混淆（用例已就位于 `tests/skill-triggering/`，需在全新会话手动执行）
 
 ---
 
