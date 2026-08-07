@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #
-# AG Design Skills — 一次性安装脚本
+# Sigi Design Skills — 一次性安装脚本
 #
 # 作用:
-#   1. 把仓库克隆到 ~/.ag-design-skills（已存在则更新）
+#   1. 把仓库克隆到 ~/.sigi-design-skills（已存在则更新）
 #   2. 把 6 个 sigi-design-* skill（含入口）软链到 ~/.claude/skills/
 #   3. 引导启用 Claude Code 自动更新
 #
@@ -15,9 +15,10 @@
 
 set -euo pipefail
 
-REPO_URL="https://github.com/itsSIGI/ag-design-skills.git"
-INSTALL_DIR="${AG_DESIGN_DIR:-$HOME/.ag-design-skills}"
+REPO_URL="https://github.com/itsSIGI/sigi-design-skills.git"
+INSTALL_DIR="${SIGI_DESIGN_DIR:-$HOME/.sigi-design-skills}"
 SKILLS_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
+LEGACY_INSTALL_DIR="$HOME/.ag-design-skills"
 SKILLS=(
   sigi-design
   sigi-design-system
@@ -41,9 +42,21 @@ info()  { printf '\033[36m›\033[0m %s\n' "$1"; }
 ok()    { printf '\033[32m✓\033[0m %s\n' "$1"; }
 warn()  { printf '\033[33m!\033[0m %s\n' "$1"; }
 
+# --- 0. 迁移旧安装目录 ~/.ag-design-skills → ~/.sigi-design-skills -----------
+# 不迁移的话,旧目录仍在但脚本已指向新路径,会重新克隆一份;
+# 而 ~/.claude/skills 的软链还指向旧目录 —— 软链不坏,但静默停止更新。
+if [ ! -e "$INSTALL_DIR" ] && [ -d "$LEGACY_INSTALL_DIR/.git" ]; then
+  info "检测到旧安装目录,迁移: $LEGACY_INSTALL_DIR → $INSTALL_DIR"
+  mv "$LEGACY_INSTALL_DIR" "$INSTALL_DIR"
+  git -C "$INSTALL_DIR" remote set-url origin "$REPO_URL" 2>/dev/null || true
+  ok "迁移完成,远端地址已更新"
+fi
+
 # --- 1. 克隆或更新本地仓库 ---------------------------------------------------
 if [ -d "$INSTALL_DIR/.git" ]; then
   info "已存在本地仓库,拉取最新: $INSTALL_DIR"
+  # 仓库改名后旧 remote 虽有 GitHub redirect,仍统一到新地址避免长期依赖
+  git -C "$INSTALL_DIR" remote set-url origin "$REPO_URL" 2>/dev/null || true
   git -C "$INSTALL_DIR" pull --ff-only --quiet || warn "拉取失败(可能无网络),沿用现有版本"
   ok "仓库已是最新"
 else

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# AG Design Skills — 自动把 SessionStart 更新 hook 合并进 Claude Code settings.json
+# Sigi Design Skills — 自动把 SessionStart 更新 hook 合并进 Claude Code settings.json
 #
 # 由 install.sh 调用,也可单独运行。安全特性:
 #   - 幂等:已配置则跳过,不重复添加
@@ -12,9 +12,10 @@
 
 set -uo pipefail
 
-INSTALL_DIR="${AG_DESIGN_DIR:-$HOME/.ag-design-skills}"
+INSTALL_DIR="${SIGI_DESIGN_DIR:-$HOME/.sigi-design-skills}"
 SETTINGS="${CLAUDE_SETTINGS:-$HOME/.claude/settings.json}"
 HOOK_CMD="bash $INSTALL_DIR/scripts/auto-update.sh"
+LEGACY_HOOK_PATH=".ag-design-skills/scripts/auto-update.sh"
 
 info()  { printf '\033[36m›\033[0m %s\n' "$1"; }
 ok()    { printf '\033[32m✓\033[0m %s\n' "$1"; }
@@ -33,6 +34,25 @@ mkdir -p "$(dirname "$SETTINGS")"
 if [ ! -f "$SETTINGS" ]; then
   printf '{}\n' > "$SETTINGS"
   info "创建了新的 settings.json"
+fi
+
+# --- 迁移旧路径 hook -------------------------------------------------------
+# 旧版 hook 写死了 ~/.ag-design-skills 路径。仓库改名后该脚本已不存在,
+# 但下面的幂等检查只匹配 "scripts/auto-update.sh" 会误判为已配置并跳过,
+# 留下一个永远静默失败的 hook。所以先就地改写路径。
+if [ -f "$SETTINGS" ] && grep -q "$LEGACY_HOOK_PATH" "$SETTINGS" 2>/dev/null; then
+  backup="$SETTINGS.bak.$(date +%Y%m%d%H%M%S)"
+  cp "$SETTINGS" "$backup"
+  if sed "s|\.ag-design-skills/scripts/auto-update\.sh|.sigi-design-skills/scripts/auto-update.sh|g" \
+       "$SETTINGS" > "$SETTINGS.tmp" && mv "$SETTINGS.tmp" "$SETTINGS"; then
+    ok "已把旧路径 hook 迁移到 .sigi-design-skills(原配置备份: $backup)"
+    exit 0
+  else
+    cp "$backup" "$SETTINGS"
+    warn "hook 路径迁移失败,已还原原配置"
+    print_manual_hint
+    exit 0
+  fi
 fi
 
 # --- 幂等检查:已含我们的 hook 命令就跳过 ----------------------------------
@@ -54,10 +74,10 @@ merge_with_jq() {
 }
 
 merge_with_python() {
-  CLAUDE_SETTINGS="$SETTINGS" AG_HOOK_CMD="$HOOK_CMD" python3 - <<'PY'
+  CLAUDE_SETTINGS="$SETTINGS" SIGI_HOOK_CMD="$HOOK_CMD" python3 - <<'PY'
 import json, os, sys
 path = os.environ["CLAUDE_SETTINGS"]
-cmd  = os.environ["AG_HOOK_CMD"]
+cmd  = os.environ["SIGI_HOOK_CMD"]
 try:
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)

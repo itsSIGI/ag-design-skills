@@ -32,8 +32,9 @@ done
 #   docs/               历史记录（spec 与实施计划），保留旧名是正确的
 #   scripts/install.sh  LEGACY_SKILLS 数组必须保留旧名用于清理，由断言 8 单独校验
 #   scripts/verify-skills.sh  本文件的断言 2 需列举旧名
-# 另注：仓库名 ag-design-skills、安装目录 ~/.ag-design-skills、环境变量
-#   AG_DESIGN_DIR 均不在改名范围内，故只匹配 6 个具体 skill 后缀。
+# 另注：仓库/安装目录/环境变量也已一并改名（sigi-design-skills、
+#   ~/.sigi-design-skills、SIGI_DESIGN_DIR），但 install.sh 与 configure-hook.sh
+#   需保留旧路径字面量做迁移，故本断言只匹配 6 个具体 skill 后缀。
 residue=$(grep -rn "ag-design-\(system\|compass\|vision\|craft\|arbiter\|audit\)" \
   --include="*.md" --include="*.sh" --include="*.json" --include="*.yaml" . \
   | grep -v "^./docs/" | grep -v "^./.git/" \

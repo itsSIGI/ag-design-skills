@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #
-# AG Design Skills — 手动更新（通用兜底）
+# Sigi Design Skills — 手动更新（通用兜底）
 #
 # 适用于 Cursor / Windsurf / Codex 等无 hook 的工具,或不想用自动更新的人。
 # 需要时跑一下即可:
-#   bash ~/.ag-design-skills/scripts/update.sh
+#   bash ~/.sigi-design-skills/scripts/update.sh
 
 set -uo pipefail
 
-INSTALL_DIR="${AG_DESIGN_DIR:-$HOME/.ag-design-skills}"
+INSTALL_DIR="${SIGI_DESIGN_DIR:-$HOME/.sigi-design-skills}"
 
 info() { printf '\033[36m›\033[0m %s\n' "$1"; }
 ok()   { printf '\033[32m✓\033[0m %s\n' "$1"; }

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# AG Design Skills — 静默自动更新（Claude Code SessionStart hook 调用）
+# Sigi Design Skills — 静默自动更新（Claude Code SessionStart hook 调用）
 #
 # 行为:
 #   - 有新版本 → 拉取并打印一行更新提示
@@ -9,11 +9,11 @@
 #
 # 在 ~/.claude/settings.json 中这样接入:
 #   "SessionStart": [ { "hooks": [
-#     { "type": "command", "command": "bash ~/.ag-design-skills/scripts/auto-update.sh" }
+#     { "type": "command", "command": "bash ~/.sigi-design-skills/scripts/auto-update.sh" }
 #   ] } ]
 
-INSTALL_DIR="${AG_DESIGN_DIR:-$HOME/.ag-design-skills}"
-TIMEOUT_SECS="${AG_DESIGN_UPDATE_TIMEOUT:-10}"
+INSTALL_DIR="${SIGI_DESIGN_DIR:-$HOME/.sigi-design-skills}"
+TIMEOUT_SECS="${SIGI_DESIGN_UPDATE_TIMEOUT:-10}"
 
 # 不是 git 仓库就直接退(可能用户没用 install.sh 装),静默
 [ -d "$INSTALL_DIR/.git" ] || exit 0
@@ -45,7 +45,7 @@ after="$(git -C "$INSTALL_DIR" rev-parse HEAD 2>/dev/null)" || exit 0
 if [ -n "$after" ] && [ "$before" != "$after" ]; then
   short="$(git -C "$INSTALL_DIR" rev-parse --short HEAD 2>/dev/null)"
   title="$(git -C "$INSTALL_DIR" log -1 --pretty=%s 2>/dev/null)"
-  printf '\033[32m✓ AG Design Skills 已更新到 %s: %s\033[0m\n' "$short" "$title"
+  printf '\033[32m✓ Sigi Design Skills 已更新到 %s: %s\033[0m\n' "$short" "$title"
 fi
 
 exit 0

@@ -57,16 +57,17 @@ Sigi Design Skills 是一套专为 B 端产品设计的 AI 辅助设计系统。
 
 ### 安装步骤
 
-> **推荐用一键脚本安装**（适用于 Claude Code）：脚本会把仓库克隆到 `~/.ag-design-skills`，再把 6 个 skill **软链**到 `~/.claude/skills/`。软链的好处是 —— 之后只要 `git pull` 仓库，skills 立即就是最新版,无需重新拷贝。这是实现[自动更新](#自动更新)的基础。
+> **推荐用一键脚本安装**（适用于 Claude Code）：脚本会把仓库克隆到 `~/.sigi-design-skills`，再把 6 个 skill **软链**到 `~/.claude/skills/`。软链的好处是 —— 之后只要 `git pull` 仓库，skills 立即就是最新版,无需重新拷贝。这是实现[自动更新](#自动更新)的基础。
 
 > **从 ag-design-* 旧版升级**：直接跑 `bash scripts/install.sh` 即可，
-> 脚本会自动清理旧的 `ag-design-*` 悬空软链，无需手动删除。
+> 脚本会自动清理旧的 `ag-design-*` 悬空软链、把旧安装目录 `~/.ag-design-skills`
+> 迁移到 `~/.sigi-design-skills`，并就地修正 `settings.json` 里的旧 hook 路径，无需手动处理。
 
 #### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/itsSIGI/ag-design-skills.git
-cd ag-design-skills
+git clone https://github.com/itsSIGI/sigi-design-skills.git
+cd sigi-design-skills
 ```
 
 #### 2. 接入你的 AI Coding 工具
@@ -81,7 +82,7 @@ cd ag-design-skills
 bash scripts/install.sh
 ```
 
-脚本会自动完成：克隆/更新仓库到 `~/.ag-design-skills` → 软链 6 个 skill 到 `~/.claude/skills/` → 打印自动更新的接入引导。脚本**幂等**，可重复运行。
+脚本会自动完成：克隆/更新仓库到 `~/.sigi-design-skills` → 软链 6 个 skill 到 `~/.claude/skills/` → 打印自动更新的接入引导。脚本**幂等**，可重复运行。
 
 > 之前用 `cp -r` 拷贝装过的人:直接跑一次 `bash scripts/install.sh` 即可，脚本会自动把旧拷贝目录替换为软链，无需手动清理。
 
@@ -99,12 +100,12 @@ done
 
 **Cursor**
 
-> 建议把仓库克隆到统一位置 `~/.ag-design-skills`（与 Claude Code 共用，方便用 `update.sh` 一处更新）；也可克隆到项目目录。下方 rules 里的路径按你的实际克隆位置替换即可。
+> 建议把仓库克隆到统一位置 `~/.sigi-design-skills`（与 Claude Code 共用，方便用 `update.sh` 一处更新）；也可克隆到项目目录。下方 rules 里的路径按你的实际克隆位置替换即可。
 
 将仓库克隆后，在 Cursor Settings → Rules 中添加项目级规则文件 `.cursorrules`：
 
 ```
-请阅读 ag-design-skills/ 目录下的 SKILL.md 文件作为设计系统指令：
+请阅读 sigi-design-skills/ 目录下的 SKILL.md 文件作为设计系统指令：
 - 生成 UI 代码时，遵循 sigi-design-build/SKILL.md 的 Recipe-first 流程
 - Token 值参考 sigi-design-system/references/tokens.md
 - 组件用法参考 sigi-design-system/references/components-v2.md
@@ -120,7 +121,7 @@ done
 在项目根目录创建 `.windsurfrules` 文件，引用 skill 目录中的指令：
 
 ```
-请将 ag-design-skills/ 目录下各 SKILL.md 作为设计系统规范。
+请将 sigi-design-skills/ 目录下各 SKILL.md 作为设计系统规范。
 生成 UI 时遵循 sigi-design-build/SKILL.md 的流程，Token 和组件规范见 sigi-design-system/。
 ```
 
@@ -179,7 +180,7 @@ done
 
 > **想手动配置 / 重新配置？** 单独运行：
 > ```bash
-> bash ~/.ag-design-skills/scripts/configure-hook.sh
+> bash ~/.sigi-design-skills/scripts/configure-hook.sh
 > ```
 > 它是幂等的（已配置则跳过），优先用 `jq`，没装则降级用系统自带的 `python3` 安全合并。两者都没有时会打印手动配置片段。
 
@@ -188,21 +189,21 @@ done
 这些工具没有 hook 机制，无法在启动时自动拉取。需要时跑一下更新命令即可：
 
 ```bash
-bash ~/.ag-design-skills/scripts/update.sh
+bash ~/.sigi-design-skills/scripts/update.sh
 ```
 
-它会拉取最新版并显示版本变化。由于 skills 是软链到 `~/.ag-design-skills`，`git pull` 后即时生效，无需重新配置。
+它会拉取最新版并显示版本变化。由于 skills 是软链到 `~/.sigi-design-skills`，`git pull` 后即时生效，无需重新配置。
 
 > **想准自动？** 可以用系统定时任务在后台定期拉取，例如 macOS / Linux 的 cron 每天更新一次：
 > ```bash
 > # crontab -e 加入一行（每天 10:00 静默更新）
-> 0 10 * * * bash ~/.ag-design-skills/scripts/update.sh > /dev/null 2>&1
+> 0 10 * * * bash ~/.sigi-design-skills/scripts/update.sh > /dev/null 2>&1
 > ```
 
 ### 检查当前版本
 
 ```bash
-git -C ~/.ag-design-skills log -1 --pretty='%h %s (%cr)'
+git -C ~/.sigi-design-skills log -1 --pretty='%h %s (%cr)'
 ```
 
 ---
@@ -465,7 +466,7 @@ Recipe 是契约：代码不得偏离 Recipe，新增必须回 Step 1 补行。
 ## 项目结构
 
 ```
-ag-design-skills/
+sigi-design-skills/
 ├── sigi-design/                  # 入口路由：把需求送进正确的 skill
 │   └── SKILL.md                  # 索引表 + 优先级规则 + Red Flags（无 references）
 │
